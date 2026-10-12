@@ -1,9 +1,9 @@
 {
   "meta": {
-    "code_version": "V0.7a",
-    "generated_at": "2026-10-12T16:30:23",
+    "code_version": "V0.7b",
+    "generated_at": "2026-10-12T19:00:00",
     "python_version": "3.12.13",
-    "git_commit": "9df4493",
+    "git_commit": "fac7cb7",
     "params": {
       "gates": [
         "detect_fail",
@@ -38,12 +38,37 @@
       "reject_gate": null
     },
     {
-      "case": "4_混合光门2拒绝→rec必须None",
+      "case": "4a_70:30强断言门2拒",
       "passed": true,
-      "detected": false,
+      "threshold": 0.03,
+      "note": "70:30 混合光，门2 必须拦截",
+      "est_detected": true,
       "rec_none": true,
+      "rejected": true,
+      "reject_gate": "selfcheck",
+      "dev_post": 0.048
+    },
+    {
+      "case": "4b_10:90强断言门2拒",
+      "passed": true,
+      "threshold": 0.03,
+      "note": "10:90 混合光，门2 必须拦截",
+      "est_detected": true,
+      "rec_none": true,
+      "rejected": true,
+      "reject_gate": "selfcheck",
+      "dev_post": 0.0345
+    },
+    {
+      "case": "4c_90:10边界放行",
+      "passed": true,
+      "threshold": 0.03,
+      "note": "90:10 近单灯，不可分边界，如实记录",
+      "est_detected": true,
+      "rec_none": false,
+      "rejected": false,
       "reject_gate": null,
-      "dev_post": null
+      "dev_post": 0.0248
     },
     {
       "case": "5_环带面积=18880核验",
