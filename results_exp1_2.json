@@ -1,0 +1,872 @@
+{
+  "meat_red_meat": [
+    {
+      "food": "meat",
+      "lamp": "red_meat",
+      "strength": 0.4,
+      "n": 5,
+      "polluted": {
+        "dE_mean": 6.214429039855014,
+        "dE_std": 0.01589779258156728,
+        "psnr_mean": 28.480466262555417
+      },
+      "generic_awb": {
+        "dE_mean": 5.676442289047051,
+        "dE_std": 0.040524554919296484,
+        "psnr_mean": 29.69865401633756
+      },
+      "ours": {
+        "dE_mean": 0.5757531689056389,
+        "dE_std": 0.004731488440721064,
+        "psnr_mean": 49.53700342561366,
+        "psnr_std": 0.0688422679827776,
+        "ssim_mean": 0.9999782501797287,
+        "ssim_std": 3.935268090379889e-07
+      },
+      "dE_per_seed": {
+        "polluted": [
+          6.219,
+          6.188,
+          6.232,
+          6.227,
+          6.206
+        ],
+        "awb": [
+          5.636,
+          5.741,
+          5.655,
+          5.644,
+          5.706
+        ],
+        "ours": [
+          0.582,
+          0.577,
+          0.567,
+          0.578,
+          0.575
+        ]
+      },
+      "mean_overexposed_ratio": 0.0001800537109375,
+      "est_info": [
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.4116021170941167,
+          "confidence": 0.8509808054428262,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18880
+        },
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.4115126555567866,
+          "confidence": 0.8530859935224232,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18880
+        },
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.4106348038233487,
+          "confidence": 0.8497588016374654,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18880
+        },
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.4113048887861128,
+          "confidence": 0.8539349030955035,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18880
+        },
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.41129893182174454,
+          "confidence": 0.8515731630860727,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18880
+        }
+      ],
+      "strength_est_err": {
+        "n_detected": 5,
+        "n_total": 5,
+        "mean": 0.011270679416421858,
+        "max": 0.011602117094116682
+      }
+    },
+    {
+      "food": "meat",
+      "lamp": "red_meat",
+      "strength": 0.6,
+      "n": 5,
+      "polluted": {
+        "dE_mean": 8.646675821732488,
+        "dE_std": 0.020067599354179462,
+        "psnr_mean": 25.139039588275992
+      },
+      "generic_awb": {
+        "dE_mean": 5.746122934499338,
+        "dE_std": 0.04091725278157292,
+        "psnr_mean": 28.953245997784062
+      },
+      "ours": {
+        "dE_mean": 0.7353850158047104,
+        "dE_std": 0.005314647981071332,
+        "psnr_mean": 47.20381563059033,
+        "psnr_std": 0.05959033875935125,
+        "ssim_mean": 0.9998492166600748,
+        "ssim_std": 1.9947572013829504e-06
+      },
+      "dE_per_seed": {
+        "polluted": [
+          8.652,
+          8.613,
+          8.67,
+          8.662,
+          8.636
+        ],
+        "awb": [
+          5.705,
+          5.811,
+          5.724,
+          5.714,
+          5.776
+        ],
+        "ours": [
+          0.743,
+          0.73,
+          0.73,
+          0.741,
+          0.734
+        ]
+      },
+      "mean_overexposed_ratio": 0.0061248779296875,
+      "est_info": [
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.6087727066918542,
+          "confidence": 0.9608290691047969,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18479
+        },
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.6081617338578861,
+          "confidence": 0.9633360622924761,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18424
+        },
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.6078105368841392,
+          "confidence": 0.9600571098153413,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18500
+        },
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.6085293789653548,
+          "confidence": 0.9642255367939999,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18495
+        },
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.6083708841995089,
+          "confidence": 0.9614085613212304,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18473
+        }
+      ],
+      "strength_est_err": {
+        "n_detected": 5,
+        "n_total": 5,
+        "mean": 0.008329048119748661,
+        "max": 0.00877270669185426
+      }
+    },
+    {
+      "food": "meat",
+      "lamp": "red_meat",
+      "strength": 0.8,
+      "n": 5,
+      "polluted": {
+        "dE_mean": 10.735338675570564,
+        "dE_std": 0.022615551750532217,
+        "psnr_mean": 22.80186456383837
+      },
+      "generic_awb": {
+        "dE_mean": 5.846707262045936,
+        "dE_std": 0.04091617115629886,
+        "psnr_mean": 28.109824530252457
+      },
+      "ours": {
+        "dE_mean": 0.997869410614695,
+        "dE_std": 0.004569861151194122,
+        "psnr_mean": 44.14568025254364,
+        "psnr_std": 0.03985471158527598,
+        "ssim_mean": 0.999255725593881,
+        "ssim_std": 1.8819152240662443e-05
+      },
+      "dE_per_seed": {
+        "polluted": [
+          10.74,
+          10.698,
+          10.763,
+          10.751,
+          10.725
+        ],
+        "awb": [
+          5.806,
+          5.912,
+          5.825,
+          5.814,
+          5.877
+        ],
+        "ours": [
+          1.003,
+          0.999,
+          0.991,
+          1.002,
+          0.995
+        ]
+      },
+      "mean_overexposed_ratio": 0.0061737060546875,
+      "est_info": [
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.8118561634246051,
+          "confidence": 0.8847187946025332,
+          "neutral_mode": "环带宽阈值中性区",
+          "neutral_pixels": 18880
+        },
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.8117910483074264,
+          "confidence": 0.8868175453262013,
+          "neutral_mode": "环带宽阈值中性区",
+          "neutral_pixels": 18880
+        },
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.8108053149320115,
+          "confidence": 0.8841106305175465,
+          "neutral_mode": "环带宽阈值中性区",
+          "neutral_pixels": 18880
+        },
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.8115766197777758,
+          "confidence": 0.8877731896859982,
+          "neutral_mode": "环带宽阈值中性区",
+          "neutral_pixels": 18880
+        },
+        {
+          "detected": true,
+          "lamp_type": "red_meat",
+          "strength": 0.8115550004933441,
+          "confidence": 0.8854508731014963,
+          "neutral_mode": "环带宽阈值中性区",
+          "neutral_pixels": 18880
+        }
+      ],
+      "strength_est_err": {
+        "n_detected": 5,
+        "n_total": 5,
+        "mean": 0.011516829387032534,
+        "max": 0.011856163424605048
+      }
+    }
+  ],
+  "veg_green_veg": [
+    {
+      "food": "veg",
+      "lamp": "green_veg",
+      "strength": 0.4,
+      "n": 5,
+      "polluted": {
+        "dE_mean": 8.006445999566095,
+        "dE_std": 0.02311131198154543,
+        "psnr_mean": 30.253624012862907
+      },
+      "generic_awb": {
+        "dE_mean": 7.212010372841251,
+        "dE_std": 0.05179899142513793,
+        "psnr_mean": 30.900603563629584
+      },
+      "ours": {
+        "dE_mean": 0.807649535130578,
+        "dE_std": 0.015893612331330527,
+        "psnr_mean": 52.12274418213972,
+        "psnr_std": 0.1777637322377016,
+        "ssim_mean": 0.9999855043483047,
+        "ssim_std": 4.821917271863943e-07
+      },
+      "dE_per_seed": {
+        "polluted": [
+          8.001,
+          7.977,
+          8.032,
+          8.035,
+          7.988
+        ],
+        "awb": [
+          7.138,
+          7.296,
+          7.19,
+          7.229,
+          7.207
+        ],
+        "ours": [
+          0.818,
+          0.782,
+          0.83,
+          0.805,
+          0.803
+        ]
+      },
+      "mean_overexposed_ratio": 0.0,
+      "est_info": [
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.4074663647124078,
+          "confidence": 0.7887536271748959,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18555
+        },
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.40621135604266706,
+          "confidence": 0.7859847580078178,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18555
+        },
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.4078261300745822,
+          "confidence": 0.7890730860081681,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18555
+        },
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.40679519968327094,
+          "confidence": 0.7903588790920584,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18555
+        },
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.40694441907824697,
+          "confidence": 0.7903805776418847,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18555
+        }
+      ],
+      "strength_est_err": {
+        "n_detected": 5,
+        "n_total": 5,
+        "mean": 0.0070486939182349715,
+        "max": 0.00782613007458216
+      }
+    },
+    {
+      "food": "veg",
+      "lamp": "green_veg",
+      "strength": 0.6,
+      "n": 5,
+      "polluted": {
+        "dE_mean": 10.736243252562412,
+        "dE_std": 0.027732847707219416,
+        "psnr_mean": 26.900148905155596
+      },
+      "generic_awb": {
+        "dE_mean": 7.097575069404753,
+        "dE_std": 0.05117050347870798,
+        "psnr_mean": 30.175141743909723
+      },
+      "ours": {
+        "dE_mean": 1.1351399408329068,
+        "dE_std": 0.017037836143338484,
+        "psnr_mean": 49.17069537378153,
+        "psnr_std": 0.1362120218214595,
+        "ssim_mean": 0.9999713025245761,
+        "ssim_std": 6.759861124265395e-07
+      },
+      "dE_per_seed": {
+        "polluted": [
+          10.724,
+          10.705,
+          10.766,
+          10.773,
+          10.713
+        ],
+        "awb": [
+          7.024,
+          7.181,
+          7.076,
+          7.114,
+          7.093
+        ],
+        "ours": [
+          1.145,
+          1.108,
+          1.159,
+          1.134,
+          1.129
+        ]
+      },
+      "mean_overexposed_ratio": 0.0,
+      "est_info": [
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.6081123230956771,
+          "confidence": 0.9375776950419863,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18545
+        },
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.6068370972511421,
+          "confidence": 0.9355806693840952,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18548
+        },
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.6085476769665537,
+          "confidence": 0.9376200712015783,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18549
+        },
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.6074668193298204,
+          "confidence": 0.9401075469767661,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18551
+        },
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.6075927743987005,
+          "confidence": 0.9399636924365731,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18548
+        }
+      ],
+      "strength_est_err": {
+        "n_detected": 5,
+        "n_total": 5,
+        "mean": 0.007711338208378771,
+        "max": 0.008547676966553674
+      }
+    },
+    {
+      "food": "veg",
+      "lamp": "green_veg",
+      "strength": 0.8,
+      "n": 5,
+      "polluted": {
+        "dE_mean": 12.959764422862538,
+        "dE_std": 0.030658890398077784,
+        "psnr_mean": 24.55573484904598
+      },
+      "generic_awb": {
+        "dE_mean": 7.008346604647153,
+        "dE_std": 0.0501902627205092,
+        "psnr_mean": 29.345015261371238
+      },
+      "ours": {
+        "dE_mean": 1.0035782852815314,
+        "dE_std": 0.0271244980520825,
+        "psnr_mean": 50.237418228517036,
+        "psnr_std": 0.2373074448138753,
+        "ssim_mean": 0.9999775951021139,
+        "ssim_std": 9.986247216904742e-07
+      },
+      "dE_per_seed": {
+        "polluted": [
+          12.94,
+          12.931,
+          12.991,
+          13.002,
+          12.934
+        ],
+        "awb": [
+          6.937,
+          7.09,
+          6.987,
+          7.024,
+          7.003
+        ],
+        "ours": [
+          1.023,
+          0.962,
+          1.031,
+          1.02,
+          0.982
+        ]
+      },
+      "mean_overexposed_ratio": 0.0,
+      "est_info": [
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.7874598782240638,
+          "confidence": 0.9249389021349196,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 15291
+        },
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.7848997069955788,
+          "confidence": 0.921919961460504,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 15170
+        },
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.7876577135872332,
+          "confidence": 0.9245838408360078,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 15291
+        },
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.787151704315001,
+          "confidence": 0.9283958553092152,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 15391
+        },
+        {
+          "detected": true,
+          "lamp_type": "green_veg",
+          "strength": 0.785665048827881,
+          "confidence": 0.9264479637472905,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 15164
+        }
+      ],
+      "strength_est_err": {
+        "n_detected": 5,
+        "n_total": 5,
+        "mean": 0.013433189610048468,
+        "max": 0.015100293004421284
+      }
+    }
+  ],
+  "sea_blue_sea": [
+    {
+      "food": "sea",
+      "lamp": "blue_sea",
+      "strength": 0.4,
+      "n": 5,
+      "polluted": {
+        "dE_mean": 9.044582754431435,
+        "dE_std": 0.02128637734683086,
+        "psnr_mean": 27.071699880451682
+      },
+      "generic_awb": {
+        "dE_mean": 2.1950784770147065,
+        "dE_std": 0.0067390542314964335,
+        "psnr_mean": 36.290427905648656
+      },
+      "ours": {
+        "dE_mean": 0.09170262519310995,
+        "dE_std": 0.008813167884638174,
+        "psnr_mean": 64.50678468164006,
+        "psnr_std": 0.44061845763717944,
+        "ssim_mean": 0.999999515065548,
+        "ssim_std": 5.020062146048633e-08
+      },
+      "dE_per_seed": {
+        "polluted": [
+          9.059,
+          9.01,
+          9.063,
+          9.062,
+          9.029
+        ],
+        "awb": [
+          2.192,
+          2.208,
+          2.19,
+          2.194,
+          2.191
+        ],
+        "ours": [
+          0.106,
+          0.087,
+          0.096,
+          0.088,
+          0.081
+        ]
+      },
+      "mean_overexposed_ratio": 0.0,
+      "est_info": [
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.374979969584304,
+          "confidence": 0.8783697985068737,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18880
+        },
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.3759489323178081,
+          "confidence": 0.8773777639319824,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18880
+        },
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.375487558831125,
+          "confidence": 0.8773423113952663,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18880
+        },
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.3759202673985402,
+          "confidence": 0.8794712695277203,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18880
+        },
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.3762688298646964,
+          "confidence": 0.8778489414774533,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18880
+        }
+      ],
+      "strength_est_err": {
+        "n_detected": 5,
+        "n_total": 5,
+        "mean": 0.02427888840070528,
+        "max": 0.025020030415696004
+      }
+    },
+    {
+      "food": "sea",
+      "lamp": "blue_sea",
+      "strength": 0.6,
+      "n": 5,
+      "polluted": {
+        "dE_mean": 12.287532243998118,
+        "dE_std": 0.026104172984927485,
+        "psnr_mean": 23.722954320344723
+      },
+      "generic_awb": {
+        "dE_mean": 2.348195325191221,
+        "dE_std": 0.006252333145775873,
+        "psnr_mean": 34.15807480765433
+      },
+      "ours": {
+        "dE_mean": 0.1576598359569297,
+        "dE_std": 0.00678227680157357,
+        "psnr_mean": 60.067509055862125,
+        "psnr_std": 0.16469504539752328,
+        "ssim_mean": 0.9999985855338934,
+        "ssim_std": 5.800450463471084e-08
+      },
+      "dE_per_seed": {
+        "polluted": [
+          12.304,
+          12.246,
+          12.31,
+          12.309,
+          12.268
+        ],
+        "awb": [
+          2.346,
+          2.36,
+          2.343,
+          2.348,
+          2.344
+        ],
+        "ours": [
+          0.147,
+          0.156,
+          0.155,
+          0.165,
+          0.165
+        ]
+      },
+      "mean_overexposed_ratio": 0.0,
+      "est_info": [
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.5707490365091786,
+          "confidence": 0.999233561168478,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18491
+        },
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.5714658009503861,
+          "confidence": 0.9982453387227568,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18460
+        },
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.5713333862985911,
+          "confidence": 0.9972029123804313,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18501
+        },
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.5720129448242075,
+          "confidence": 0.9988551572136071,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18533
+        },
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.5720573231983072,
+          "confidence": 0.9974437149767152,
+          "neutral_mode": "环带阈值中性区",
+          "neutral_pixels": 18486
+        }
+      ],
+      "strength_est_err": {
+        "n_detected": 5,
+        "n_total": 5,
+        "mean": 0.028476301643865876,
+        "max": 0.029250963490821347
+      }
+    },
+    {
+      "food": "sea",
+      "lamp": "blue_sea",
+      "strength": 0.8,
+      "n": 5,
+      "polluted": {
+        "dE_mean": 14.933178504657224,
+        "dE_std": 0.029033491179133442,
+        "psnr_mean": 21.3781778005254
+      },
+      "generic_awb": {
+        "dE_mean": 2.544989943982402,
+        "dE_std": 0.005711872382245237,
+        "psnr_mean": 32.30108080935039
+      },
+      "ours": {
+        "dE_mean": 0.46058563928159024,
+        "dE_std": 0.007871823484899036,
+        "psnr_mean": 52.88171879196769,
+        "psnr_std": 0.118703969110488,
+        "ssim_mean": 0.999981047949545,
+        "ssim_std": 1.1310689226996481e-06
+      },
+      "dE_per_seed": {
+        "polluted": [
+          14.952,
+          14.887,
+          14.959,
+          14.958,
+          14.912
+        ],
+        "awb": [
+          2.543,
+          2.556,
+          2.54,
+          2.545,
+          2.541
+        ],
+        "ours": [
+          0.447,
+          0.463,
+          0.457,
+          0.466,
+          0.469
+        ]
+      },
+      "mean_overexposed_ratio": 0.0020263671875,
+      "est_info": [
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.772663116779623,
+          "confidence": 0.9138666545820363,
+          "neutral_mode": "环带宽阈值中性区",
+          "neutral_pixels": 18877
+        },
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.7737469215036372,
+          "confidence": 0.9159354121071412,
+          "neutral_mode": "环带宽阈值中性区",
+          "neutral_pixels": 18876
+        },
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.7731853610264965,
+          "confidence": 0.9120894186384573,
+          "neutral_mode": "环带宽阈值中性区",
+          "neutral_pixels": 18875
+        },
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.7737264362334476,
+          "confidence": 0.9138021851859784,
+          "neutral_mode": "环带宽阈值中性区",
+          "neutral_pixels": 18872
+        },
+        {
+          "detected": true,
+          "lamp_type": "blue_sea",
+          "strength": 0.7740263955172199,
+          "confidence": 0.9121171824961738,
+          "neutral_mode": "环带宽阈值中性区",
+          "neutral_pixels": 18878
+        }
+      ],
+      "strength_est_err": {
+        "n_detected": 5,
+        "n_total": 5,
+        "mean": 0.02653035378791522,
+        "max": 0.027336883220377084
+      }
+    }
+  ]
+}

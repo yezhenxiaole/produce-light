@@ -1,0 +1,123 @@
+{
+  "gain_bias": [
+    {
+      "food": "meat",
+      "lamp": "red_meat",
+      "strength": 0.4,
+      "full_mean": 0.009718370777043846,
+      "full_std": 4.8843089116445756e-05,
+      "chain_mean": 0.008310946703138467,
+      "chain_std": 0.0001470515468547716,
+      "n": 5
+    },
+    {
+      "food": "meat",
+      "lamp": "red_meat",
+      "strength": 0.6,
+      "full_mean": 0.006824269936384743,
+      "full_std": 0.00013872594178056938,
+      "chain_mean": 0.006580784033101505,
+      "chain_std": 0.00016283316099814676,
+      "n": 5
+    },
+    {
+      "food": "meat",
+      "lamp": "red_meat",
+      "strength": 0.8,
+      "full_mean": 0.042131085435739436,
+      "full_std": 0.00020581541988506767,
+      "chain_mean": 0.007612361741833273,
+      "chain_std": 0.00013664881583423365,
+      "n": 5
+    },
+    {
+      "food": "veg",
+      "lamp": "green_veg",
+      "strength": 0.4,
+      "full_mean": 0.008843788066984219,
+      "full_std": 0.00018363757214090302,
+      "chain_mean": 0.008876374274945944,
+      "chain_std": 0.00022480373538496924,
+      "n": 5
+    },
+    {
+      "food": "veg",
+      "lamp": "green_veg",
+      "strength": 0.6,
+      "full_mean": 0.008737377609713565,
+      "full_std": 0.00017806300624748748,
+      "chain_mean": 0.008772598782118406,
+      "chain_std": 0.00021978302642191317,
+      "n": 5
+    },
+    {
+      "food": "veg",
+      "lamp": "green_veg",
+      "strength": 0.8,
+      "full_mean": 0.01120289169547902,
+      "full_std": 0.00029069712071978353,
+      "chain_mean": 0.011504908150588019,
+      "chain_std": 0.0004389928573943933,
+      "n": 5
+    },
+    {
+      "food": "sea",
+      "lamp": "blue_sea",
+      "strength": 0.4,
+      "full_mean": 0.058598094975410964,
+      "full_std": 0.00031420784451706077,
+      "chain_mean": 0.014143663967871048,
+      "chain_std": 0.0002566452986866775,
+      "n": 5
+    },
+    {
+      "food": "sea",
+      "lamp": "blue_sea",
+      "strength": 0.6,
+      "full_mean": 0.0593074971832776,
+      "full_std": 0.0003681998128361253,
+      "chain_mean": 0.015973607522024598,
+      "chain_std": 0.00027502353563719513,
+      "n": 5
+    },
+    {
+      "food": "sea",
+      "lamp": "blue_sea",
+      "strength": 0.8,
+      "full_mean": 0.12212423966398685,
+      "full_std": 0.0003349733755386672,
+      "chain_mean": 0.014360101835521038,
+      "chain_std": 0.00026252556010448785,
+      "n": 5
+    }
+  ],
+  "degrade_fallback": {
+    "ring_occluded": {
+      "detected": true,
+      "lamp": "red_meat",
+      "mode": "全图阈值中性区",
+      "neutral_pixels": 19966,
+      "reason": null
+    },
+    "full_composition": {
+      "detected": false,
+      "lamp": null,
+      "mode": null,
+      "neutral_pixels": 0,
+      "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍"
+    },
+    "single_side_white": {
+      "detected": false,
+      "lamp": null,
+      "mode": null,
+      "neutral_pixels": 0,
+      "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍"
+    }
+  },
+  "restore_dE": {
+    "scene": "sea/blue_sea s=0.8",
+    "chain_dE_mean": 0.46058563928159024,
+    "chain_dE_std": 0.007871823484899036,
+    "n": 5
+  }
+}

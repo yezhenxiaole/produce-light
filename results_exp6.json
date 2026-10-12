@@ -1,0 +1,495 @@
+{
+  "attack": {
+    "A1_fat_blob": {
+      "rejected": "5/5",
+      "wrongly_restored": 0,
+      "wrong_restore_dE": null,
+      "detail": [
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "conf": 0.0
+        },
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "conf": 0.0
+        },
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "conf": 0.0
+        },
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "conf": 0.0
+        },
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "conf": 0.0
+        }
+      ]
+    },
+    "A2_fish_full": {
+      "rejected": "0/5",
+      "wrongly_restored": 5,
+      "wrong_restore_dE": 7.88,
+      "detail": [
+        {
+          "detected": true,
+          "lamp": "hidden_red",
+          "reason": null,
+          "conf": 0.745
+        },
+        {
+          "detected": true,
+          "lamp": "hidden_red",
+          "reason": null,
+          "conf": 0.745
+        },
+        {
+          "detected": true,
+          "lamp": "hidden_red",
+          "reason": null,
+          "conf": 0.745
+        },
+        {
+          "detected": true,
+          "lamp": "hidden_red",
+          "reason": null,
+          "conf": 0.745
+        },
+        {
+          "detected": true,
+          "lamp": "hidden_red",
+          "reason": null,
+          "conf": 0.745
+        }
+      ]
+    },
+    "A3_fish_full_blue": {
+      "rejected": "5/5",
+      "wrongly_restored": 0,
+      "wrong_restore_dE": null,
+      "detail": [
+        {
+          "detected": false,
+          "lamp": "blue_sea",
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+          "conf": 0.444
+        },
+        {
+          "detected": false,
+          "lamp": "blue_sea",
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+          "conf": 0.443
+        },
+        {
+          "detected": false,
+          "lamp": "blue_sea",
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+          "conf": 0.443
+        },
+        {
+          "detected": false,
+          "lamp": "blue_sea",
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+          "conf": 0.443
+        },
+        {
+          "detected": false,
+          "lamp": "blue_sea",
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+          "conf": 0.443
+        }
+      ]
+    },
+    "A4_fish_full_red": {
+      "rejected": "5/5",
+      "wrongly_restored": 0,
+      "wrong_restore_dE": null,
+      "detail": [
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "conf": 0.0
+        },
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "conf": 0.0
+        },
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "conf": 0.0
+        },
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "conf": 0.0
+        },
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "conf": 0.0
+        }
+      ]
+    },
+    "A5_specular_small": {
+      "rejected": "5/5",
+      "wrongly_restored": 0,
+      "wrong_restore_dE": null,
+      "detail": [
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
+        },
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
+        },
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
+        },
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
+        },
+        {
+          "detected": false,
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
+        }
+      ]
+    }
+  },
+  "positive": {
+    "B1_std_square": {
+      "identified": "5/5",
+      "detail": [
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7566392683926395,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7566392683926395,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7566392683926395,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7566392683926395,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7566392683926395,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        }
+      ]
+    },
+    "B2_portrait_916": {
+      "identified": "5/5",
+      "detail": [
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568873349982801,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568873349982801,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568873349982801,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568873349982801,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568873349982801,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        }
+      ]
+    },
+    "B3_left_right": {
+      "identified": "5/5",
+      "detail": [
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568692544895259,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568692544895259,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568692544895259,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568692544895259,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568692544895259,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        }
+      ]
+    },
+    "B4_top_bottom": {
+      "identified": "5/5",
+      "detail": [
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568692544895259,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568692544895259,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568692544895259,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568692544895259,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568692544895259,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        }
+      ]
+    },
+    "B5_landscape_169": {
+      "identified": "5/5",
+      "detail": [
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568873349982801,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568873349982801,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568873349982801,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568873349982801,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        },
+        {
+          "detected": true,
+          "lamp": "red_meat",
+          "strength": 0.7568873349982801,
+          "mode": "环带宽阈值中性区",
+          "reason": null
+        }
+      ]
+    }
+  },
+  "mixed": {
+    "red+blue": {
+      "accepted": "0/5",
+      "detail": [
+        {
+          "detected": false,
+          "lamp": "red_meat",
+          "strength": 0.1738719160044117,
+          "conf": 0.3915469038328014,
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
+        },
+        {
+          "detected": false,
+          "lamp": "red_meat",
+          "strength": 0.1738719160044117,
+          "conf": 0.3915469038328014,
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
+        },
+        {
+          "detected": false,
+          "lamp": "red_meat",
+          "strength": 0.1738719160044117,
+          "conf": 0.3915469038328014,
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
+        },
+        {
+          "detected": false,
+          "lamp": "red_meat",
+          "strength": 0.1738719160044117,
+          "conf": 0.3915469038328014,
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
+        },
+        {
+          "detected": false,
+          "lamp": "red_meat",
+          "strength": 0.1738719160044117,
+          "conf": 0.3915469038328014,
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
+        }
+      ]
+    },
+    "red+green": {
+      "accepted": "0/5",
+      "detail": [
+        {
+          "detected": false,
+          "lamp": "hidden_red",
+          "strength": 0.5639989468083347,
+          "conf": 0.2909691057368591,
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
+        },
+        {
+          "detected": false,
+          "lamp": "hidden_red",
+          "strength": 0.5639989468083347,
+          "conf": 0.2909691057368591,
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
+        },
+        {
+          "detected": false,
+          "lamp": "hidden_red",
+          "strength": 0.5639989468083347,
+          "conf": 0.2909691057368591,
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
+        },
+        {
+          "detected": false,
+          "lamp": "hidden_red",
+          "strength": 0.5639989468083347,
+          "conf": 0.2909691057368591,
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
+        },
+        {
+          "detected": false,
+          "lamp": "hidden_red",
+          "strength": 0.5639989468083347,
+          "conf": 0.2909691057368591,
+          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
+        }
+      ]
+    },
+    "ratio_scan_red_blue": [
+      {
+        "mix_red": 0.9,
+        "accepted": "5/5"
+      },
+      {
+        "mix_red": 0.7,
+        "accepted": "5/5"
+      },
+      {
+        "mix_red": 0.5,
+        "accepted": "0/5"
+      },
+      {
+        "mix_red": 0.3,
+        "accepted": "0/5"
+      },
+      {
+        "mix_red": 0.1,
+        "accepted": "5/5"
+      }
+    ]
+  }
+}

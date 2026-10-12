@@ -1,0 +1,77 @@
+{
+  "identification": {
+    "accuracy": 0.9375,
+    "confusion": {
+      "red_meat": {
+        "red_meat": 27,
+        "green_veg": 0,
+        "blue_sea": 0,
+        "hidden_red": 9,
+        "none": 0
+      },
+      "green_veg": {
+        "red_meat": 0,
+        "green_veg": 36,
+        "blue_sea": 0,
+        "hidden_red": 0,
+        "none": 0
+      },
+      "blue_sea": {
+        "red_meat": 0,
+        "green_veg": 0,
+        "blue_sea": 36,
+        "hidden_red": 0,
+        "none": 0
+      },
+      "hidden_red": {
+        "red_meat": 0,
+        "green_veg": 0,
+        "blue_sea": 0,
+        "hidden_red": 36,
+        "none": 0
+      }
+    },
+    "n_total": 144
+  },
+  "failure_branches": {
+    "natural_light": {
+      "detected": false,
+      "reasons": [
+        "未检出明显色偏，可能已为自然光环境",
+        "未检出明显色偏，可能已为自然光环境",
+        "未检出明显色偏，可能已为自然光环境"
+      ]
+    },
+    "too_dark": {
+      "detected": false,
+      "reason": "图像过暗，无法可靠估计光源，请开启闪光灯或移至明亮处重拍"
+    },
+    "unknown_source": {
+      "detected": false,
+      "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+      "fitted_lamp": null,
+      "confidence": 0.0
+    },
+    "no_neutral_ref": {
+      "detected": false,
+      "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+      "neutral_mode": null,
+      "neutral_pixels": 0,
+      "branch_hit": true
+    },
+    "severe_overexposure": {
+      "detected": true,
+      "detect_reason": null,
+      "restore_rejected": true,
+      "overexposed_ratio": 0.5538482666015625,
+      "returned_image_is_none": true,
+      "advice": "检测到大面积过曝，色彩信息不可逆丢失，建议远离光源或调整角度重新拍摄"
+    }
+  },
+  "false_positive": {
+    "n_fp": 0,
+    "n_total": 21,
+    "rate": 0.0,
+    "cases": []
+  }
+}
