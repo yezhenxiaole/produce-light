@@ -1,9 +1,9 @@
 {
   "meta": {
-    "code_version": "V0.6",
-    "generated_at": "2026-10-12T12:34:10",
+    "code_version": "V0.7",
+    "generated_at": "2026-10-12T14:07:06",
     "python_version": "3.12.13",
-    "git_commit": "a954ab6",
+    "git_commit": "daa6be6",
     "params": {
       "scenarios": [
         "match",
@@ -31,17 +31,17 @@
       "tag": "增益±10%",
       "n": 27,
       "lamp_id_rate": 0.8518518518518519,
-      "restore_dE_mean": 2.8925511628646183,
-      "restore_dE_std": 3.287253117766106,
-      "dE_lt3_rate": 0.8148148148148148
+      "restore_dE_mean": 3.392535855605431,
+      "restore_dE_std": 4.369291401233389,
+      "dE_lt3_rate": 0.7857142857142857
     },
     {
       "tag": "增益±20%",
       "n": 27,
       "lamp_id_rate": 0.4074074074074074,
-      "restore_dE_mean": 7.443065809079677,
-      "restore_dE_std": 5.242279343419112,
-      "dE_lt3_rate": 0.25925925925925924
+      "restore_dE_mean": 9.05150985083609,
+      "restore_dE_std": 5.17979337141979,
+      "dE_lt3_rate": 0.2
     },
     {
       "tag": "强度+15%",
@@ -55,17 +55,17 @@
       "tag": "方向旋转±8°",
       "n": 27,
       "lamp_id_rate": 0.5925925925925926,
-      "restore_dE_mean": 4.919753709033973,
-      "restore_dE_std": 4.4678236997476395,
-      "dE_lt3_rate": 0.5555555555555556
+      "restore_dE_mean": 6.951945124619118,
+      "restore_dE_std": 5.359937201256367,
+      "dE_lt3_rate": 0.42857142857142855
     },
     {
       "tag": "综合(10%+15%+8°)",
       "n": 27,
       "lamp_id_rate": 0.3333333333333333,
-      "restore_dE_mean": 7.918656217069133,
-      "restore_dE_std": 6.2243125739354594,
-      "dE_lt3_rate": 0.3333333333333333
+      "restore_dE_mean": 8.772574617210736,
+      "restore_dE_std": 6.361230491504155,
+      "dE_lt3_rate": 0.30434782608695654
     }
   ]
 }

@@ -1,9 +1,9 @@
 {
   "meta": {
-    "code_version": "V0.6",
-    "generated_at": "2026-10-12T12:34:12",
+    "code_version": "V0.7",
+    "generated_at": "2026-10-12T14:07:33",
     "python_version": "3.12.13",
-    "git_commit": "a954ab6",
+    "git_commit": "daa6be6",
     "params": {
       "attack_scenes": [
         "A1_fat_blob",
@@ -35,32 +35,77 @@
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0,
+            "n_center": 6638,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0,
+            "n_center": 8041,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0,
+            "n_center": 8128,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0,
+            "n_center": 9278,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0,
+            "n_center": 8966,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0
         }
       ]
     },
@@ -72,32 +117,77 @@
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0001,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0001
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0001,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0001
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0001,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0001
         }
       ]
     },
@@ -109,32 +199,77 @@
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0001,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0001
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0001,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0001
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0001,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0001
         }
       ]
     },
@@ -146,32 +281,77 @@
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带宽阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带宽阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带宽阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0001,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0001
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带宽阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0001,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0001
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "strength": 0.0,
+          "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "环带宽阈值",
+            "status": "FAIL",
+            "dir_diff": 0.0001,
+            "n_center": 16384,
+            "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的中性参照）"
+          },
+          "indep_dir_diff": 0.0001
         }
       ]
     },
@@ -183,34 +363,153 @@
         {
           "detected": false,
           "lamp": null,
+          "strength": 0.0,
           "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "全图阈值",
+            "status": "QUALITY_FAIL",
+            "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+          },
+          "indep_dir_diff": null
         },
         {
           "detected": false,
           "lamp": null,
+          "strength": 0.0,
           "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "全图阈值",
+            "status": "QUALITY_FAIL",
+            "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+          },
+          "indep_dir_diff": null
         },
         {
           "detected": false,
           "lamp": null,
+          "strength": 0.0,
           "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "全图阈值",
+            "status": "QUALITY_FAIL",
+            "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+          },
+          "indep_dir_diff": null
         },
         {
           "detected": false,
           "lamp": null,
+          "strength": 0.0,
           "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "全图阈值",
+            "status": "QUALITY_FAIL",
+            "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+          },
+          "indep_dir_diff": null
         },
         {
           "detected": false,
           "lamp": null,
+          "strength": 0.0,
           "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-          "conf": 0.0
+          "conf": 0.0,
+          "reject_stage": {
+            "level": "全图阈值",
+            "status": "QUALITY_FAIL",
+            "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+          },
+          "indep_dir_diff": null
         }
       ]
+    },
+    "A2b_ablation": {
+      "check_on": {
+        "rejected": "5/5",
+        "first_reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "detail": [
+          {
+            "detected": false,
+            "lamp": null,
+            "s": 0.0,
+            "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restore_dE": null
+          },
+          {
+            "detected": false,
+            "lamp": null,
+            "s": 0.0,
+            "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restore_dE": null
+          },
+          {
+            "detected": false,
+            "lamp": null,
+            "s": 0.0,
+            "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restore_dE": null
+          },
+          {
+            "detected": false,
+            "lamp": null,
+            "s": 0.0,
+            "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restore_dE": null
+          },
+          {
+            "detected": false,
+            "lamp": null,
+            "s": 0.0,
+            "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restore_dE": null
+          }
+        ]
+      },
+      "check_off": {
+        "wrongly_accepted": "5/5",
+        "wrong_restore_dE_mean": 7.88,
+        "detail": [
+          {
+            "detected": true,
+            "lamp": "hidden_red",
+            "s": 0.695,
+            "reason": null,
+            "restore_dE": 7.88
+          },
+          {
+            "detected": true,
+            "lamp": "hidden_red",
+            "s": 0.695,
+            "reason": null,
+            "restore_dE": 7.88
+          },
+          {
+            "detected": true,
+            "lamp": "hidden_red",
+            "s": 0.695,
+            "reason": null,
+            "restore_dE": 7.88
+          },
+          {
+            "detected": true,
+            "lamp": "hidden_red",
+            "s": 0.695,
+            "reason": null,
+            "restore_dE": 7.88
+          },
+          {
+            "detected": true,
+            "lamp": "hidden_red",
+            "s": 0.695,
+            "reason": null,
+            "restore_dE": 7.88
+          }
+        ]
+      }
     }
   },
   "positive": {
@@ -418,6 +717,7 @@
   "mixed": {
     "red+blue": {
       "accepted": "0/5",
+      "restore_output": "0/5",
       "detail": [
         {
           "detected": false,
@@ -425,6 +725,9 @@
           "strength": 0.1738719160044117,
           "conf": 0.3915469038328014,
           "restore_dE_vs_ground": null,
+          "restore_rejected": false,
+          "reject_gate": null,
+          "dev_post": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -433,6 +736,9 @@
           "strength": 0.1738719160044117,
           "conf": 0.3915469038328014,
           "restore_dE_vs_ground": null,
+          "restore_rejected": false,
+          "reject_gate": null,
+          "dev_post": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -441,6 +747,9 @@
           "strength": 0.1738719160044117,
           "conf": 0.3915469038328014,
           "restore_dE_vs_ground": null,
+          "restore_rejected": false,
+          "reject_gate": null,
+          "dev_post": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -449,6 +758,9 @@
           "strength": 0.1738719160044117,
           "conf": 0.3915469038328014,
           "restore_dE_vs_ground": null,
+          "restore_rejected": false,
+          "reject_gate": null,
+          "dev_post": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -457,12 +769,16 @@
           "strength": 0.1738719160044117,
           "conf": 0.3915469038328014,
           "restore_dE_vs_ground": null,
+          "restore_rejected": false,
+          "reject_gate": null,
+          "dev_post": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         }
       ]
     },
     "red+green": {
       "accepted": "0/5",
+      "restore_output": "0/5",
       "detail": [
         {
           "detected": false,
@@ -470,6 +786,9 @@
           "strength": 0.5639989468083347,
           "conf": 0.2909691057368591,
           "restore_dE_vs_ground": null,
+          "restore_rejected": false,
+          "reject_gate": null,
+          "dev_post": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -478,6 +797,9 @@
           "strength": 0.5639989468083347,
           "conf": 0.2909691057368591,
           "restore_dE_vs_ground": null,
+          "restore_rejected": false,
+          "reject_gate": null,
+          "dev_post": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -486,6 +808,9 @@
           "strength": 0.5639989468083347,
           "conf": 0.2909691057368591,
           "restore_dE_vs_ground": null,
+          "restore_rejected": false,
+          "reject_gate": null,
+          "dev_post": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -494,6 +819,9 @@
           "strength": 0.5639989468083347,
           "conf": 0.2909691057368591,
           "restore_dE_vs_ground": null,
+          "restore_rejected": false,
+          "reject_gate": null,
+          "dev_post": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -502,6 +830,9 @@
           "strength": 0.5639989468083347,
           "conf": 0.2909691057368591,
           "restore_dE_vs_ground": null,
+          "restore_rejected": false,
+          "reject_gate": null,
+          "dev_post": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         }
       ]
@@ -510,6 +841,7 @@
       {
         "mix_red": 0.9,
         "accepted": "5/5",
+        "restore_output": "5/5",
         "conf_mean": 0.962,
         "strength_mean": 0.636,
         "restore_dE_mean": 2.6
@@ -517,26 +849,44 @@
       {
         "mix_red": 0.7,
         "accepted": "5/5",
+        "restore_output": "0/5",
         "conf_mean": 0.647,
         "strength_mean": 0.401,
-        "restore_dE_mean": 3.28
+        "restore_dE_mean": null,
+        "reject_gates": [
+          "selfcheck",
+          "selfcheck",
+          "selfcheck",
+          "selfcheck",
+          "selfcheck"
+        ]
       },
       {
         "mix_red": 0.5,
         "accepted": "0/5",
+        "restore_output": "0/5",
         "restore_dE_mean": null
       },
       {
         "mix_red": 0.3,
         "accepted": "0/5",
+        "restore_output": "0/5",
         "restore_dE_mean": null
       },
       {
         "mix_red": 0.1,
         "accepted": "5/5",
+        "restore_output": "0/5",
         "conf_mean": 0.641,
         "strength_mean": 0.344,
-        "restore_dE_mean": 2.62
+        "restore_dE_mean": null,
+        "reject_gates": [
+          "selfcheck",
+          "selfcheck",
+          "selfcheck",
+          "selfcheck",
+          "selfcheck"
+        ]
       }
     ]
   }

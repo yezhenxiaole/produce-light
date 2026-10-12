@@ -45,7 +45,7 @@ def run():
                     e = _srgb2lin(pol[m]).mean(axis=0); e = e / e.mean()
                     d_full.append(float(np.linalg.norm(e - true_norm)))
                 # 环带法（走 _neutral_gain 完整降级链，记录 mode）
-                lin_mean, mode, f, adaptive, n_used = _neutral_gain(pol, 0.22)
+                lin_mean, mode, f, adaptive, n_used, _ev = _neutral_gain(pol, 0.22)
                 if lin_mean is not None:
                     e = np.asarray(lin_mean) / float(np.mean(lin_mean))
                     d_ring.append(float(np.linalg.norm(e - true_norm)))

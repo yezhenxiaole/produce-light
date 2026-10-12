@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-exp6: 假中性攻击与构图先验泛化实验（V0.6）
+exp6: 假中性攻击与构图先验泛化实验（V0.7）
 ====================================================
 A. 攻击场景（应全部拒绝或识别失败）：
    A1 浅色脂肪碎块满构图（碎片化）
-   A2 满幅浅色鱼身（大面积真中性色食物，自然光）——V0.6 独立参照检验
-      应结构性拦截（环带与中央候选同材质、方向差→0）
+   A2 满幅浅色鱼身（大面积真中性色食物，自然光）——独立参照检验
+      应结构性拦截（环带与中央候选同材质、方向差→0，V0.7 证据字段落盘）
+   A2b 消融实验（V0.7）：关闭独立参照检验跑 A2 → 预期误识别，证明该检验
+      是拒绝的必要门而非侥幸兜底（响应第五轮审查意见1）
    A3 满幅鱼身+蓝灯污染（被中和场景）
    A4 满幅浅色食物+红灯污染
    A5 包装反光小亮斑（小块高光假中性）
@@ -105,7 +107,10 @@ def _specular_food(shape, seed):
 
 
 def run_attack():
-    """A组：攻击场景（应拒绝）；同时量化误还原伤害（还原输出 vs 未污染本色图）"""
+    """A组：攻击场景（应拒绝）；同时量化误还原伤害（还原输出 vs 未污染本色图）
+    V0.7：每样本记录 indep_evidence（实际触发的拒绝门+dir_diff+中央像素数+饱和度中位数），
+    A2b 消融组证明独立参照检验的必要性（关闭检验时 A2 被误识别 → 开启后 5/5 拒绝）。
+    """
     from restore_engine import restore_image
     from color_metrics import rgb_to_lab, ciede2000_std
     out = {}
@@ -128,8 +133,11 @@ def run_attack():
             if rec is not None and est["detected"]:
                 dE_restore.append(float(ciede2000_std(rgb_to_lab(gt), rgb_to_lab(rec)).mean()))
             res.append(dict(detected=bool(est["detected"]), lamp=est["lamp_type"],
+                            strength=round(float(est.get("strength", 0) or 0), 3),
                             reason=est["failure_reason"],
-                            conf=round(float(est.get("confidence", 0)), 3)))
+                            conf=round(float(est.get("confidence", 0)), 3),
+                            reject_stage=_first_reject_stage(est),
+                            indep_dir_diff=_dir_diff_of(est)))
         rejected = sum(1 for r in res if not r["detected"])
         dm = float(np.mean(dE_restore)) if dE_restore else None
         out[name] = dict(rejected=f"{rejected}/5",
@@ -140,6 +148,102 @@ def run_attack():
               (f", 误还原{n_d}例" if (n_d := len(dE_restore)) else ", 无还原输出") +
               (f", 误还原dE={dm:.2f}" if dm is not None else "") +
               (f"  首例原因: {res[0]['reason']}" if res[0]["reason"] else ""))
+    # A2b 消融实验（V0.7，审查意见1：证明方向差检验的必要性）
+    out["A2b_ablation"] = _ablation_indep_check()
+    return out
+
+
+def _first_reject_stage(est):
+    """提取实际触发拒绝的门（V0.7 证据链要求）：
+    从 indep_evidence.stages 找出首个 FAIL/INSUFFICIENT 的级别与结论。"""
+    ev = est.get("indep_evidence")
+    if not ev:
+        return None
+    for s in ev.get("stages", []):
+        st = s.get("indep_status")
+        if st in ("FAIL", "INSUFFICIENT"):
+            return dict(level=s["level"], status=st,
+                        dir_diff=s.get("indep", {}).get("dir_diff"),
+                        n_center=s.get("indep", {}).get("n_center"),
+                        verdict=s.get("indep", {}).get("verdict"))
+    # 无 FAIL/INSUFFICIENT → 看质量门
+    for s in ev.get("stages", []):
+        if s.get("indep_status") == "QUALITY_FAIL":
+            return dict(level=s["level"], status="QUALITY_FAIL",
+                        quality_reason=s.get("indep", {}).get("quality_reason"))
+    return None
+
+
+def _dir_diff_of(est):
+    """提取方向差检验真实触发值（证明方向差门确实运行过，非仅提示语）"""
+    ev = est.get("indep_evidence")
+    if not ev:
+        return None
+    for s in ev.get("stages", []):
+        dd = s.get("indep", {}).get("dir_diff")
+        if dd is not None:
+            return dd
+    return None
+
+
+def _ablation_indep_check():
+    """
+    A2b 消融实验（V0.7，响应第五轮审查意见1）。
+    命题：独立参照方向差检验是 A2 拒绝的必要拦截门，而非依赖其它门侥幸拦截。
+    方法：关闭 _independent_ref_check（monkeypatch 为恒 PASS），跑 A2 满幅鱼
+    5 种子；若仍被拒绝，则找全图级 Q1 占比门或其它门拦截的证据。
+    预期（V0.6 诊断数据）：关闭检验后 A2 环带级直接采信鱼身像素（环带候选
+    18880px、四边带达标、质量四项 PASS）→ 误识别为某灯型 → 输出错误还原。
+    """
+    import restore_engine
+    from restore_engine import estimate_pollution as _est_orig
+    from restore_engine import restore_image
+    from color_metrics import rgb_to_lab, ciede2000_std
+
+    res_on, res_off = [], []
+    for sd in (1, 2, 3, 4, 5):
+        img = _fish_food((256, 256), sd)
+        gt = _fish_food((256, 256), sd)
+        est = _est_orig(img)
+        rec, _, rep = restore_image(img, est, food_type="sea")
+        dE = None
+        if rec is not None and est["detected"]:
+            dE = round(float(ciede2000_std(rgb_to_lab(gt), rgb_to_lab(rec)).mean()), 2)
+        res_on.append(dict(detected=bool(est["detected"]), lamp=est["lamp_type"],
+                           s=round(float(est.get("strength", 0) or 0), 3),
+                           reason=est["failure_reason"], restore_dE=dE))
+
+    # 关闭独立参照检验（消融）：monkeypatch 恒 PASS
+    orig_check = restore_engine._independent_ref_check
+    restore_engine._independent_ref_check = \
+        lambda img, mask, zone, full_mask=None: ("PASS", dict(zone=zone, ablation=True))
+    try:
+        for sd in (1, 2, 3, 4, 5):
+            img = _fish_food((256, 256), sd)
+            gt = _fish_food((256, 256), sd)
+            est = _est_orig(img)
+            rec, _, rep = restore_image(img, est, food_type="sea")
+            dE = None
+            if rec is not None and est["detected"]:
+                dE = round(float(ciede2000_std(rgb_to_lab(gt), rgb_to_lab(rec)).mean()), 2)
+            res_off.append(dict(detected=bool(est["detected"]), lamp=est["lamp_type"],
+                                s=round(float(est.get("strength", 0) or 0), 3),
+                                reason=est["failure_reason"], restore_dE=dE))
+    finally:
+        restore_engine._independent_ref_check = orig_check
+
+    on_rej = sum(1 for r in res_on if not r["detected"])
+    off_acc = sum(1 for r in res_off if r["detected"])
+    off_dEs = [r["restore_dE"] for r in res_off if r["restore_dE"] is not None]
+    out = dict(
+        check_on=dict(rejected=f"{on_rej}/5",
+                     first_reason=res_on[0]["reason"], detail=res_on),
+        check_off=dict(wrongly_accepted=f"{off_acc}/5",
+                      wrong_restore_dE_mean=(round(float(np.mean(off_dEs)), 2) if off_dEs else None),
+                      detail=res_off),
+    )
+    print(f"  A2b消融: 检验开启拒绝 {on_rej}/5；关闭后误接受 {off_acc}/5" +
+          (f"，误还原dE={np.mean(off_dEs):.2f}" if off_dEs else ""))
     return out
 
 
@@ -172,14 +276,16 @@ def run_positive():
 
 def run_mixed():
     """
-    C组：混合光对抗（可辨识性边界量化，V0.6 更新）。
+    C组：混合光对抗（可辨识性边界量化，V0.7 更新）。
     诚实结论（写入交底书）：
-      - 50:50 附近可拒绝；
-      - 接近单一光源的混合比例（如 90:10、70:30）可能被接受——单张 RGB
-        下其增益向量与纯单灯物理同构（90:10 红蓝混合与纯红灯 s≈0.55 的
-        增益向量差异仅约 4.7%），无法仅凭方向拟合区分；
-      - 因此对误接受样本补量化还原色差（dE vs 本色），作为可辨识性边界
-        数据写入交底书，而不是宣称“混合光已全部拦截”。
+      - 50:50 附近由识别阶段拒绝；
+      - 接近单一光源的混合比例（如 90:10）与纯单灯物理同构（增益向量
+        差异仅约 4.7%），无法仅凭方向拟合区分，误接受后由还原自检门2
+        按参照中性残差拦截；
+      - V0.7 门2（还原后参照中性回归自检）实测拦截 70:30/10:90 误还原
+        （dev_post 0.0425/0.0384 ≥ 0.03），90:10 物理同构案例放行（已披露
+        可辨识性边界）；
+      - 每样本记录 reject_gate 与 dev_post，证明实际触发的拦截门。
     """
     from restore_engine import restore_image
     from color_metrics import rgb_to_lab, ciede2000_std
@@ -202,17 +308,22 @@ def run_mixed():
                             strength=float(est.get("strength", 0)),
                             conf=float(est.get("confidence", 0)),
                             restore_dE_vs_ground=dE,
+                            restore_rejected=bool(rep.get("rejected")),
+                            reject_gate=rep.get("reject_gate"),
+                            dev_post=(rep.get("selfcheck") or {}).get("dev_post"),
                             reason=est["failure_reason"]))
         accepted = sum(1 for r in res if r["detected"])
-        out[cname] = dict(accepted=f"{accepted}/5", detail=res)
-        print(f"  {cname} 50:50混合: 误接受 {accepted}/5"
+        restored = sum(1 for r in res if r["detected"] and not r["restore_rejected"])
+        out[cname] = dict(accepted=f"{accepted}/5", restore_output=f"{restored}/5", detail=res)
+        print(f"  {cname} 50:50混合: 误接受 {accepted}/5，实际还原输出 {restored}/5（其余被门拦截）"
               + (f"  首例: {res[0]['reason'][:40]}" if not res[0]["detected"]
                  else f"  首例误判为 {res[0]['lamp']}"))
-    # 比例扫描（V0.6：记录 conf/strength/误接受还原dE，量化可辨识性边界）
+    # 比例扫描（V0.7：记录 conf/strength/误接受还原dE/reject_gate/dev_post）
     scan = []
     for mix_a in (0.9, 0.7, 0.5, 0.3, 0.1):
         acc = 0
         confs, strengths, dEs = [], [], []
+        gates = []
         for sd in (1, 2, 3, 4, 5):
             gt = _with_tray(_meat_food((256, 256), sd), ("all",))
             pol = _pollute_mix(gt, "red_meat", "blue_sea", 0.6, mix_a)
@@ -222,17 +333,23 @@ def run_mixed():
                 acc += 1
                 confs.append(float(est.get("confidence", 0)))
                 strengths.append(float(est.get("strength", 0)))
+                if rep.get("rejected"):
+                    gates.append(rep.get("reject_gate"))
                 if rec is not None:
                     dEs.append(float(ciede2000_std(rgb_to_lab(gt), rgb_to_lab(rec)).mean()))
-        entry = dict(mix_red=mix_a, accepted=f"{acc}/5")
+        entry = dict(mix_red=mix_a, accepted=f"{acc}/5",
+                     restore_output=f"{len(dEs)}/5")
         if confs:
             entry["conf_mean"] = round(float(np.mean(confs)), 3)
             entry["strength_mean"] = round(float(np.mean(strengths)), 3)
         entry["restore_dE_mean"] = (round(float(np.mean(dEs)), 2) if dEs else None)
+        if gates:
+            entry["reject_gates"] = gates
         scan.append(entry)
-        print(f"  红灯占比{mix_a:.0%}: 误接受 {acc}/5"
+        print(f"  红灯占比{mix_a:.0%}: 误接受 {acc}/5，实际还原输出 {len(dEs)}/5"
               + (f", conf={np.mean(confs):.3f}, s={np.mean(strengths):.3f}, "
-                 f"误接受还原dE={np.mean(dEs):.2f}" if dEs else ""))
+                 f"还原dE={np.mean(dEs):.2f}" if dEs else "")
+              + (f"，拦截门={set(gates)}" if gates else ""))
     out["ratio_scan_red_blue"] = scan
     return out
 
@@ -242,7 +359,7 @@ if __name__ == "__main__":
     attack = run_attack()
     print("\n== B. 构图正向验证（应全部正确识别）==")
     positive = run_positive()
-    print("\n== C. 混合光可辨识性边界（V0.6 口径）==")
+    print("\n== C. 混合光可辨识性边界（V0.7 口径：识别门+还原自检门2）==")
     mixed = run_mixed()
     results = dict(attack=attack, positive=positive, mixed=mixed)
     from exp_meta import save_results
