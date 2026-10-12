@@ -82,11 +82,13 @@ def main():
         sens[str(th)] = dict(miss_leak=miss, usable_rejected=usable_above)
         print(f"  阈值{th}: 漏拒{miss}例, 误拒可用例{usable_above}例")
     out = dict(summary=summary, sensitivity=sens, per_combo=results)
-    with open("results_calib_multi.json", "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, indent=1)
-    print(f"分界过曝比例: min={summary['boundary_min']}, 中位={summary['boundary_median']}, "
-          f"max={summary['boundary_max']} (n={summary['n_boundary_points']})")
-    print("results_calib_multi.json 已保存")
+    from exp_meta import save_results
+    save_results("results_calib_multi.json", out,
+                 params=dict(foods=["meat", "veg", "sea"],
+                             lamps=["red_meat", "green_veg", "blue_sea"],
+                             strength_grid=[0.4, 0.6, 0.8, 0.95],
+                             candidate_thresholds=[0.20, 0.25, 0.30, 0.35],
+                             note="过曝比例-还原dE 退化曲线，多场景阈值敏感性"))
 
 if __name__ == "__main__":
     main()

@@ -84,6 +84,9 @@ def run():
 
 if __name__ == "__main__":
     results = run()
-    with open("results_exp5.json", "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
-    print("results_exp5.json 已保存")
+    from exp_meta import save_results
+    save_results("results_exp5.json", dict(mismatch=results),
+                 params=dict(scenarios=["match", "gain±10%", "gain±20%",
+                                        "strength+15%", "rotate±8°", "combined"],
+                             n_per_scenario=27, n_seeds=1,
+                             note="灯库失配鲁棒性（人为注入失配）"))

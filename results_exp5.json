@@ -1,50 +1,71 @@
-[
-  {
-    "tag": "match(基准)",
-    "n": 27,
-    "lamp_id_rate": 1.0,
-    "restore_dE_mean": 0.662746045326966,
-    "restore_dE_std": 0.35194924083090395,
-    "dE_lt3_rate": 1.0
+{
+  "meta": {
+    "code_version": "V0.6",
+    "generated_at": "2026-10-12T12:34:10",
+    "python_version": "3.12.13",
+    "git_commit": "a954ab6",
+    "params": {
+      "scenarios": [
+        "match",
+        "gain±10%",
+        "gain±20%",
+        "strength+15%",
+        "rotate±8°",
+        "combined"
+      ],
+      "n_per_scenario": 27,
+      "n_seeds": 1,
+      "note": "灯库失配鲁棒性（人为注入失配）"
+    }
   },
-  {
-    "tag": "增益±10%",
-    "n": 27,
-    "lamp_id_rate": 0.8518518518518519,
-    "restore_dE_mean": 3.1330859940750693,
-    "restore_dE_std": 3.2864779165205715,
-    "dE_lt3_rate": 0.7407407407407407
-  },
-  {
-    "tag": "增益±20%",
-    "n": 27,
-    "lamp_id_rate": 0.4074074074074074,
-    "restore_dE_mean": 7.443065809079677,
-    "restore_dE_std": 5.242279343419112,
-    "dE_lt3_rate": 0.25925925925925924
-  },
-  {
-    "tag": "强度+15%",
-    "n": 27,
-    "lamp_id_rate": 1.0,
-    "restore_dE_mean": 1.158396170738059,
-    "restore_dE_std": 1.0866154701728046,
-    "dE_lt3_rate": 0.8888888888888888
-  },
-  {
-    "tag": "方向旋转±8°",
-    "n": 27,
-    "lamp_id_rate": 0.5925925925925926,
-    "restore_dE_mean": 4.919753709033973,
-    "restore_dE_std": 4.4678236997476395,
-    "dE_lt3_rate": 0.5555555555555556
-  },
-  {
-    "tag": "综合(10%+15%+8°)",
-    "n": 27,
-    "lamp_id_rate": 0.3333333333333333,
-    "restore_dE_mean": 7.918656217069133,
-    "restore_dE_std": 6.2243125739354594,
-    "dE_lt3_rate": 0.3333333333333333
-  }
-]
+  "mismatch": [
+    {
+      "tag": "match(基准)",
+      "n": 27,
+      "lamp_id_rate": 1.0,
+      "restore_dE_mean": 0.662746045326966,
+      "restore_dE_std": 0.35194924083090395,
+      "dE_lt3_rate": 1.0
+    },
+    {
+      "tag": "增益±10%",
+      "n": 27,
+      "lamp_id_rate": 0.8518518518518519,
+      "restore_dE_mean": 2.8925511628646183,
+      "restore_dE_std": 3.287253117766106,
+      "dE_lt3_rate": 0.8148148148148148
+    },
+    {
+      "tag": "增益±20%",
+      "n": 27,
+      "lamp_id_rate": 0.4074074074074074,
+      "restore_dE_mean": 7.443065809079677,
+      "restore_dE_std": 5.242279343419112,
+      "dE_lt3_rate": 0.25925925925925924
+    },
+    {
+      "tag": "强度+15%",
+      "n": 27,
+      "lamp_id_rate": 1.0,
+      "restore_dE_mean": 0.7893949224996049,
+      "restore_dE_std": 0.4668431221537542,
+      "dE_lt3_rate": 1.0
+    },
+    {
+      "tag": "方向旋转±8°",
+      "n": 27,
+      "lamp_id_rate": 0.5925925925925926,
+      "restore_dE_mean": 4.919753709033973,
+      "restore_dE_std": 4.4678236997476395,
+      "dE_lt3_rate": 0.5555555555555556
+    },
+    {
+      "tag": "综合(10%+15%+8°)",
+      "n": 27,
+      "lamp_id_rate": 0.3333333333333333,
+      "restore_dE_mean": 7.918656217069133,
+      "restore_dE_std": 6.2243125739354594,
+      "dE_lt3_rate": 0.3333333333333333
+    }
+  ]
+}

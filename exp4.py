@@ -131,6 +131,8 @@ def run():
 
 if __name__ == "__main__":
     results = run()
-    with open("results_exp4.json", "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
-    print("results_exp4.json 已保存")
+    from exp_meta import save_results
+    save_results("results_exp4.json", results,
+                 params=dict(arms=["full_only", "degrade_chain"],
+                             foods=["meat", "veg", "sea"], strengths=[0.4, 0.6, 0.8],
+                             n_seeds=5, metric="增益偏差范数+CIEDE2000"))

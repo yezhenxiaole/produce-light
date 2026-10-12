@@ -1,4 +1,31 @@
 {
+  "meta": {
+    "code_version": "V0.6",
+    "generated_at": "2026-10-12T12:34:12",
+    "python_version": "3.12.13",
+    "git_commit": "a954ab6",
+    "params": {
+      "attack_scenes": [
+        "A1_fat_blob",
+        "A2_fish_full",
+        "A3_fish_full_blue",
+        "A4_fish_full_red",
+        "A5_specular_small"
+      ],
+      "positive_scenes": [
+        "B1~B5构图"
+      ],
+      "mixed_scan": [
+        0.9,
+        0.7,
+        0.5,
+        0.3,
+        0.1
+      ],
+      "n_seeds": 5,
+      "note": "A2结构性拒绝（独立参照检验）；混合光边界量化"
+    }
+  },
   "attack": {
     "A1_fat_blob": {
       "rejected": "5/5",
@@ -8,69 +35,69 @@
         {
           "detected": false,
           "lamp": null,
-          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
           "conf": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
           "conf": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
           "conf": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
           "conf": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
           "conf": 0.0
         }
       ]
     },
     "A2_fish_full": {
-      "rejected": "0/5",
-      "wrongly_restored": 5,
-      "wrong_restore_dE": 7.88,
+      "rejected": "5/5",
+      "wrongly_restored": 0,
+      "wrong_restore_dE": null,
       "detail": [
         {
-          "detected": true,
-          "lamp": "hidden_red",
-          "reason": null,
-          "conf": 0.745
+          "detected": false,
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
         },
         {
-          "detected": true,
-          "lamp": "hidden_red",
-          "reason": null,
-          "conf": 0.745
+          "detected": false,
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
         },
         {
-          "detected": true,
-          "lamp": "hidden_red",
-          "reason": null,
-          "conf": 0.745
+          "detected": false,
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
         },
         {
-          "detected": true,
-          "lamp": "hidden_red",
-          "reason": null,
-          "conf": 0.745
+          "detected": false,
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
         },
         {
-          "detected": true,
-          "lamp": "hidden_red",
-          "reason": null,
-          "conf": 0.745
+          "detected": false,
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
         }
       ]
     },
@@ -81,33 +108,33 @@
       "detail": [
         {
           "detected": false,
-          "lamp": "blue_sea",
-          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
-          "conf": 0.444
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
         },
         {
           "detected": false,
-          "lamp": "blue_sea",
-          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
-          "conf": 0.443
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
         },
         {
           "detected": false,
-          "lamp": "blue_sea",
-          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
-          "conf": 0.443
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
         },
         {
           "detected": false,
-          "lamp": "blue_sea",
-          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
-          "conf": 0.443
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
         },
         {
           "detected": false,
-          "lamp": "blue_sea",
-          "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
-          "conf": 0.443
+          "lamp": null,
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+          "conf": 0.0
         }
       ]
     },
@@ -119,31 +146,31 @@
         {
           "detected": false,
           "lamp": null,
-          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
           "conf": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
           "conf": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
           "conf": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
           "conf": 0.0
         },
         {
           "detected": false,
           "lamp": null,
-          "reason": "拟合强度1.00超出灯库物理范围[0.05,0.95]，疑似混合光源或非库内光源，拒绝输出",
+          "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
           "conf": 0.0
         }
       ]
@@ -397,6 +424,7 @@
           "lamp": "red_meat",
           "strength": 0.1738719160044117,
           "conf": 0.3915469038328014,
+          "restore_dE_vs_ground": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -404,6 +432,7 @@
           "lamp": "red_meat",
           "strength": 0.1738719160044117,
           "conf": 0.3915469038328014,
+          "restore_dE_vs_ground": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -411,6 +440,7 @@
           "lamp": "red_meat",
           "strength": 0.1738719160044117,
           "conf": 0.3915469038328014,
+          "restore_dE_vs_ground": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -418,6 +448,7 @@
           "lamp": "red_meat",
           "strength": 0.1738719160044117,
           "conf": 0.3915469038328014,
+          "restore_dE_vs_ground": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -425,6 +456,7 @@
           "lamp": "red_meat",
           "strength": 0.1738719160044117,
           "conf": 0.3915469038328014,
+          "restore_dE_vs_ground": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         }
       ]
@@ -437,6 +469,7 @@
           "lamp": "hidden_red",
           "strength": 0.5639989468083347,
           "conf": 0.2909691057368591,
+          "restore_dE_vs_ground": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -444,6 +477,7 @@
           "lamp": "hidden_red",
           "strength": 0.5639989468083347,
           "conf": 0.2909691057368591,
+          "restore_dE_vs_ground": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -451,6 +485,7 @@
           "lamp": "hidden_red",
           "strength": 0.5639989468083347,
           "conf": 0.2909691057368591,
+          "restore_dE_vs_ground": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -458,6 +493,7 @@
           "lamp": "hidden_red",
           "strength": 0.5639989468083347,
           "conf": 0.2909691057368591,
+          "restore_dE_vs_ground": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         },
         {
@@ -465,6 +501,7 @@
           "lamp": "hidden_red",
           "strength": 0.5639989468083347,
           "conf": 0.2909691057368591,
+          "restore_dE_vs_ground": null,
           "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         }
       ]
@@ -472,23 +509,34 @@
     "ratio_scan_red_blue": [
       {
         "mix_red": 0.9,
-        "accepted": "5/5"
+        "accepted": "5/5",
+        "conf_mean": 0.962,
+        "strength_mean": 0.636,
+        "restore_dE_mean": 2.6
       },
       {
         "mix_red": 0.7,
-        "accepted": "5/5"
+        "accepted": "5/5",
+        "conf_mean": 0.647,
+        "strength_mean": 0.401,
+        "restore_dE_mean": 3.28
       },
       {
         "mix_red": 0.5,
-        "accepted": "0/5"
+        "accepted": "0/5",
+        "restore_dE_mean": null
       },
       {
         "mix_red": 0.3,
-        "accepted": "0/5"
+        "accepted": "0/5",
+        "restore_dE_mean": null
       },
       {
         "mix_red": 0.1,
-        "accepted": "5/5"
+        "accepted": "5/5",
+        "conf_mean": 0.641,
+        "strength_mean": 0.344,
+        "restore_dE_mean": 2.62
       }
     ]
   }

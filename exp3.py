@@ -148,7 +148,9 @@ if __name__ == "__main__":
     ident = run()
     fail = run_failure_branches()
     fp = run_false_positive()
-    with open("results_exp3.json", "w", encoding="utf-8") as f:
-        json.dump(dict(identification=ident, failure_branches=fail, false_positive=fp),
-                  f, ensure_ascii=False, indent=2)
-    print("\nresults_exp3.json 已保存")
+    from exp_meta import save_results
+    save_results("results_exp3.json",
+                 dict(identification=ident, failure_branches=fail, false_positive=fp),
+                 params=dict(n_lamps=4, n_strengths=3, n_seeds=3,
+                             n_total=144, false_positive_n=21,
+                             note="识别+五类失败分支+仿真负样本误报率"))

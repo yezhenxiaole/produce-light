@@ -116,6 +116,8 @@ if __name__ == "__main__":
                   f"PSNR={r['ours']['psnr_mean']:.1f}±{r['ours']['psnr_std']:.1f}")
         all_results[f"{food}_{lamp}"] = res
     save_comparison_grid()
-    with open("results_exp1_2.json", "w", encoding="utf-8") as f:
-        json.dump(all_results, f, ensure_ascii=False, indent=2)
-    print("results_exp1_2.json 已保存")
+    from exp_meta import save_results
+    save_results("results_exp1_2.json", all_results,
+                 params=dict(food_lamp=[f"{a}/{b}" for a, b in FOOD_LAMP],
+                             strengths=[0.4, 0.6, 0.8], n_seeds=5,
+                             metric="CIEDE2000(std)+PSNR"))

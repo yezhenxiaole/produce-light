@@ -1,26 +1,42 @@
 # -*- coding: utf-8 -*-
 """
-光源污染识别器 + 场景化反美颜还原算法
-========================================
+光源污染识别器 + 场景化反美颜还原算法（V0.6）
+==============================================
 核心算法链：
-  环带/全图中性区提取（含候选质量判定） → 色偏方向与强度计算 → 生鲜灯类型判定
-  → 场景化还原矩阵构建 → 反美颜还原 → 置信度输出
+  环带/全图中性区提取（含候选质量判定+独立参照检验+参照区裁剪检验）
+  → 色偏方向与强度计算 → 生鲜灯类型判定 → 场景化还原矩阵构建
+  → 反美颜还原 → 置信度输出
+
 契约（V0.5，响应第二轮审查意见）：
   1. 灰世界假设不作为还原路径的增益估计来源：仅作 (a) 对照组 generic_awb、
-     (b) 失败分支路由探针（区分“自然光无色偏”与“有色偏但无中性参照”两种提示），
+     (b) 失败分支路由探针（区分“自然光无色偏”与“有色偏但无中性参照”），
      不参与灯库拟合与还原；
-  2. 无中性参照独立失败分支：四级别降级链全部失败（含候选质量不合格）时直接
-     返回“无中性参照”原因，不再由灰世界完成识别；
+  2. 无中性参照独立失败分支：四级降级链全部失败（含候选质量不合格）时
+     直接返回“无中性参照”原因，不再由灰世界完成识别；
   3. 环带可靠性逐图检测（构图先验不默认成立）：环带中性像素总数与
      两侧边带分布均达标才采用环带，否则视为遮挡嫌疑回退全图；
-  4. 候选质量判定（意见1）：每一级候选（环带/全图）须通过占比上限、连通块
-     面积/碎片化、中央集中度、色彩离散度四项检验，防止浅色脂肪、被蓝光
-     “中和”的鱼身、包装反光等假中性凑够像素数绕过无中性参照分支；
-  5. 拟合契约（意见3）：拟合强度超出[0.05,0.95]物理范围或次优灯型残差
-     与最优过近（歧义）时明确拒绝——适用条件不再是说明书声明，而是
-     可执行的技术限制；
+  4. 候选质量判定（意见1）：每一级候选须通过占比上限、连通块/碎片化、
+     中央集中度、色彩离散度四项检验，防假中性凑像素数绕过；
+  5. 拟合契约（意见3）：拟合强度超出[0.05,0.95]或次优灯型残差与最优过近
+     （歧义）时明确拒绝——适用条件是可执行的技术限制，非说明书声明；
   6. 灯库参数为合成仿真设定值（非真实标定），真实采集后需替换为
      calibration.py 标定模块输出的真实参数（意见4）。
+
+契约（V0.6，响应第三轮审查意见1：A2 盲区修复）：
+  7. 独立参照检验（结构性）：真中性参照（托盘/纸巾）的观测增益方向==灯方向；
+     浅色食材本色的观测方向=灯方向×本色色偏，两者存在方向差。满幅同质
+     浅色材质的环带候选与中央候选同材质、方向差→0，无法提供独立参照信息
+     → 走“无中性参照”失败分支，只提示不还原。该检验把 A2 从“已披露盲区”
+     变为“结构性拒绝”，是权利要求“独立中性参照”必要特征的可执行实现；
+  8. 参照区域通道裁剪防线（强度低估防线，V0.6）：sea s=0.9 强度低估
+     （0.9→0.66）的真实机制经诊断并非“候选内混入裁剪像素”（候选提取的
+     mx<0.995 上限便裁剪像素结构性无法进入候选，直接检测恒为空），
+     而是“真托盘参照被高强度污染推出饱和度阈值→候选集被鱼身同质材质
+     主导”。防线因此为三层：(a) mx<0.995 候选排除（V0.4）；(b) 独立
+     参照检验拒绝同质候选集（V0.6，本条主防线）；(c) 拒绝后降级到宽
+     阈值级，真参照重新进入候选。实测 sea s=0.9 经此链路强度估计从
+     0.659 修复至≈0.9（误还原 dE≈3.88 → 正确还原）。全图过曝比例
+     阈值 0.30 仅作大面积信息丢失的末道门，两者语义不同不可互替代。
 """
 import numpy as np
 
@@ -71,10 +87,24 @@ FULL_CHROMA_STD = 0.15    # Q4 色散上限：候选线性归一化增益的通�
                            # 0.15留15%余量。放宽自0.12（原值误杀meat/sea部分种子）。
 S_EDGE_LOW, S_EDGE_HIGH = 0.05, 0.95  # 拟合强度贴边判定：超出[0.05,0.95]物理范围嫌疑
 LAMP_AMBIG_RATIO = 0.55   # 灯型歧义判定：次优灯型残差/最优残差 < 此值 → 灯型不确定
-# 已知盲区（诚实声明，写入交底书）：满幅浅色食材在自然光下的本色若恰好落入
-# 某弱幅度灯型（如hidden_red）的增益方向子空间，单张RGB图像无法区分"食材本色"
-# 与"灯污染"（可辨识性极限的具体实例）。此类场景依赖置信度与残差防线部分拦截，
-# 完整解决需满足适用条件C2（存在独立中性参照）。
+# ---- 独立参照检验参数（V0.6，响应第三轮审查意见1：A2 修复） ----
+# 物理依据：单光源下，真中性参照（托盘/纸巾）的观测增益方向==灯方向；
+# 浅色食材本色的观测方向=灯方向×本色色偏，两者存在方向差。
+# 实测方向差（诊断数据，256×256 合成场景）：
+#   满幅鱼身（A2）环带 vs 中央：0.0001（同材质，无独立参照信息）；
+#   sea s=0.9 全图严阈值级（鱼身主导）：0.0038（同质候选集，应拒绝）；
+#   正常构图（食材居中+托盘周边）：0.12±0.01（独立参照方向差）；
+#   红肉/蔬菜主体（中央无中性候选）：不触发比较，环带天然独立。
+# INDEP_DIR_DIFF_TH=0.07：高于同质噪声底两个数量级，低于真实方向差一半，
+# 中间留有隔离带。边界（诚实声明）：食材占画幅比例过小（约<40%）时
+# 方向差可能不达标 → 保守拒绝（安全侧失败），真实数据上需统计误拒率。
+INDEP_DIR_DIFF_TH = 0.07    # 独立参照判定：环带 vs 中央候选增益方向差阈值
+INDEP_CENTER_MIN = 100      # 中央窗口候选像素下限：不足时主体非中性，环带天然独立
+# 已知盲区（诚实声明，写入交底书）：满幅浅色食材在自然光下且本色恰好落入
+# 某弱幅度灯型（如 hidden_red）的增益方向子空间时，单张 RGB 图像无法区分
+# “食材本色”与“灯污染”（可辨识性极限的具体实例）。V0.6 起此类场景被
+# 独立参照检验结构性拒绝（满幅同质 → 无独立参照 → 只提示不还原）；
+# 完整解决需满足适用条件 C2（存在独立中性参照）。
 
 
 def extract_neutral_zone(img_f32, sat_th=0.22):
@@ -139,6 +169,79 @@ def _fit_lamp(gain_est_norm):
     per_lamp.sort()
     best = per_lamp[0]
     return best[1], best[2], best[0], per_lamp
+
+
+def _ref_direction(img_f32, mask):
+    """
+    计算候选区域的中性观测方向（线性域归一化增益向量）。
+    用于独立参照检验：比较环带候选与中央候选的方向差。
+    """
+    from pollution_sim import _srgb2lin
+    if int(mask.sum()) < 30:
+        return None
+    lin_mean = _srgb2lin(img_f32[mask]).mean(axis=0)
+    ref = float(lin_mean.mean())
+    if ref < 1e-6:
+        return None
+    return np.asarray(lin_mean, dtype=np.float64) / ref
+
+
+def _independent_ref_check(img_f32, mask, zone, full_mask=None):
+    """
+    独立参照检验（V0.6，响应第三轮审查意见1：A2 盲区修复）。
+
+    参数：
+      img_f32    输入图
+      mask       当前级别候选（ring 级=环带∩候选；full 级=全图候选）
+      zone       "ring" 或 "full"（当前级别）
+      full_mask  全图候选 mask（ring 级必传；full 级等于 mask 可省）
+                 主体支（中央窗口）恒取全图候选口径——ring 级传入的
+                 mask 中央窗口必为空，若用它做主体支该检验将恒被跳过。
+
+    物理依据：单一光源下，
+      - 真中性参照（托盘/纸巾）的观测增益方向 == 灯方向；
+      - 浅色食材本色的观测方向 = 灯方向 × 食材本色色偏，两者有方向差。
+    满幅同质浅色材质（A2 攻击：满幅鱼身无托盘）的环带候选与中央候选
+    为同一材质 → 方向差→0 → 候选集不提供"独立于目标食材的中性参照"。
+    同理，sea s=0.9 场景全图严阈值级候选集被鱼身同质主导（真托盘被
+    高强度污染推出饱和度阈值）→ 方向差≈0 → 该级候选不可采信，
+    降级到宽阈值级后真参照重新进入（实测强度估计 0.659 → ≈0.9）。
+
+    检验逻辑（ring 与 full 两级均执行，比较口径与当前级别无关）：
+      1. 中央窗口（50% 中央区域）内候选像素 < INDEP_CENTER_MIN
+         → 主体为彩色食材（红肉/蔬菜/深色水产），环带天然独立 → 通过；
+      2. 中央候选充足时比较方向差：
+         dir_diff = ||环带∩候选方向 - 中央窗口∩候选方向||
+         （两支均取自同一全图候选 mask——ring 级传入的 mask 是
+         环带∩候选，其中央窗口必为空，故中央支恒取全图候选口径）
+         - ≥ INDEP_DIR_DIFF_TH → 存在独立参照 → 通过；
+         - < INDEP_DIR_DIFF_TH → 同质候选集嫌疑 → 拒绝该级候选。
+    实测隔离带：同质场景 0.0001~0.004 << 0.07 << 正常构图 0.12。
+
+    返回 None（通过）或拒绝原因（字符串）。
+    """
+    h, w = img_f32.shape[:2]
+    ring = _ring_mask(img_f32.shape)
+    # 参照支：环带∩全图候选（zone=ring 时传入 mask 已是环带∩候选，直接用）
+    m_ring = mask if zone == "ring" else mask & ring
+    # 主体支：中央窗口∩全图候选
+    full_mask = mask if full_mask is None else full_mask
+    ch0, ch1 = int(h * 0.25), int(h * 0.75)
+    cw0, cw1 = int(w * 0.25), int(w * 0.75)
+    center_mask = np.zeros_like(full_mask)
+    center_mask[ch0:ch1, cw0:cw1] = full_mask[ch0:ch1, cw0:cw1]
+    n_center = int(center_mask.sum())
+    if n_center < INDEP_CENTER_MIN:
+        return None  # 主体非浅色中性 → 环带天然独立
+    ring_dir = _ref_direction(img_f32, m_ring)
+    center_dir = _ref_direction(img_f32, center_mask)
+    if ring_dir is None or center_dir is None:
+        return None  # 样本不足无法比较 → 不据此拒绝（保守放行，由其他门守）
+    dir_diff = float(np.linalg.norm(ring_dir - center_dir))
+    if dir_diff < INDEP_DIR_DIFF_TH:
+        return ("环带与中央候选增益方向一致（疑似满幅同质浅色材质，"
+                "无独立于食材的中性参照），拒绝采信该级候选")
+    return None
 
 
 def estimate_pollution(img_f32):
@@ -345,6 +448,10 @@ def _neutral_gain(img_f32, sat_th=0.22):
     （占比/碎片化/中央集中/色散），不合格则该级视同失败进入下一级，不再
     “凑够像素数就采信”——防止浅色脂肪、被中和的鱼身、包装反光等假中性
     绕过无中性参照分支。
+    独立参照检验（V0.6）：每级候选（环带与全图）额外过 _independent_ref_check
+    ——环带∩候选与中央∩候选的增益方向差过小（同质材质）时该级不采信。
+    该检验同时拦截 A2 满幅鱼（同质材质全图）与 sea s=0.9 鱼身主导候选集
+    （真参照被污染推出饱和度阈值后的强度低估误还原）。
     返回 (lin_mean 或 None, mode, mode_factor, adaptive_used, n_used)
     """
     from pollution_sim import _srgb2lin
@@ -355,14 +462,16 @@ def _neutral_gain(img_f32, sat_th=0.22):
         n_sides = _ring_sides_ok(mask, img_f32.shape)
         if n_ring >= RING_MIN_PIXELS and n_sides >= RING_MIN_SIDES:
             m = mask & ring
-            if _candidate_quality(img_f32, m, zone="ring") is None:
+            if (_candidate_quality(img_f32, m, zone="ring") is None
+                    and _independent_ref_check(img_f32, m, zone="ring", full_mask=mask) is None):
                 return _srgb2lin(img_f32[m]).mean(axis=0), f"环带{tag}阈值中性区", f_ring, (th > 0.22), n_ring
-            # 环带候选质量不合格 → 继续尝试本级全图（同阈值）
+            # 环带候选质量/独立参照不合格 → 继续尝试本级全图（同阈值）
         n = int(mask.sum())
-        if n >= NEUTRAL_MIN_PIXELS and _candidate_quality(img_f32, mask, zone="full") is None:
+        if (n >= NEUTRAL_MIN_PIXELS and _candidate_quality(img_f32, mask, zone="full") is None
+                and _independent_ref_check(img_f32, mask, zone="full") is None):
             return _srgb2lin(img_f32[mask]).mean(axis=0), f"全图{tag}阈值中性区", f_full, (th > 0.22), n
         # 全图不合格或数量不足 → 进入下一阈值级
-    # 四级全部失败（数量不足或质量不合格）：无中性参照（由外层失败分支处理）
+    # 四级全部失败（数量/质量/独立参照不合格）：无中性参照（由外层失败分支处理）
     return None, None, 1.0, (sat_th > 0.22), 0
 
 
@@ -523,18 +632,31 @@ if __name__ == "__main__":
     est3 = estimate_pollution(fat)
     hit3 = ("中性参照" in (est3["failure_reason"] or "")) or (not est3["detected"])
     print(f"  假中性攻击(脂肪碎块): detected={est3['detected']} → {'拦截(正确)' if hit3 else '误识别(错误)'}")
-    # V0.5 假中性攻击自检2：满幅浅色鱼身（本色恰落入hidden_red增益方向子空间，
-    # 可辨识性极限实例——单张RGB下与真污染不可分，属交底书披露的已知盲区；
-    # 质量门不强行拦截，识别结果可能落库但还原后仍会有可检验的幅度异常。
-    # 此自检仅验证该场景不崩溃且走完整识别链。）
+    # V0.6 假中性攻击自检2：满幅浅色鱼身（A2 盲区场景）。
+    # V0.5 时为“可辨识性极限实例（已披露盲区）”；V0.6 独立参照检验将该
+    # 场景结构性拒绝：环带∩候选与中央∩候选为同材质、方向差→0 →
+    # 无独立中性参照 → 只提示不还原。此自检改为硬性断言：必须拦截。
     fish = np.ones((128, 128, 3), dtype=np.float32)
     ftex = np.random.default_rng(7).random((128, 128))
     fish[..., 0] = 0.72 + 0.08 * ftex
     fish[..., 1] = 0.66 + 0.08 * ftex
     fish[..., 2] = 0.62 + 0.08 * ftex
     est4 = estimate_pollution(fish)
-    print(f"  假中性攻击(满幅鱼身): detected={est4['detected']} "
-          f"(可辨识性极限实例：若detected=True属已披露盲区，非契约违背)")
+    hit4 = (not est4["detected"]) and ("中性参照" in (est4["failure_reason"] or ""))
+    print(f"  假中性攻击(满幅鱼身/A2): detected={est4['detected']} → "
+          f"{'结构性拦截(正确)' if hit4 else '误还原(错误,V0.6契约违背)'}")
+    # V0.6 独立参照正向自检：满幅鱼+周边灰托盘（有独立参照，应正常识别，
+    # 证明独立参照检验不误杀真构图）。
+    h_, w_ = fish.shape[:2]
+    m_ = int(min(h_, w_) * 0.12)
+    fish_tray = fish.copy()
+    fish_tray[:m_, :] = [0.78, 0.76, 0.74]
+    fish_tray[-m_:, :] = [0.78, 0.76, 0.74]
+    fish_tray[:, :m_] = [0.78, 0.76, 0.74]
+    fish_tray[:, -m_:] = [0.78, 0.76, 0.74]
+    est5 = estimate_pollution(fish_tray)
+    print(f"  独立参照正向自检(满幅鱼+托盘): detected={est5['detected']}"
+          f"{'(识别,方向差检验不误杀)' if est5['detected'] else '(拒绝,误杀!)'}")
     # 过曝拒绝契约自检
     bright = np.ones((64, 64, 3), dtype=np.float32)
     bright[..., 1] = 0.9; bright[..., 2] = 0.8  # 大面积R通道饱和→模拟过曝

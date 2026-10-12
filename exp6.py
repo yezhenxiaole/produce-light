@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-exp6: 假中性攻击与构图先验泛化实验（V0.5，响应第二轮审查意见1/2）
-====================================================================
+exp6: 假中性攻击与构图先验泛化实验（V0.6）
+====================================================
 A. 攻击场景（应全部拒绝或识别失败）：
    A1 浅色脂肪碎块满构图（碎片化）
-   A2 满幅浅色鱼身（大面积真中性色食物，污染后）
-   A3 满幅鱼身+蓝灯污染（被中和场景，真实威胁）
+   A2 满幅浅色鱼身（大面积真中性色食物，自然光）——V0.6 独立参照检验
+      应结构性拦截（环带与中央候选同材质、方向差→0）
+   A3 满幅鱼身+蓝灯污染（被中和场景）
    A4 满幅浅色食物+红灯污染
    A5 包装反光小亮斑（小块高光假中性）
 B. 构图正向验证（应全部识别成功且灯型正确）：
@@ -14,10 +15,12 @@ B. 构图正向验证（应全部识别成功且灯型正确）：
    B3 左右两侧托盘（上下为食物）
    B4 上下两侧托盘（左右为食物）
    B5 横屏 16:9（256×144）
-C. 混合光对抗（问题3）：
-   C1 红灯+蓝灯混合 → 单灯拟合（统计误接受率与拒绝原因分布）
-   C2 红灯+绿灯混合
-   C3 混合比例扫描（红:蓝 = 9:1 ~ 1:9）
+C. 混合光可辨识性边界（V0.6 口径更新）：
+   C1 红灯+蓝灯混合 50:50 → 单灯拟合
+   C2 红灯+绿灯混合 50:50
+   C3 混合比例扫描（红:蓝 = 9:1 ~ 1:9），记录误接受时的 conf/强度/
+       还原色差——接近单一光源的混合与纯单灯物理同构，可能被接受，
+       该边界如实量化写入交底书（不宣称已拦截）。
 每场景5种子。结果写 results_exp6.json。
 """
 import json
@@ -168,7 +171,18 @@ def run_positive():
 
 
 def run_mixed():
-    """C组：混合光对抗（问题3：量化单灯库对混合光的误接受率）"""
+    """
+    C组：混合光对抗（可辨识性边界量化，V0.6 更新）。
+    诚实结论（写入交底书）：
+      - 50:50 附近可拒绝；
+      - 接近单一光源的混合比例（如 90:10、70:30）可能被接受——单张 RGB
+        下其增益向量与纯单灯物理同构（90:10 红蓝混合与纯红灯 s≈0.55 的
+        增益向量差异仅约 4.7%），无法仅凭方向拟合区分；
+      - 因此对误接受样本补量化还原色差（dE vs 本色），作为可辨识性边界
+        数据写入交底书，而不是宣称“混合光已全部拦截”。
+    """
+    from restore_engine import restore_image
+    from color_metrics import rgb_to_lab, ciede2000_std
     out = {}
     combos = [
         ("red+blue", "red_meat", "blue_sea"),
@@ -180,27 +194,45 @@ def run_mixed():
             gt = _with_tray(_meat_food((256, 256), sd), ("all",))
             pol = _pollute_mix(gt, la, lb, 0.6, 0.5)
             est = estimate_pollution(pol)
+            rec, _, rep = restore_image(pol, est, food_type="meat")
+            dE = None
+            if rec is not None and est["detected"]:
+                dE = round(float(ciede2000_std(rgb_to_lab(gt), rgb_to_lab(rec)).mean()), 2)
             res.append(dict(detected=bool(est["detected"]), lamp=est["lamp_type"],
                             strength=float(est.get("strength", 0)),
                             conf=float(est.get("confidence", 0)),
+                            restore_dE_vs_ground=dE,
                             reason=est["failure_reason"]))
         accepted = sum(1 for r in res if r["detected"])
         out[cname] = dict(accepted=f"{accepted}/5", detail=res)
         print(f"  {cname} 50:50混合: 误接受 {accepted}/5"
-              + (f"  首例: {res[0]['reason']}" if not res[0]["detected"]
+              + (f"  首例: {res[0]['reason'][:40]}" if not res[0]["detected"]
                  else f"  首例误判为 {res[0]['lamp']}"))
-    # 比例扫描
+    # 比例扫描（V0.6：记录 conf/strength/误接受还原dE，量化可辨识性边界）
     scan = []
     for mix_a in (0.9, 0.7, 0.5, 0.3, 0.1):
         acc = 0
+        confs, strengths, dEs = [], [], []
         for sd in (1, 2, 3, 4, 5):
             gt = _with_tray(_meat_food((256, 256), sd), ("all",))
             pol = _pollute_mix(gt, "red_meat", "blue_sea", 0.6, mix_a)
             est = estimate_pollution(pol)
+            rec, _, rep = restore_image(pol, est, food_type="meat")
             if est["detected"]:
                 acc += 1
-        scan.append(dict(mix_red=mix_a, accepted=f"{acc}/5"))
-        print(f"  红灯占比{mix_a:.0%}: 误接受 {acc}/5")
+                confs.append(float(est.get("confidence", 0)))
+                strengths.append(float(est.get("strength", 0)))
+                if rec is not None:
+                    dEs.append(float(ciede2000_std(rgb_to_lab(gt), rgb_to_lab(rec)).mean()))
+        entry = dict(mix_red=mix_a, accepted=f"{acc}/5")
+        if confs:
+            entry["conf_mean"] = round(float(np.mean(confs)), 3)
+            entry["strength_mean"] = round(float(np.mean(strengths)), 3)
+        entry["restore_dE_mean"] = (round(float(np.mean(dEs)), 2) if dEs else None)
+        scan.append(entry)
+        print(f"  红灯占比{mix_a:.0%}: 误接受 {acc}/5"
+              + (f", conf={np.mean(confs):.3f}, s={np.mean(strengths):.3f}, "
+                 f"误接受还原dE={np.mean(dEs):.2f}" if dEs else ""))
     out["ratio_scan_red_blue"] = scan
     return out
 
@@ -210,9 +242,15 @@ if __name__ == "__main__":
     attack = run_attack()
     print("\n== B. 构图正向验证（应全部正确识别）==")
     positive = run_positive()
-    print("\n== C. 混合光对抗（问题3）==")
+    print("\n== C. 混合光可辨识性边界（V0.6 口径）==")
     mixed = run_mixed()
     results = dict(attack=attack, positive=positive, mixed=mixed)
-    with open("results_exp6.json", "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
-    print("\nresults_exp6.json 已保存")
+    from exp_meta import save_results
+    save_results("results_exp6.json", results,
+                 params=dict(attack_scenes=["A1_fat_blob", "A2_fish_full",
+                                            "A3_fish_full_blue", "A4_fish_full_red",
+                                            "A5_specular_small"],
+                             positive_scenes=["B1~B5构图"],
+                             mixed_scan=[0.9, 0.7, 0.5, 0.3, 0.1],
+                             n_seeds=5,
+                             note="A2结构性拒绝（独立参照检验）；混合光边界量化"))

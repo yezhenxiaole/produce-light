@@ -1,4 +1,24 @@
 {
+  "meta": {
+    "code_version": "V0.6",
+    "generated_at": "2026-10-12T12:33:34",
+    "python_version": "3.12.13",
+    "git_commit": "a954ab6",
+    "params": {
+      "food_lamp": [
+        "meat/red_meat",
+        "veg/green_veg",
+        "sea/blue_sea"
+      ],
+      "strengths": [
+        0.4,
+        0.6,
+        0.8
+      ],
+      "n_seeds": 5,
+      "metric": "CIEDE2000(std)+PSNR"
+    }
+  },
   "meat_red_meat": [
     {
       "food": "meat",
