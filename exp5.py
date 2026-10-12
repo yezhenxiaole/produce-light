@@ -57,6 +57,8 @@ def run():
     for sc in scenarios:
         n_ok, n_id, n_total = 0, 0, 0
         dEs = []
+        n_rejected = 0        # 识别拒绝或还原门拒绝（未输出还原图，无伤害）
+        n_wrong_output = 0    # 错误输出：dE>=3 的还原图（用户可见伤害）
         for food, lamp in FOOD_LAMP.items():
             for s in (0.4, 0.6, 0.8):
                 for seed in (1, 2, 3):
@@ -68,17 +70,32 @@ def run():
                     n_total += 1
                     if est["detected"] and est["lamp_type"] == lamp:
                         n_id += 1
+                    if not est["detected"]:
+                        # 识别拒绝：restore_image 直通返回原图副本，不计入还原统计
+                        n_rejected += 1
+                        continue
                     if rec is not None:
                         dE = float(ciede2000_std(rgb_to_lab(gt), rgb_to_lab(rec)).mean())
                         dEs.append(dE)
                         if dE < 3.0:
                             n_ok += 1
+                        else:
+                            n_wrong_output += 1
+                    else:
+                        # 还原门拒绝（过曝/自检门2）
+                        n_rejected += 1
         results.append(dict(tag=sc["tag"], n=n_total,
                             lamp_id_rate=n_id / n_total,
-                            restore_dE_mean=float(np.mean(dEs)), restore_dE_std=float(np.std(dEs)),
+                            n_restore_output=len(dEs), n_rejected=n_rejected,
+                            n_wrong_output=n_wrong_output,
+                            restore_dE_mean=float(np.mean(dEs)) if dEs else None,
+                            restore_dE_std=float(np.std(dEs)) if dEs else None,
                             dE_lt3_rate=n_ok / max(len(dEs), 1)))
+        dm = f"{np.mean(dEs):.2f}±{np.std(dEs):.2f}" if dEs else "N/A"
         print(f"{sc['tag']:>18}: 灯型识别率={n_id}/{n_total}={n_id/n_total*100:.0f}%, "
-              f"还原dE={np.mean(dEs):.2f}±{np.std(dEs):.2f}, dE<3比例={n_ok/len(dEs)*100:.0f}%")
+              f"还原输出={len(dEs)} 拒绝={n_rejected} 错误输出={n_wrong_output}, "
+              f"还原dE={dm}, dE<3比例={n_ok/len(dEs)*100:.0f}%" if dEs else
+              f"{sc['tag']:>18}: 灯型识别率={n_id}/{n_total}, 无还原输出")
     return results
 
 

@@ -1,13 +1,19 @@
 {
   "meta": {
     "code_version": "V0.7",
-    "generated_at": "2026-10-12T14:09:28",
+    "generated_at": "2026-10-12T14:33:42",
     "python_version": "3.12.13",
-    "git_commit": "bb69b6f",
+    "git_commit": "f72c40a",
     "params": {
       "n_lamps": 4,
-      "n_strengths": 3,
+      "n_strengths": 4,
       "n_seeds": 3,
+      "strengths": [
+        0.3,
+        0.5,
+        0.7,
+        0.9
+      ],
       "n_total": 144,
       "false_positive_n": 21,
       "note": "识别+五类失败分支+仿真负样本误报率"
