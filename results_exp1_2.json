@@ -1,9 +1,9 @@
 {
   "meta": {
-    "code_version": "V0.7b",
-    "generated_at": "2026-10-12T18:59:11",
+    "code_version": "V0.7c",
+    "generated_at": "2026-10-12T20:09:43",
     "python_version": "3.12.13",
-    "git_commit": "fac7cb7",
+    "git_commit": "9086d2d",
     "params": {
       "food_lamp": [
         "meat/red_meat",
