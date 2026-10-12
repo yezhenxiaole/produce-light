@@ -88,5 +88,5 @@ if __name__ == "__main__":
     save_results("results_exp5.json", dict(mismatch=results),
                  params=dict(scenarios=["match", "gain±10%", "gain±20%",
                                         "strength+15%", "rotate±8°", "combined"],
-                             n_per_scenario=27, n_seeds=1,
+                             n_per_scenario=27, n_seeds=3,
                              note="灯库失配鲁棒性（人为注入失配）"))

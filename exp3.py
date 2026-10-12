@@ -151,6 +151,7 @@ if __name__ == "__main__":
     from exp_meta import save_results
     save_results("results_exp3.json",
                  dict(identification=ident, failure_branches=fail, false_positive=fp),
-                 params=dict(n_lamps=4, n_strengths=3, n_seeds=3,
+                 params=dict(n_lamps=4, n_strengths=4, n_seeds=3,
+                             strengths=[0.3, 0.5, 0.7, 0.9],
                              n_total=144, false_positive_n=21,
                              note="识别+五类失败分支+仿真负样本误报率"))

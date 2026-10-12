@@ -86,7 +86,8 @@ def main():
     save_results("results_calib_multi.json", out,
                  params=dict(foods=["meat", "veg", "sea"],
                              lamps=["red_meat", "green_veg", "blue_sea"],
-                             strength_grid=[0.4, 0.6, 0.8, 0.95],
+                             strength=0.9,
+                             boosts=list(BOOSTS),
                              candidate_thresholds=[0.20, 0.25, 0.30, 0.35],
                              note="过曝比例-还原dE 退化曲线，多场景阈值敏感性"))
 
