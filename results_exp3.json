@@ -1,9 +1,9 @@
 {
   "meta": {
-    "code_version": "V0.7",
-    "generated_at": "2026-10-12T14:33:42",
+    "code_version": "V0.7a",
+    "generated_at": "2026-10-12T16:29:22",
     "python_version": "3.12.13",
-    "git_commit": "f72c40a",
+    "git_commit": "9df4493",
     "params": {
       "n_lamps": 4,
       "n_strengths": 4,

@@ -1,9 +1,9 @@
 {
   "meta": {
-    "code_version": "V0.7",
-    "generated_at": "2026-10-12T14:40:32",
+    "code_version": "V0.7a",
+    "generated_at": "2026-10-12T16:30:53",
     "python_version": "3.12.13",
-    "git_commit": "f72c40a",
+    "git_commit": "9df4493",
     "params": {
       "foods": [
         "meat",
@@ -37,19 +37,19 @@
     }
   },
   "summary": {
-    "n_boundary_points": 45,
+    "n_boundary_points": 23,
     "boundary_min": 0.0656,
-    "boundary_median": 0.1985,
-    "boundary_max": 0.2997
+    "boundary_median": 0.2162,
+    "boundary_max": 0.2956
   },
   "sensitivity": {
     "0.2": {
       "miss_leak": 0,
-      "usable_rejected": 21
+      "usable_rejected": 14
     },
     "0.25": {
       "miss_leak": 0,
-      "usable_rejected": 13
+      "usable_rejected": 8
     },
     "0.3": {
       "miss_leak": 1,
@@ -67,28 +67,28 @@
         "boost": 1.0,
         "over": 0.0059,
         "detected": true,
-        "dE": 1.11
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.05,
         "over": 0.0093,
         "detected": true,
-        "dE": 1.17
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.1,
         "over": 0.0618,
         "detected": true,
-        "dE": 1.3
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.15,
         "over": 0.1868,
         "detected": true,
-        "dE": 1.7
+        "dE": null
       },
       {
         "seed": 1,
@@ -130,35 +130,35 @@
         "boost": 1.0,
         "over": 0.0065,
         "detected": true,
-        "dE": 1.1
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.05,
         "over": 0.0093,
         "detected": true,
-        "dE": 1.17
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.1,
         "over": 0.042,
         "detected": true,
-        "dE": 1.27
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.15,
         "over": 0.1276,
         "detected": true,
-        "dE": 1.56
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.2,
         "over": 0.2669,
         "detected": true,
-        "dE": 2.19
+        "dE": null
       },
       {
         "seed": 2,
@@ -193,28 +193,28 @@
         "boost": 1.0,
         "over": 0.0062,
         "detected": true,
-        "dE": 1.1
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.05,
         "over": 0.0085,
         "detected": true,
-        "dE": 1.16
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.1,
         "over": 0.0516,
         "detected": true,
-        "dE": 1.27
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.15,
         "over": 0.1632,
         "detected": true,
-        "dE": 1.61
+        "dE": null
       },
       {
         "seed": 3,
@@ -256,28 +256,28 @@
         "boost": 1.0,
         "over": 0.0064,
         "detected": true,
-        "dE": 1.11
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.05,
         "over": 0.0078,
         "detected": true,
-        "dE": 1.17
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.1,
         "over": 0.0434,
         "detected": true,
-        "dE": 1.27
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.15,
         "over": 0.1554,
         "detected": true,
-        "dE": 1.57
+        "dE": null
       },
       {
         "seed": 4,
@@ -319,28 +319,28 @@
         "boost": 1.0,
         "over": 0.0058,
         "detected": true,
-        "dE": 1.1
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.05,
         "over": 0.0085,
         "detected": true,
-        "dE": 1.16
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.1,
         "over": 0.0438,
         "detected": true,
-        "dE": 1.25
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.15,
         "over": 0.1635,
         "detected": true,
-        "dE": 1.59
+        "dE": null
       },
       {
         "seed": 5,
@@ -701,28 +701,28 @@
         "boost": 1.0,
         "over": 0.0058,
         "detected": true,
-        "dE": 1.13
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.05,
         "over": 0.0127,
         "detected": true,
-        "dE": 1.19
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.1,
         "over": 0.0787,
         "detected": true,
-        "dE": 1.31
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.15,
         "over": 0.2152,
         "detected": true,
-        "dE": 1.73
+        "dE": null
       },
       {
         "seed": 1,
@@ -764,35 +764,35 @@
         "boost": 1.0,
         "over": 0.0063,
         "detected": true,
-        "dE": 1.11
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.05,
         "over": 0.0112,
         "detected": true,
-        "dE": 1.17
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.1,
         "over": 0.0547,
         "detected": true,
-        "dE": 1.27
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.15,
         "over": 0.1502,
         "detected": true,
-        "dE": 1.59
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.2,
         "over": 0.2997,
         "detected": true,
-        "dE": 2.25
+        "dE": null
       },
       {
         "seed": 2,
@@ -827,28 +827,28 @@
         "boost": 1.0,
         "over": 0.006,
         "detected": true,
-        "dE": 1.12
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.05,
         "over": 0.0113,
         "detected": true,
-        "dE": 1.18
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.1,
         "over": 0.0667,
         "detected": true,
-        "dE": 1.29
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.15,
         "over": 0.1937,
         "detected": true,
-        "dE": 1.67
+        "dE": null
       },
       {
         "seed": 3,
@@ -890,28 +890,28 @@
         "boost": 1.0,
         "over": 0.0062,
         "detected": true,
-        "dE": 1.11
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.05,
         "over": 0.0098,
         "detected": true,
-        "dE": 1.18
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.1,
         "over": 0.0577,
         "detected": true,
-        "dE": 1.28
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.15,
         "over": 0.1862,
         "detected": true,
-        "dE": 1.62
+        "dE": null
       },
       {
         "seed": 4,
@@ -953,28 +953,28 @@
         "boost": 1.0,
         "over": 0.0055,
         "detected": true,
-        "dE": 1.12
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.05,
         "over": 0.0109,
         "detected": true,
-        "dE": 1.18
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.1,
         "over": 0.0585,
         "detected": true,
-        "dE": 1.29
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.15,
         "over": 0.1914,
         "detected": true,
-        "dE": 1.62
+        "dE": null
       },
       {
         "seed": 5,
@@ -1335,28 +1335,28 @@
         "boost": 1.0,
         "over": 0.0,
         "detected": true,
-        "dE": 1.64
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.05,
         "over": 0.0,
         "detected": true,
-        "dE": 1.69
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.1,
         "over": 0.0186,
         "detected": true,
-        "dE": 1.77
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.15,
         "over": 0.0944,
         "detected": true,
-        "dE": 2.1
+        "dE": null
       },
       {
         "seed": 1,
@@ -1398,28 +1398,28 @@
         "boost": 1.0,
         "over": 0.0,
         "detected": true,
-        "dE": 1.6
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.05,
         "over": 0.0002,
         "detected": true,
-        "dE": 1.65
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.1,
         "over": 0.0067,
         "detected": true,
-        "dE": 1.72
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.15,
         "over": 0.0473,
         "detected": true,
-        "dE": 1.89
+        "dE": null
       },
       {
         "seed": 2,
@@ -1461,28 +1461,28 @@
         "boost": 1.0,
         "over": 0.0,
         "detected": true,
-        "dE": 1.65
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.05,
         "over": 0.0,
         "detected": true,
-        "dE": 1.71
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.1,
         "over": 0.015,
         "detected": true,
-        "dE": 1.79
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.15,
         "over": 0.078,
         "detected": true,
-        "dE": 2.07
+        "dE": null
       },
       {
         "seed": 3,
@@ -1524,21 +1524,21 @@
         "boost": 1.0,
         "over": 0.0,
         "detected": true,
-        "dE": 1.63
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.05,
         "over": 0.0,
         "detected": true,
-        "dE": 1.68
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.1,
         "over": 0.0067,
         "detected": true,
-        "dE": 1.74
+        "dE": null
       },
       {
         "seed": 4,
@@ -1587,21 +1587,21 @@
         "boost": 1.0,
         "over": 0.0,
         "detected": true,
-        "dE": 1.62
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.05,
         "over": 0.0,
         "detected": true,
-        "dE": 1.68
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.1,
         "over": 0.0074,
         "detected": true,
-        "dE": 1.73
+        "dE": null
       },
       {
         "seed": 5,
@@ -1969,21 +1969,21 @@
         "boost": 1.0,
         "over": 0.0042,
         "detected": true,
-        "dE": 0.92
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.05,
         "over": 0.0133,
         "detected": true,
-        "dE": 0.98
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.1,
         "over": 0.074,
         "detected": true,
-        "dE": 1.14
+        "dE": null
       },
       {
         "seed": 1,
@@ -2032,28 +2032,28 @@
         "boost": 1.0,
         "over": 0.0045,
         "detected": true,
-        "dE": 0.92
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.05,
         "over": 0.0105,
         "detected": true,
-        "dE": 0.97
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.1,
         "over": 0.0542,
         "detected": true,
-        "dE": 1.1
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.15,
         "over": 0.2379,
         "detected": true,
-        "dE": 1.58
+        "dE": null
       },
       {
         "seed": 2,
@@ -2095,28 +2095,28 @@
         "boost": 1.0,
         "over": 0.004,
         "detected": true,
-        "dE": 0.93
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.05,
         "over": 0.0088,
         "detected": true,
-        "dE": 0.98
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.1,
         "over": 0.0639,
         "detected": true,
-        "dE": 1.11
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.15,
         "over": 0.2825,
         "detected": true,
-        "dE": 1.69
+        "dE": null
       },
       {
         "seed": 3,
@@ -2158,28 +2158,28 @@
         "boost": 1.0,
         "over": 0.0043,
         "detected": true,
-        "dE": 0.93
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.05,
         "over": 0.0077,
         "detected": true,
-        "dE": 0.98
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.1,
         "over": 0.0591,
         "detected": true,
-        "dE": 1.1
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.15,
         "over": 0.2817,
         "detected": true,
-        "dE": 1.67
+        "dE": null
       },
       {
         "seed": 4,
@@ -2221,28 +2221,28 @@
         "boost": 1.0,
         "over": 0.0038,
         "detected": true,
-        "dE": 0.92
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.05,
         "over": 0.0098,
         "detected": true,
-        "dE": 0.98
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.1,
         "over": 0.0536,
         "detected": true,
-        "dE": 1.1
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.15,
         "over": 0.2631,
         "detected": true,
-        "dE": 1.61
+        "dE": null
       },
       {
         "seed": 5,
@@ -2286,28 +2286,28 @@
         "boost": 1.0,
         "over": 0.0038,
         "detected": true,
-        "dE": 1.04
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.05,
         "over": 0.0079,
         "detected": true,
-        "dE": 1.1
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.1,
         "over": 0.0456,
         "detected": true,
-        "dE": 1.25
+        "dE": null
       },
       {
         "seed": 1,
         "boost": 1.15,
         "over": 0.1515,
         "detected": true,
-        "dE": 1.8
+        "dE": null
       },
       {
         "seed": 1,
@@ -2349,35 +2349,35 @@
         "boost": 1.0,
         "over": 0.0041,
         "detected": true,
-        "dE": 1.04
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.05,
         "over": 0.0069,
         "detected": true,
-        "dE": 1.11
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.1,
         "over": 0.0325,
         "detected": true,
-        "dE": 1.22
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.15,
         "over": 0.1075,
         "detected": true,
-        "dE": 1.62
+        "dE": null
       },
       {
         "seed": 2,
         "boost": 1.2,
         "over": 0.2432,
         "detected": true,
-        "dE": 2.52
+        "dE": null
       },
       {
         "seed": 2,
@@ -2412,28 +2412,28 @@
         "boost": 1.0,
         "over": 0.0036,
         "detected": true,
-        "dE": 1.03
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.05,
         "over": 0.0055,
         "detected": true,
-        "dE": 1.09
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.1,
         "over": 0.0381,
         "detected": true,
-        "dE": 1.21
+        "dE": null
       },
       {
         "seed": 3,
         "boost": 1.15,
         "over": 0.1345,
         "detected": true,
-        "dE": 1.7
+        "dE": null
       },
       {
         "seed": 3,
@@ -2475,28 +2475,28 @@
         "boost": 1.0,
         "over": 0.0041,
         "detected": true,
-        "dE": 1.04
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.05,
         "over": 0.0049,
         "detected": true,
-        "dE": 1.1
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.1,
         "over": 0.0337,
         "detected": true,
-        "dE": 1.21
+        "dE": null
       },
       {
         "seed": 4,
         "boost": 1.15,
         "over": 0.1258,
         "detected": true,
-        "dE": 1.66
+        "dE": null
       },
       {
         "seed": 4,
@@ -2538,35 +2538,35 @@
         "boost": 1.0,
         "over": 0.0035,
         "detected": true,
-        "dE": 1.03
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.05,
         "over": 0.0061,
         "detected": true,
-        "dE": 1.09
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.1,
         "over": 0.0335,
         "detected": true,
-        "dE": 1.21
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.15,
         "over": 0.1279,
         "detected": true,
-        "dE": 1.64
+        "dE": null
       },
       {
         "seed": 5,
         "boost": 1.2,
         "over": 0.2819,
         "detected": true,
-        "dE": 2.73
+        "dE": null
       },
       {
         "seed": 5,

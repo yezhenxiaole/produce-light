@@ -1,9 +1,9 @@
 {
   "meta": {
-    "code_version": "V0.7",
-    "generated_at": "2026-10-12T15:57:36",
+    "code_version": "V0.7a",
+    "generated_at": "2026-10-12T16:29:57",
     "python_version": "3.12.13",
-    "git_commit": "882c2c1",
+    "git_commit": "9df4493",
     "params": {
       "attack_scenes": [
         "A1_fat_blob",
