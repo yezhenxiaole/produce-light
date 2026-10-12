@@ -1,0 +1,466 @@
+{
+  "meta": {
+    "code_version": "V0.7",
+    "generated_at": "2026-10-12T15:42:37",
+    "python_version": "3.12.13",
+    "git_commit": "882c2c1",
+    "params": {
+      "groups": [
+        "G1_correct",
+        "G2_wrong_lamp",
+        "G3_mix70:30",
+        "G3_mix10:90",
+        "G3_mix90:10",
+        "G4_clip"
+      ],
+      "n_per_group": 27,
+      "dev_post_def": "实际还原输出lin_restored采信参照集归一化增益偏离",
+      "note": "门2区分力实验：能拦混合光误接受与错误灯库，不能拦与纯单灯物理同构的90:10；非食材颜色独立验证"
+    }
+  },
+  "gate2": {
+    "G1_correct": {
+      "tag": "G1_correct",
+      "note": "灯库与生成一致（27组），dev_post 实际输出口径底噪",
+      "n_total": 27,
+      "n_identified": 27,
+      "n_ident_reject": 0,
+      "n_gate2_reject": 0,
+      "dev_output": {
+        "n": 27,
+        "mean": 0.0196,
+        "std": 0.0054,
+        "min": 0.0111,
+        "max": 0.0279
+      },
+      "dev_rejected_or_bad": {
+        "n": 0,
+        "mean": null,
+        "std": null,
+        "min": null,
+        "max": null
+      },
+      "dE": {
+        "n": 27,
+        "mean": 0.6637,
+        "std": 0.3507,
+        "min": 0.09,
+        "max": 1.16
+      }
+    },
+    "G2_wrong_lamp": {
+      "tag": "G2_wrong_lamp",
+      "note": "red污染按blue还原（错误灯库），门2应拒绝",
+      "n_tested": 27,
+      "dev": {
+        "n": 27,
+        "mean": 0.7013,
+        "min": 0.4976,
+        "max": 0.8989
+      },
+      "dE": {
+        "n": 0,
+        "mean": null,
+        "max": null
+      },
+      "detail": [
+        {
+          "food": "meat",
+          "s": 0.4,
+          "seed": 1,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.4985,
+          "dE": null
+        },
+        {
+          "food": "meat",
+          "s": 0.4,
+          "seed": 2,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.4984,
+          "dE": null
+        },
+        {
+          "food": "meat",
+          "s": 0.4,
+          "seed": 3,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.4976,
+          "dE": null
+        },
+        {
+          "food": "meat",
+          "s": 0.6,
+          "seed": 1,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.6769,
+          "dE": null
+        },
+        {
+          "food": "meat",
+          "s": 0.6,
+          "seed": 2,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.6763,
+          "dE": null
+        },
+        {
+          "food": "meat",
+          "s": 0.6,
+          "seed": 3,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.676,
+          "dE": null
+        },
+        {
+          "food": "meat",
+          "s": 0.8,
+          "seed": 1,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.844,
+          "dE": null
+        },
+        {
+          "food": "meat",
+          "s": 0.8,
+          "seed": 2,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.8441,
+          "dE": null
+        },
+        {
+          "food": "meat",
+          "s": 0.8,
+          "seed": 3,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.8436,
+          "dE": null
+        },
+        {
+          "food": "veg",
+          "s": 0.4,
+          "seed": 1,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.5223,
+          "dE": null
+        },
+        {
+          "food": "veg",
+          "s": 0.4,
+          "seed": 2,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.5234,
+          "dE": null
+        },
+        {
+          "food": "veg",
+          "s": 0.4,
+          "seed": 3,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.5221,
+          "dE": null
+        },
+        {
+          "food": "veg",
+          "s": 0.6,
+          "seed": 1,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.7113,
+          "dE": null
+        },
+        {
+          "food": "veg",
+          "s": 0.6,
+          "seed": 2,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.7117,
+          "dE": null
+        },
+        {
+          "food": "veg",
+          "s": 0.6,
+          "seed": 3,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.7111,
+          "dE": null
+        },
+        {
+          "food": "veg",
+          "s": 0.8,
+          "seed": 1,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.8889,
+          "dE": null
+        },
+        {
+          "food": "veg",
+          "s": 0.8,
+          "seed": 2,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.8895,
+          "dE": null
+        },
+        {
+          "food": "veg",
+          "s": 0.8,
+          "seed": 3,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.8888,
+          "dE": null
+        },
+        {
+          "food": "sea",
+          "s": 0.4,
+          "seed": 1,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.5407,
+          "dE": null
+        },
+        {
+          "food": "sea",
+          "s": 0.4,
+          "seed": 2,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.5403,
+          "dE": null
+        },
+        {
+          "food": "sea",
+          "s": 0.4,
+          "seed": 3,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.5401,
+          "dE": null
+        },
+        {
+          "food": "sea",
+          "s": 0.6,
+          "seed": 1,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.732,
+          "dE": null
+        },
+        {
+          "food": "sea",
+          "s": 0.6,
+          "seed": 2,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.7315,
+          "dE": null
+        },
+        {
+          "food": "sea",
+          "s": 0.6,
+          "seed": 3,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.7312,
+          "dE": null
+        },
+        {
+          "food": "sea",
+          "s": 0.8,
+          "seed": 1,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.8989,
+          "dE": null
+        },
+        {
+          "food": "sea",
+          "s": 0.8,
+          "seed": 2,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.8987,
+          "dE": null
+        },
+        {
+          "food": "sea",
+          "s": 0.8,
+          "seed": 3,
+          "lamp": "blue_sea",
+          "rejected": true,
+          "gate": "selfcheck",
+          "dev_post": 0.8985,
+          "dE": null
+        }
+      ]
+    },
+    "G3_mix70:30": {
+      "tag": "G3_mix70:30",
+      "note": "红蓝混合 mix_a=0.7，误接受时 dev_post（应被门2拦截）",
+      "n_total": 27,
+      "n_identified": 0,
+      "n_ident_reject": 27,
+      "n_gate2_reject": 0,
+      "dev_output": {
+        "n": 0,
+        "mean": null,
+        "std": null,
+        "min": null,
+        "max": null
+      },
+      "dev_rejected_or_bad": {
+        "n": 0,
+        "mean": null,
+        "std": null,
+        "min": null,
+        "max": null
+      },
+      "dE": {
+        "n": 0,
+        "mean": null,
+        "std": null,
+        "min": null,
+        "max": null
+      }
+    },
+    "G3_mix10:90": {
+      "tag": "G3_mix10:90",
+      "note": "红蓝混合 mix_a=0.1，误接受时 dev_post（应被门2拦截）",
+      "n_total": 27,
+      "n_identified": 27,
+      "n_ident_reject": 0,
+      "n_gate2_reject": 9,
+      "dev_output": {
+        "n": 18,
+        "mean": 0.0194,
+        "std": 0.0047,
+        "min": 0.0115,
+        "max": 0.0256
+      },
+      "dev_rejected_or_bad": {
+        "n": 9,
+        "mean": 0.0372,
+        "std": 0.0053,
+        "min": 0.0319,
+        "max": 0.045
+      },
+      "dE": {
+        "n": 18,
+        "mean": 1.21,
+        "std": 0.2367,
+        "min": 0.86,
+        "max": 1.59
+      }
+    },
+    "G3_mix90:10": {
+      "tag": "G3_mix90:10",
+      "note": "红蓝混合 mix_a=0.9，误接受时 dev_post（应被门2拦截）",
+      "n_total": 27,
+      "n_identified": 27,
+      "n_ident_reject": 0,
+      "n_gate2_reject": 9,
+      "dev_output": {
+        "n": 18,
+        "mean": 0.0171,
+        "std": 0.0054,
+        "min": 0.0086,
+        "max": 0.0264
+      },
+      "dev_rejected_or_bad": {
+        "n": 9,
+        "mean": 0.0374,
+        "std": 0.0054,
+        "min": 0.0306,
+        "max": 0.0443
+      },
+      "dE": {
+        "n": 18,
+        "mean": 1.1117,
+        "std": 0.2888,
+        "min": 0.67,
+        "max": 1.58
+      }
+    },
+    "G4_clip": {
+      "tag": "G4_clip",
+      "note": "s=0.9 高强度（参照部分被推近饱和/clip），dev_post 分布",
+      "n_total": 27,
+      "n_identified": 27,
+      "n_ident_reject": 0,
+      "n_gate2_reject": 18,
+      "dev_output": {
+        "n": 9,
+        "mean": 0.0257,
+        "std": 0.0,
+        "min": 0.0257,
+        "max": 0.0257
+      },
+      "dev_rejected_or_bad": {
+        "n": 18,
+        "mean": 0.0308,
+        "std": 0.0005,
+        "min": 0.0302,
+        "max": 0.0314
+      },
+      "dE": {
+        "n": 9,
+        "mean": 0.59,
+        "std": 0.0082,
+        "min": 0.58,
+        "max": 0.6
+      }
+    },
+    "threshold_analysis": {
+      "g1_output_dev_max": 0.0279,
+      "mix_min_dev": 0.0319,
+      "current_th": 0.03,
+      "recommended_range": [
+        0.0279,
+        0.0319
+      ],
+      "note": "建议阈值取 G1 输出底噪上界与混合光拦截侧下界之间；两界不可分时如实记录"
+    }
+  }
+}

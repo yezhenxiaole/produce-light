@@ -24,17 +24,20 @@
 
 契约（V0.7，响应第五轮审查意见）：
    7. 独立参照检验三态化（意见1/2）：PASS/FAIL/INSUFFICIENT。“样本不足”
-      不再默认放行——中央候选不足时按中央彩色证据法判定：中央为彩色
-      食材主体（饱和度中位数≥0.30）→环带天然独立 PASS；否则 INSUFFICIENT
-      拒绝。证据链要求：每级候选记录实际触发的判定门与全部中间量
-      （dir_diff/中央像素数/饱和度中位数），落入结果 JSON；
-   8. 还原自检第二道门（意见6）：还原后采信参照集应回归中性
-      （dev_post≈0）。混合光被单灯矩阵还原后参照残留系统性色偏
-      （70:30 实测 dev_post≈0.22，已知错误输出 dE3.28）→ 阈值 0.10
-      拦截并提示疑似混合光；纯单灯正确还原 dev_post≈0 不受影响；
+      不再默认放行——中央候选不足时按中央彩色像素证据判定：中央区域
+      存在彩色像素证据（不区分彩色来源，饱和度中位数≥0.30）→环带
+      天然独立 PASS；否则 INSUFFICIENT 拒绝。证据链要求：每级候选
+      记录实际触发的判定门与全部中间量（dir_diff/中央像素数/饱和度
+      中位数），落入结果 JSON；
+   8. 还原自检第二道门（意见6；V0.7a 按实际输出口径重标定）：在输出
+      lin_restored（含 scene_adjust）上重提取采信参照集，归一化增益
+      偏离 dev_post 超限则拒绝交付。exp7_gate2 实际输出口径标定：
+      正确单灯还原 dev_post max=0.0279（输出底噪上界），混合光/失配
+      拦截侧全部样本 min=0.0302 → 阈值 0.03 取隔离带 [0.0279,0.0302]
+      内，拦截并提示疑似混合光；正确还原 dev_post 均值0.0196 不受影响；
    9. 诚实边界：方向差是独立性证据但不单独证明“这是托盘/灰卡”
       （反光/标签/光照不均也可造成方向差）；过曝 0.30 为经验阈值
-      非普适；全部阈值（0.07/0.10/0.30/0.55）在真实数据上需重新标定。
+      非普适；全部阈值（0.07/0.03/0.30/0.55）在真实数据上需重新标定。
 """
 import numpy as np
 
@@ -97,23 +100,34 @@ LAMP_AMBIG_RATIO = 0.55   # 灯型歧义判定：次优灯型残差/最优残差
 # 中间留有隔离带。边界（诚实声明）：食材占画幅比例过小（约<40%）时
 # 方向差可能不达标 → 保守拒绝（安全侧失败），真实数据上需统计误拒率。
 INDEP_DIR_DIFF_TH = 0.07    # 独立参照判定：环带 vs 中央候选增益方向差阈值
-INDEP_CENTER_MIN = 100      # 中央窗口候选像素下限：不足时走中央彩色证据法分支
-CENTER_COLOR_SAT_TH = 0.30  # 中央彩色主体判定：中央有效像素饱和度中位数≥此值
-                            # → 主体为彩色食材，环带参照天然独立（PASS）；
+INDEP_CENTER_MIN = 100      # 中央窗口候选像素下限：不足时走中央彩色像素证据分支
+CENTER_COLOR_SAT_TH = 0.30  # 中央彩色像素证据判定：中央有效像素饱和度中位数≥此值
+                            # → 中央区域存在彩色像素证据，环带候选与中央彩色
+                            # 区域不同源，参照独立性有证据支撑（PASS）；
                             # 反之为浅色低饱和但候选不足 → INSUFFICIENT 拒绝。
                             # 标定：红肉居中构图实测中央饱和度中位数 0.651，
                             # 中性候选饱和度上限 0.22；0.30 居中，两侧留隔离带。
-# 还原自检第二道门（V0.7，响应第五轮审查意见6：混合光误还原拦截）
-# 物理依据：正确还原使采信参照的线性增益→1（中性回归）；混合光被单灯
-# 矩阵还原后参照仍残留系统性色偏。残差 dev_post = ||归一化增益-1||。
-# 标定（合成诊断）：纯单灯正确还原 dev_post≈0.00；90:10 混合误接受
-# 还原后 dev_post≈0.05；70:30 混合（dE3.28）dev_post≈0.22。阈值 0.10
-# 拦 70:30 放 90:10，真实数据需重标定（与 0.07/0.30 同列诚实声明）。
-RESTORE_SELFCHECK_DEV_TH = 0.03  # 门2阈值（纯逆增益口径，合成标定）：正确还原
-                                # 0.0125~0.0194（底噪源：s_fit 估计误差+参照本色微色偏）；
-                                # 90:10≈0.0055（物理同构放行）；70:30≈0.0425、
-                                # 10:90≈0.0384（拦截）；50:50 已被识别门拒绝。
-                                # 隔离带两侧约 1.4~1.5 倍，真实数据上需重新标定。
+                            # 表述边界（V0.7a 降格，响应第六轮审查意见4）：
+                            # 仅宣称"中央区域存在彩色像素证据"，不宣称主体
+                            # 即食材——彩色包装/标签/反光同样满足本判据；
+                            # 对此类场景的拦截不依赖本分支（实验见 exp6 D组：
+                            # 彩色包装无低饱和候选，在候选数量层面已被拒；
+                            # 同源白色区域由方向差检验 FAIL 拦截）。
+# 还原自检第二道门（V0.7a，响应第六轮审查意见1）
+# 数学本质：还原算子为逐通道乘法，参照均值的还原后中性度由拟合闭合差
+# 代数决定（非独立验证）；本门定位为**输出闭合差契约**——实际输出
+# lin_restored（含 scene_adjust）上重提取采信参照集，归一化增益偏离
+# dev_post = ||归一化增益-1|| 超限则拒绝交付。
+# 标定（exp7_gate2，实际输出口径，合成数据，2026-10-12）：
+#   正确单灯还原（G1，27组）：dev_post 均值0.0196，max=0.0279（输出底噪上界）；
+#   混合光/失配拦截侧（G3 90:10/10:90 误接受后被门2拒 9/27+9/27、G4 s=0.9
+#   裁剪 18/27）：全部拦截样本 dev_post min=0.0302（均值≈0.0318~0.0374）；
+#   错误灯库 G2：dev 均值0.70（远超阈值）。
+#   → 隔离带 [0.0279, 0.0302]，本阈值 0.03 取带内（合成数据标定）。
+#   已知边界：90:10/10:90 中被接受输出（dev≈0.017~0.026）与底噪重叠，与
+#   "近单灯混合物理同构不可分"的数学结论一致（偏差约4.7%披露不变）。
+#   隔离带较窄（宽约0.002），真实数据采集后需按同一实验重新标定。
+RESTORE_SELFCHECK_DEV_TH = 0.03  # 门2阈值：exp7_gate2 实际输出口径标定值（合成数据）
 # 已知盲区（诚实声明，写入交底书）：满幅浅色食材在自然光下且本色恰好落入
 # 某弱幅度灯型（如 hidden_red）的增益方向子空间时，单张 RGB 图像无法区分
 # “食材本色”与“灯污染”（可辨识性极限的具体实例）。V0.6 起此类场景被
@@ -202,9 +216,12 @@ def _ref_direction(img_f32, mask):
 
 def _center_color_evidence(img_f32):
     """
-    中央窗口彩色主体证据（V0.7 三态改造，决策1：中央彩色证据法）。
+    中央窗口彩色像素证据（V0.7 三态改造；V0.7a 表述降格，响应第六轮
+    审查意见4）。
     中央候选不足时区分两种情形：
-      a. 中央为彩色食材主体（红肉/蔬菜/深色水产）→ 环带参照天然独立 → PASS；
+      a. 中央区域存在彩色像素证据（如彩色食材主体，也可能为彩色包装/
+         标签/反光——本判据不区分彩色来源）→ 环带候选与中央彩色区域
+         不同源，参照独立性有证据支撑 → PASS；
       b. 中央大面积浅色低饱和但候选不足（过曝裁剪/过暗/被亮度窗口筛掉）
          → 证据不足 → INSUFFICIENT（拒绝）。
     判据：中央窗口有效（非过曝）像素的饱和度中位数。
@@ -214,7 +231,10 @@ def _center_color_evidence(img_f32):
         - 过曝浅色场景：饱和度趋 0（高亮裁剪后各通道趋同）。
       阈值 0.30 取在"彩色主体实测 0.651"与"中性候选上限 0.22"之间，
       两侧均留有约一倍隔离带。
-    返回 (is_color_subject: bool, center_sat_median: float, center_valid_frac: float)。
+    边界（诚实声明，V0.7a）：本分支不验证"主体是食材"，彩色包装/标签
+    同样会 PASS；对该类场景的实际拦截发生在更早层面（低饱和候选数量
+    不足）或后续门（方向差检验/质量四项/门2），实验证据见 exp6 D组。
+    返回 (has_color_evidence: bool, center_sat_median: float, center_valid_frac: float)。
     """
     h, w = img_f32.shape[:2]
     ch0, ch1 = int(h * 0.25), int(h * 0.75)
@@ -251,7 +271,7 @@ def _independent_ref_check(img_f32, mask, zone, full_mask=None):
     为必要特征"对齐）：
       "PASS"          — 有足够证据证明候选集提供独立参照；
       "FAIL"          — 明确同质（方向差<阈值），该级候选不可采信；
-      "INSUFFICIENT"  — 独立性证据不足（中央候选不足且非彩色主体，或
+      "INSUFFICIENT"  — 独立性证据不足（中央候选不足且无彩色像素证据，或
                         方向样本无法计算），按必要特征要求拒绝。
     证据边界（诚实声明）：方向差仅是"独立性证据"——证明环带候选与中央
     主体不同源，但方向差来源也可能是包装标签、反光、手指、光照不均等
@@ -275,14 +295,15 @@ def _independent_ref_check(img_f32, mask, zone, full_mask=None):
     n_center = int(center_mask.sum())
     ev["n_center"] = n_center
     if n_center < INDEP_CENTER_MIN:
-        # 中央候选不足 → 中央彩色证据法判定（V0.7 三态改造）
+        # 中央候选不足 → 中央彩色像素证据判定（V0.7 三态；V0.7a 表述降格）
         is_color, sat_med, valid_frac = _center_color_evidence(img_f32)
         ev.update(center_sat_median=round(sat_med, 4),
                   center_valid_frac=round(valid_frac, 4))
         if is_color:
-            ev["verdict"] = "中央为彩色食材主体，环带候选天然独立"
+            ev["verdict"] = ("中央区域存在彩色像素证据（不区分彩色来源），"
+                             "环带候选与中央彩色区域不同源")
             return "PASS", ev
-        ev["verdict"] = ("中央候选不足且非彩色主体（浅色低饱和但证据不足："
+        ev["verdict"] = ("中央候选不足且无彩色像素证据（浅色低饱和但证据不足："
                          "过曝裁剪/过暗/亮度窗口外），独立性证据不足")
         return "INSUFFICIENT", ev
     ring_dir = _ref_direction(img_f32, m_ring)
@@ -636,21 +657,32 @@ def restore_image(img_f32, est, food_type="meat"):
     拒绝门（三道，按序）：
       门1 过曝拒绝：被生鲜灯增益推出线性1.0的区域不可逆，过曝比例≥阈值时
          直接拒绝还原（不生成校正图，防止上层误展示失真结果）。
-      门2 还原自检（V0.7，响应第五轮审查意见6）：还原后对采信参照集用纯逆增益
-         （无 scene_adjust）重算增益，正确还原应使真中性参照回到增益→1；混合光被
-         单灯矩阵还原后参照仍残留系统性色偏（dev_post≥RESTORE_SELFCHECK_DEV_TH）
-         → 拒绝输出还原图，提示疑似混合光。合成标定：正确还原 0.0125~0.0194、
-         70:30≈0.0425（已知错误输出 dE3.28）、阈值 0.03。
+      门2 还原自检（V0.7a，响应第六轮审查意见1）：对**实际还原输出**
+         （lin_restored，含 scene_adjust）重提取采信参照集，计算参照处
+         归一化增益偏离 dev_post。数学本质（诚实声明）：还原算子为逐通道
+         乘法，参照均值的还原后中性度在代数上由拟合闭合差决定——门2 是
+         **输出闭合差门**，不是对目标食材颜色的独立验证；其技术意义是
+         把拟合闭合差从“识别侧软指标（conf 含幅度项补偿）”升级为“输出侧
+         硬契约”（闭合差超限则拒绝交付还原图）。能区分：混合光误接受
+         （70:30/10:90）、灯库参数失配；不能区分：与纯单灯物理同构的
+         90:10（已披露边界）。区分力实验见 exp7_gate2.py。
       门3（备）：fit_q 残差已在 estimate_pollution 契约检验中处理。
     返回 (还原图或None, 使用的矩阵或None, 报告dict)
-    上层契约：rejected=True 时必须不展示还原图，仅展示提示。
+    上层契约（V0.7a 统一，响应第六轮审查意见2）：
+      **rec is None ⟺ 未输出还原图**（含三种情形：识别未检出/过曝拒绝/
+      自检拒绝，由 report.detected / report.reject_gate 细分原因）。
+      不再在识别失败时返回原图副本——上层需要原图预览时自行使用输入图。
+      契约固化测试见 test_restore_contract.py。
     报告新增 selfcheck 字段：dev_post 值与门2判定，供实验 JSON 落盘验证
     “实际触发了哪个拒绝门”。
     """
     from pollution_sim import _srgb2lin, _lin2srgb
     if not est["detected"]:
-        return img_f32.copy(), None, {"overexposed_ratio": 0.0, "rejected": False, "advice": None,
-                                     "selfcheck": None}
+        # V0.7a：识别未检出 → 不返回图像（上层不得把失败图当还原结果）。
+        # 失败原因在 est.failure_reason / report.reason 中，原图预览由上层自理。
+        return None, None, {"overexposed_ratio": 0.0, "rejected": False,
+                            "detected": False, "reason": est.get("failure_reason"),
+                            "selfcheck": None}
 
     # 过曝检测：显示域已到1.0的像素，其线性真值≥1.0，信息已丢失
     overexposed = (img_f32 >= 0.999).any(axis=2)
@@ -670,15 +702,16 @@ def restore_image(img_f32, est, food_type="meat"):
     M = build_restore_matrix(est["lamp_type"], est["strength"], food_type)
     lin_restored = lin @ M.T
 
-    # ---- 门2：还原自检（V0.7）----
-    # 采信参照集用纯逆增益重算的还原后增益应回归中性（正确还原 dev_post
-    # 0.0125~0.0194；70:30 混合误还原≈0.0425；阈值 0.03，隔离带两侧约
-    # 1.4~1.5 倍，真实数据需重标定）。
+    # ---- 门2：还原自检（V0.7a：对实际还原输出计算）----
+    # 在 lin_restored（含 scene_adjust 的实际输出）上重提取采信参照集，
+    # 计算参照处归一化增益偏离 dev_post。阈值经 exp7_gate2 实验标定
+    # （正确还原实际口径底噪 vs 混合光/失配残差的隔离带）。
     ref_dev = _restore_selfcheck(img_f32, lin_restored, est)
     if ref_dev is not None and ref_dev >= RESTORE_SELFCHECK_DEV_TH:
         report = {
             "overexposed_ratio": over_ratio,
             "rejected": True,
+            "detected": True,
             "reject_gate": "selfcheck",
             "selfcheck": {"dev_post": round(ref_dev, 4)},
             "advice": ("还原后参照未回到中性（残留系统性色偏），疑似混合光源，"
@@ -689,6 +722,7 @@ def restore_image(img_f32, est, food_type="meat"):
     report = {
         "overexposed_ratio": over_ratio,
         "rejected": False,
+        "detected": True,
         "selfcheck": ({"dev_post": round(ref_dev, 4)} if ref_dev is not None else None),
         "advice": (f"检测到{over_ratio*100:.0f}%过曝区域，该区域色彩可能失真" if over_ratio > 0.05 else None),
     }
@@ -697,21 +731,23 @@ def restore_image(img_f32, est, food_type="meat"):
 
 def _restore_selfcheck(img_f32, lin_restored, est):
     """
-    还原后自检（V0.7 门2）：采信参照集在还原图上的增益应回归中性。
-    重新提取与 estimate_pollution 采信级一致的参照 mask（同图同参数，
-    确定性一致），计算还原后线性归一化增益 dev_post = ||gain-1||。
-    注意：自检用纯逆增益（无 scene_adjust）重算还原图——scene_adjust
-    是食材保真的人为调整，不作用于参照中性化；若用它评估参照中性度，
-    正确场景底噪会抬到 0.02+，与混合光残差不可分（V0.7 标定实验结论）。
-    实测隔离带（纯逆增益口径，合成标定）：
-      正确单灯还原 dev_post 0.0125~0.0194（底噪源：s_fit 估计误差+参照
-      本色微色偏，非零）；90:10 混合≈0.0055（与纯灯物理同构，放行为
-      已披露边界）；70:30≈0.0425、10:90≈0.0384（拦截）；50:50 由识别
-      阶段拒绝（识别门在先，不走门2）。
+    还原后自检（V0.7a 门2，响应第六轮审查意见1）。
+    V0.7a 修正：dev_post 在**实际还原输出** lin_restored（含 scene_adjust、
+    与交付像素同算子）上计算，而非旧版“输入图×纯逆增益”的预测值——
+    旧版只是拟合结果的重新表述，未检验实际输出。
+    实现：重新提取与 estimate_pollution 采信级一致的参照 mask（同图同参数，
+    确定性一致），取 lin_restored[mask] 均值的归一化增益偏离。
+    数学本质（诚实声明，写入交底书）：还原算子为逐通道乘法，参照均值还原
+    后中性度在代数上由拟合闭合差（g_hat 与 G_lib(s_fit) 的方向闭合差）
+    决定，外加 scene_adjust 的已知系统偏差（meat [0.97,1.00,1.02] 随强度
+    缩放）。因此本门**不是对目标食材颜色正确性的独立验证**，而是输出侧
+    闭合差契约：闭合差超限 → 拒绝交付。能拦截：混合光误接受（70:30/
+    10:90）、灯库参数失配（exp5 错误输出 0）；不能拦截：与纯单灯物理
+    同构的 90:10（dev_post 落在正确底噪内，已披露边界）；亦不能验证
+    食材本体颜色（无真值可检）。
+    标定（exp7_gate2，实际输出口径）：见 RESTORE_SELFCHECK_DEV_TH 注释。
     est 未采信（无 neutral_mode）时返回 None（无法自检，不由本门拦截）。
     """
-    from pollution_sim import _srgb2lin, _lin2srgb
-    from pollution_sim import LAMP_SPECTRA
     mode = est.get("neutral_mode")
     if not mode:
         return None
@@ -723,10 +759,8 @@ def _restore_selfcheck(img_f32, lin_restored, est):
     n = int(mask.sum())
     if n < 30:
         return None
-    # 纯逆增益（无 scene_adjust）重算参照处还原结果
-    g = np.array(LAMP_SPECTRA[est["lamp_type"]]["gain_rgb"], dtype=np.float32)
-    inv_gain = 1.0 / (1.0 + (g - 1.0) * est["strength"])
-    lin_ref = _srgb2lin(img_f32)[mask] * inv_gain[None, :]
+    # 实际还原输出上的参照增益（与交付像素同一算子，含 scene_adjust）
+    lin_ref = lin_restored[mask]
     gain_post = lin_ref.mean(axis=0)
     ref = float(gain_post.mean())
     if ref < 1e-6:

@@ -71,7 +71,8 @@ def run():
                     if est["detected"] and est["lamp_type"] == lamp:
                         n_id += 1
                     if not est["detected"]:
-                        # 识别拒绝：restore_image 直通返回原图副本，不计入还原统计
+                        # 识别拒绝：restore_image 按 rec is None 契约不输出
+                        # 还原图（rec=None），不计入还原统计
                         n_rejected += 1
                         continue
                     if rec is not None:

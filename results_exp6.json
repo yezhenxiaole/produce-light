@@ -1,9 +1,9 @@
 {
   "meta": {
     "code_version": "V0.7",
-    "generated_at": "2026-10-12T14:39:54",
+    "generated_at": "2026-10-12T15:57:36",
     "python_version": "3.12.13",
-    "git_commit": "f72c40a",
+    "git_commit": "882c2c1",
     "params": {
       "attack_scenes": [
         "A1_fat_blob",
@@ -22,8 +22,20 @@
         0.3,
         0.1
       ],
+      "center_color_cases": [
+        "D1_color_wrap_full",
+        "D1b_color_wrap_blue",
+        "D2_meat_center_tray",
+        "D3_small_subject_060",
+        "D3_small_subject_050",
+        "D4_mixed_center",
+        "D5_exp_075",
+        "D5_exp_115",
+        "D5_exp_055",
+        "D5_exp_135"
+      ],
       "n_seeds": 5,
-      "note": "A2结构性拒绝（独立参照检验）；混合光边界量化"
+      "note": "A2结构性拒绝（独立参照检验，附18880面积断言）；A2b单因素消融（质量门一致性）；混合光边界量化；D组中央彩色证据攻击与边界（V0.7a）"
     }
   },
   "attack": {
@@ -437,76 +449,1052 @@
             "lamp": null,
             "s": 0.0,
             "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-            "restore_dE": null
+            "restore_dE": null,
+            "quality_trace": [
+              {
+                "level": "环带阈值",
+                "quality": true,
+                "indep_status": "FAIL"
+              },
+              {
+                "level": "全图阈值",
+                "quality": false,
+                "indep_status": "QUALITY_FAIL"
+              },
+              {
+                "level": "环带宽阈值",
+                "quality": true,
+                "indep_status": "FAIL"
+              },
+              {
+                "level": "全图宽阈值",
+                "quality": false,
+                "indep_status": "QUALITY_FAIL"
+              }
+            ]
           },
           {
             "detected": false,
             "lamp": null,
             "s": 0.0,
             "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-            "restore_dE": null
+            "restore_dE": null,
+            "quality_trace": [
+              {
+                "level": "环带阈值",
+                "quality": true,
+                "indep_status": "FAIL"
+              },
+              {
+                "level": "全图阈值",
+                "quality": false,
+                "indep_status": "QUALITY_FAIL"
+              },
+              {
+                "level": "环带宽阈值",
+                "quality": true,
+                "indep_status": "FAIL"
+              },
+              {
+                "level": "全图宽阈值",
+                "quality": false,
+                "indep_status": "QUALITY_FAIL"
+              }
+            ]
           },
           {
             "detected": false,
             "lamp": null,
             "s": 0.0,
             "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-            "restore_dE": null
+            "restore_dE": null,
+            "quality_trace": [
+              {
+                "level": "环带阈值",
+                "quality": true,
+                "indep_status": "FAIL"
+              },
+              {
+                "level": "全图阈值",
+                "quality": false,
+                "indep_status": "QUALITY_FAIL"
+              },
+              {
+                "level": "环带宽阈值",
+                "quality": true,
+                "indep_status": "FAIL"
+              },
+              {
+                "level": "全图宽阈值",
+                "quality": false,
+                "indep_status": "QUALITY_FAIL"
+              }
+            ]
           },
           {
             "detected": false,
             "lamp": null,
             "s": 0.0,
             "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-            "restore_dE": null
+            "restore_dE": null,
+            "quality_trace": [
+              {
+                "level": "环带阈值",
+                "quality": true,
+                "indep_status": "FAIL"
+              },
+              {
+                "level": "全图阈值",
+                "quality": false,
+                "indep_status": "QUALITY_FAIL"
+              },
+              {
+                "level": "环带宽阈值",
+                "quality": true,
+                "indep_status": "FAIL"
+              },
+              {
+                "level": "全图宽阈值",
+                "quality": false,
+                "indep_status": "QUALITY_FAIL"
+              }
+            ]
           },
           {
             "detected": false,
             "lamp": null,
             "s": 0.0,
             "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
-            "restore_dE": null
+            "restore_dE": null,
+            "quality_trace": [
+              {
+                "level": "环带阈值",
+                "quality": true,
+                "indep_status": "FAIL"
+              },
+              {
+                "level": "全图阈值",
+                "quality": false,
+                "indep_status": "QUALITY_FAIL"
+              },
+              {
+                "level": "环带宽阈值",
+                "quality": true,
+                "indep_status": "FAIL"
+              },
+              {
+                "level": "全图宽阈值",
+                "quality": false,
+                "indep_status": "QUALITY_FAIL"
+              }
+            ]
           }
         ]
       },
       "check_off": {
         "wrongly_accepted": "5/5",
-        "wrong_restore_dE_mean": 7.88,
+        "wrong_restore_dE_mean": null,
         "detail": [
           {
             "detected": true,
             "lamp": "hidden_red",
             "s": 0.695,
             "reason": null,
-            "restore_dE": 7.88
+            "restore_dE": null,
+            "quality_trace": [
+              {
+                "level": "环带阈值",
+                "quality": true,
+                "indep_status": "PASS"
+              }
+            ]
           },
           {
             "detected": true,
             "lamp": "hidden_red",
             "s": 0.695,
             "reason": null,
-            "restore_dE": 7.88
+            "restore_dE": null,
+            "quality_trace": [
+              {
+                "level": "环带阈值",
+                "quality": true,
+                "indep_status": "PASS"
+              }
+            ]
           },
           {
             "detected": true,
             "lamp": "hidden_red",
             "s": 0.695,
             "reason": null,
-            "restore_dE": 7.88
+            "restore_dE": null,
+            "quality_trace": [
+              {
+                "level": "环带阈值",
+                "quality": true,
+                "indep_status": "PASS"
+              }
+            ]
           },
           {
             "detected": true,
             "lamp": "hidden_red",
             "s": 0.695,
             "reason": null,
-            "restore_dE": 7.88
+            "restore_dE": null,
+            "quality_trace": [
+              {
+                "level": "环带阈值",
+                "quality": true,
+                "indep_status": "PASS"
+              }
+            ]
           },
           {
             "detected": true,
             "lamp": "hidden_red",
             "s": 0.695,
             "reason": null,
-            "restore_dE": 7.88
+            "restore_dE": null,
+            "quality_trace": [
+              {
+                "level": "环带阈值",
+                "quality": true,
+                "indep_status": "PASS"
+              }
+            ]
+          }
+        ]
+      },
+      "quality_gates_consistent": true,
+      "quality_gate_diff": [],
+      "note": "单因素消融：仅 monkeypatch 独立参照检验为恒 PASS，质量四项门逐级判定与主组一致（共同经历级），差异仅来自独立参照检验"
+    },
+    "ring_mask_area_check": {
+      "shape": [
+        256,
+        256
+      ],
+      "margin": 20,
+      "area": 18880,
+      "expected": 18880,
+      "formula": "256²−(256−2×20)²=18880",
+      "ok": true
+    },
+    "D_center_color": {
+      "D1_color_wrap_full": {
+        "expect": "彩色证据PASS分支是否误放行——如实记录",
+        "center_color": "5/5",
+        "identified": "0/5",
+        "restored": "0/5",
+        "detail": [
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6759,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6754,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6754,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6752,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6762,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          }
+        ]
+      },
+      "D1b_color_wrap_blue": {
+        "expect": "同上，蓝色系",
+        "center_color": "5/5",
+        "identified": "0/5",
+        "restored": "0/5",
+        "detail": [
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6083,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6079,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6078,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6076,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6086,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          }
+        ]
+      },
+      "D2_meat_center_tray": {
+        "expect": "正控：彩色证据成立，识别成功",
+        "center_color": "5/5",
+        "identified": "5/5",
+        "restored": "5/5",
+        "detail": [
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6501,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6498,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6498,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6497,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6503,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          }
+        ]
+      },
+      "D3_small_subject_060": {
+        "expect": "边界：主体变小后彩色证据与识别行为",
+        "center_color": "5/5",
+        "identified": "0/5",
+        "restored": "0/5",
+        "detail": [
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6381,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6377,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6377,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6375,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6384,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+            "restored": false,
+            "reject_gate": null
+          }
+        ]
+      },
+      "D3_small_subject_050": {
+        "expect": "边界：更小主体",
+        "center_color": "5/5",
+        "identified": "0/5",
+        "restored": "0/5",
+        "detail": [
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6381,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6377,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6377,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6375,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6384,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试",
+            "restored": false,
+            "reject_gate": null
+          }
+        ]
+      },
+      "D4_mixed_center": {
+        "expect": "边界：中央混合区域（彩色+白色）判定",
+        "center_color": "5/5",
+        "identified": "0/5",
+        "restored": "0/5",
+        "detail": [
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6332,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "FAIL",
+              "QUALITY_FAIL",
+              "FAIL",
+              "QUALITY_FAIL"
+            ],
+            "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6332,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "FAIL",
+              "QUALITY_FAIL",
+              "FAIL",
+              "QUALITY_FAIL"
+            ],
+            "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6331,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "FAIL",
+              "QUALITY_FAIL",
+              "FAIL",
+              "QUALITY_FAIL"
+            ],
+            "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.633,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "FAIL",
+              "QUALITY_FAIL",
+              "FAIL",
+              "QUALITY_FAIL"
+            ],
+            "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6337,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "FAIL",
+              "QUALITY_FAIL",
+              "FAIL",
+              "QUALITY_FAIL"
+            ],
+            "reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），无独立于食材的中性参照，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          }
+        ]
+      },
+      "D5_exp_075": {
+        "expect": "曝光因子0.75下的判定稳健性",
+        "center_color": "5/5",
+        "identified": "5/5",
+        "restored": "5/5",
+        "detail": [
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6501,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6498,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6498,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6497,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6503,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          }
+        ]
+      },
+      "D5_exp_115": {
+        "expect": "曝光因子1.15下的判定稳健性",
+        "center_color": "5/5",
+        "identified": "5/5",
+        "restored": "5/5",
+        "detail": [
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6501,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6498,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6498,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6497,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6503,
+            "center_valid_frac": 1.0,
+            "detected": true,
+            "lamp": "hidden_red",
+            "mode": "环带阈值中性区",
+            "indep_status": [
+              "PASS"
+            ],
+            "reason": null,
+            "restored": true,
+            "reject_gate": null
+          }
+        ]
+      },
+      "D5_exp_055": {
+        "expect": "曝光因子0.55下的判定稳健性",
+        "center_color": "5/5",
+        "identified": "0/5",
+        "restored": "0/5",
+        "detail": [
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6501,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6498,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6498,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6497,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6503,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          }
+        ]
+      },
+      "D5_exp_135": {
+        "expect": "曝光因子1.35下的判定稳健性",
+        "center_color": "5/5",
+        "identified": "0/5",
+        "restored": "0/5",
+        "detail": [
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6501,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6498,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6498,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6497,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
+          },
+          {
+            "center_is_color": true,
+            "center_sat_median": 0.6503,
+            "center_valid_frac": 1.0,
+            "detected": false,
+            "lamp": null,
+            "mode": null,
+            "indep_status": [
+              "SKIP_PIXELS",
+              "SKIP_PIXELS"
+            ],
+            "reason": "图像中未找到足够的中性参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+            "restored": false,
+            "reject_gate": null
           }
         ]
       }

@@ -39,7 +39,7 @@ def run_pair(food, lamp, strengths=(0.4, 0.6, 0.8), seeds=(1, 2, 3, 4, 5)):
             pol, _ = simulate_lamp_pollution(gt, lamp, strength=s)
             est = estimate_pollution(pol)
             rec, _M, report = restore_image(pol, est, food_type=FOOD_FOODTYPE[food])
-            if rec is None:  # 过曝拒绝（本数据集不应触发）
+            if rec is None:  # 未输出还原图（识别拒绝/过曝/自检门2），按契约用输入图顶替记录
                 rec = pol  # 记录用
             awb = generic_awb(pol)
             for tag, img in [("pol", pol), ("awb", awb), ("ours", rec)]:
@@ -91,7 +91,7 @@ def save_comparison_grid():
         est = estimate_pollution(pol)
         rec, _, _ = restore_image(pol, est, food_type=FOOD_FOODTYPE[food])
         if rec is None:
-            rec = pol
+            rec = pol  # rec is None 契约：识别拒绝时用输入图顶替做对比展示
         awb = generic_awb(pol)
         rows.append([gt, pol, awb, rec])
     h, w = rows[0][0].shape[:2]

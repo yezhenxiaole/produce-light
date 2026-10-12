@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-exp6: 假中性攻击与构图先验泛化实验（V0.7）
+exp6: 假中性攻击与构图先验泛化实验（V0.7a）
 ====================================================
 A. 攻击场景（应全部拒绝或识别失败）：
    A1 浅色脂肪碎块满构图（碎片化）
    A2 满幅浅色鱼身（大面积真中性色食物，自然光）——独立参照检验
       应结构性拦截（环带与中央候选同材质、方向差→0，V0.7 证据字段落盘）
-   A2b 消融实验（V0.7）：关闭独立参照检验跑 A2 → 预期误识别，证明该检验
-      是拒绝的必要门而非侥幸兜底（响应第五轮审查意见1）
+      另附环带掩码面积断言（256×256 → 18880，响应第六轮审查意见3）
+   A2b 消融实验（V0.7a）：关闭独立参照检验跑 A2 → 预期误识别，证明该检验
+      是拒绝的必要门而非侥幸兜底（响应第五轮审查意见1）；同时逐级记录
+      质量四项门判定并与主组比对，证明单因素消融（仅关闭独立参照检验，
+      其余门不受影响，响应第六轮审查意见3）
    A3 满幅鱼身+蓝灯污染（被中和场景）
    A4 满幅浅色食物+红灯污染
    A5 包装反光小亮斑（小块高光假中性）
@@ -23,6 +26,14 @@ C. 混合光可辨识性边界（V0.6 口径更新）：
    C3 混合比例扫描（红:蓝 = 9:1 ~ 1:9），记录误接受时的 conf/强度/
        还原色差——接近单一光源的混合与纯单灯物理同构，可能被接受，
        该边界如实量化写入交底书（不宣称已拦截）。
+D. 中央彩色证据分支攻击与边界测试（V0.7a，响应第六轮审查意见4）：
+   D1 满幅彩色包装膜（彩色但非食材、无独立参照）——攻击该分支可能放行
+   D2 彩色食材主体居中（正控）
+   D3 小主体构图（食物占画幅 37%/25% 线性占比）
+   D4 中央混合区域（彩色食材+白色餐盘同处中央窗口）
+   D5 不同曝光（0.75x/1.15x/偏暗0.55x/过曝裁剪1.35x）
+   表述口径：中央彩色证据仅宣称"中央区域存在彩色像素证据"，不宣称
+   主体即食材（V0.7a 降格）。
 每场景5种子。结果写 results_exp6.json。
 """
 import json
@@ -148,8 +159,27 @@ def run_attack():
               (f", 误还原{n_d}例" if (n_d := len(dE_restore)) else ", 无还原输出") +
               (f", 误还原dE={dm:.2f}" if dm is not None else "") +
               (f"  首例原因: {res[0]['reason']}" if res[0]["reason"] else ""))
-    # A2b 消融实验（V0.7，审查意见1：证明方向差检验的必要性）
+    # A2b 消融实验（V0.7，审查意见1：证明方向差检验的必要性；V0.7a 增
+    # 质量门一致性证据，响应第六轮审查意见3）
     out["A2b_ablation"] = _ablation_indep_check()
+
+    # 环带掩码面积断言（V0.7a，响应第六轮审查意见3）：
+    # 256×256、margin=int(256*0.08)=20 → 环带面积 = 256²−216² = 18880。
+    # 修正审查误判：18880 恰为环带全集（外圈8%方框带），非"最多约14176"；
+    # A2 满幅鱼全像素过中性筛选（本色[0.72,0.66,0.62]饱和度低），
+    # 环带∩候选 = 环带全集，故环带候选 18880 成立。此处以代码断言落盘。
+    from restore_engine import _ring_mask
+    _ring = _ring_mask((256, 256))
+    _m = int(256 * 0.08)
+    _exp = 256 * 256 - (256 - 2 * _m) ** 2
+    out["ring_mask_area_check"] = dict(
+        shape=[256, 256], margin=_m, area=int(_ring.sum()), expected=_exp,
+        formula=f"{256}²−({256}−2×{_m})²={_exp}",
+        ok=bool(int(_ring.sum()) == _exp))
+    assert int(_ring.sum()) == _exp, f"环带面积断言失败: {int(_ring.sum())} != {_exp}"
+
+    # D组：中央彩色证据分支攻击与边界（V0.7a，响应第六轮审查意见4）
+    out["D_center_color"] = run_center_color()
     return out
 
 
@@ -186,6 +216,14 @@ def _dir_diff_of(est):
     return None
 
 
+def _quality_trace(est):
+    """提取各级候选的质量门/独立参照检验判定轨迹（消融一致性证据）"""
+    ev = est.get("indep_evidence") or {}
+    return [dict(level=s.get("level"), quality=s.get("quality"),
+                 indep_status=s.get("indep_status"))
+            for s in ev.get("stages", [])]
+
+
 def _ablation_indep_check():
     """
     A2b 消融实验（V0.7，响应第五轮审查意见1）。
@@ -194,6 +232,9 @@ def _ablation_indep_check():
     5 种子；若仍被拒绝，则找全图级 Q1 占比门或其它门拦截的证据。
     预期（V0.6 诊断数据）：关闭检验后 A2 环带级直接采信鱼身像素（环带候选
     18880px、四边带达标、质量四项 PASS）→ 误识别为某灯型 → 输出错误还原。
+    单因素消融证明（V0.7a，响应第六轮审查意见3）：逐级记录两组的质量
+    四项门判定（quality_trace），验证消融组与主组在共同经历各级上的质量
+    门判定一致——即两组差异仅来自独立参照检验被关闭，其余门不受影响。
     """
     import restore_engine
     from restore_engine import estimate_pollution as _est_orig
@@ -211,7 +252,8 @@ def _ablation_indep_check():
             dE = round(float(ciede2000_std(rgb_to_lab(gt), rgb_to_lab(rec)).mean()), 2)
         res_on.append(dict(detected=bool(est["detected"]), lamp=est["lamp_type"],
                            s=round(float(est.get("strength", 0) or 0), 3),
-                           reason=est["failure_reason"], restore_dE=dE))
+                           reason=est["failure_reason"], restore_dE=dE,
+                           quality_trace=_quality_trace(est)))
 
     # 关闭独立参照检验（消融）：monkeypatch 恒 PASS
     orig_check = restore_engine._independent_ref_check
@@ -228,22 +270,40 @@ def _ablation_indep_check():
                 dE = round(float(ciede2000_std(rgb_to_lab(gt), rgb_to_lab(rec)).mean()), 2)
             res_off.append(dict(detected=bool(est["detected"]), lamp=est["lamp_type"],
                                 s=round(float(est.get("strength", 0) or 0), 3),
-                                reason=est["failure_reason"], restore_dE=dE))
+                                reason=est["failure_reason"], restore_dE=dE,
+                                quality_trace=_quality_trace(est)))
     finally:
         restore_engine._independent_ref_check = orig_check
 
     on_rej = sum(1 for r in res_on if not r["detected"])
     off_acc = sum(1 for r in res_off if r["detected"])
     off_dEs = [r["restore_dE"] for r in res_off if r["restore_dE"] is not None]
+    # 单因素消融一致性：共同经历各级上质量门判定应逐级相同
+    q_match = True
+    q_diff = []
+    for i, (a, b) in enumerate(zip(res_on, res_off)):
+        ta, tb = a["quality_trace"], b["quality_trace"]
+        L = min(len(ta), len(tb))
+        for j in range(L):
+            if ta[j]["level"] != tb[j]["level"] or ta[j]["quality"] != tb[j]["quality"]:
+                q_match = False
+                q_diff.append(dict(seed=i + 1, stage=j,
+                                   on=ta[j], off=tb[j]))
     out = dict(
         check_on=dict(rejected=f"{on_rej}/5",
                      first_reason=res_on[0]["reason"], detail=res_on),
         check_off=dict(wrongly_accepted=f"{off_acc}/5",
                       wrong_restore_dE_mean=(round(float(np.mean(off_dEs)), 2) if off_dEs else None),
                       detail=res_off),
-    )
+        quality_gates_consistent=q_match,
+        quality_gate_diff=q_diff,
+        note=("单因素消融：仅 monkeypatch 独立参照检验为恒 PASS，质量四项门"
+              "逐级判定与主组一致（共同经历级），差异仅来自独立参照检验"
+              if q_match else
+              "消融组与主组在共同经历级上质量门判定不一致，需检查"))
     print(f"  A2b消融: 检验开启拒绝 {on_rej}/5；关闭后误接受 {off_acc}/5" +
-          (f"，误还原dE={np.mean(off_dEs):.2f}" if off_dEs else ""))
+          (f"，误还原dE={np.mean(off_dEs):.2f}" if off_dEs else "") +
+          f"；质量门一致性={q_match}")
     return out
 
 
@@ -276,14 +336,16 @@ def run_positive():
 
 def run_mixed():
     """
-    C组：混合光对抗（可辨识性边界量化，V0.7 更新）。
+    C组：混合光对抗（可辨识性边界量化，V0.7a 更新）。
     诚实结论（写入交底书）：
       - 50:50 附近由识别阶段拒绝；
       - 接近单一光源的混合比例（如 90:10）与纯单灯物理同构（增益向量
         差异仅约 4.7%），无法仅凭方向拟合区分，误接受后由还原自检门2
-        按参照中性残差拦截；
-      - V0.7 门2（还原后参照中性回归自检）实测拦截 70:30/10:90 误还原
-        （dev_post 0.0425/0.0384 ≥ 0.03），90:10 物理同构案例放行（已披露
+        按实际输出闭合差拦截；
+      - 门2 阈值 0.03 为实际输出口径标定（exp7_gate2）：正确单灯还原
+        输出底噪 max=0.0279，全部拦截侧样本 min=0.0302，隔离带
+        [0.0279, 0.0302]；本组比例扫描中 70:30 与 10:90 误接受样本
+        均被门2 拒绝（reject_gate=selfcheck），90:10 部分放行（已披露
         可辨识性边界）；
       - 每样本记录 reject_gate 与 dev_post，证明实际触发的拦截门。
     """
@@ -354,6 +416,116 @@ def run_mixed():
     return out
 
 
+def _center_colored_wrap(shape, seed, wrap_rgb):
+    """满幅彩色包装膜（彩色但非食材、无独立中性参照）"""
+    h, w = shape
+    tex = np.random.default_rng(seed).random((h, w))
+    img = np.ones((h, w, 3), dtype=np.float32)
+    for c in range(3):
+        img[..., c] = wrap_rgb[c] + 0.08 * tex
+    return img
+
+
+def _place_center_local(shape, seed, frac, food_rgb):
+    """把彩色食材块放在中央 frac×frac 区域，其余为白色餐盘"""
+    h, w = shape
+    tex = np.random.default_rng(seed).random((h, w))
+    plate = np.array([0.86, 0.85, 0.83], dtype=np.float32)
+    img = np.ones((h, w, 3), dtype=np.float32)
+    for c in range(3):
+        img[..., c] = plate[c] + 0.02 * tex
+    fh, fw = int(h * frac), int(w * frac)
+    y0, x0 = (h - fh) // 2, (w - fw) // 2
+    for c in range(3):
+        img[y0:y0 + fh, x0:x0 + fw, c] = \
+            food_rgb[c] + 0.06 * tex[y0:y0 + fh, x0:x0 + fw]
+    return img
+
+
+MEAT_RGB = [0.55, 0.20, 0.18]
+GREEN_RGB = [0.30, 0.62, 0.25]
+RED_WRAP_RGB = [0.70, 0.25, 0.20]   # 红色包装（与红肉同色系、非食材）
+BLUE_WRAP_RGB = [0.25, 0.35, 0.70]  # 蓝色包装
+
+
+def run_center_color():
+    """
+    D组：中央彩色证据分支攻击与边界（V0.7a，响应第六轮审查意见4）。
+    攻击命题：中央彩色像素证据判定（饱和度中位数≥0.30 → PASS）是否会把
+    "彩色但非食材、无独立参照"的场景误放行？边界在哪里？
+    表述口径（V0.7a 降格）：该分支仅宣称"中央区域存在彩色像素证据，
+    环带候选与中央彩色区域不同源"，不宣称"主体即食材"。
+    """
+    from restore_engine import _center_color_evidence, restore_image
+    out = {}
+    S = (256, 256)
+
+    def _case(tag, make, expect):
+        res = []
+        for sd in (1, 2, 3, 4, 5):
+            img = make(sd)
+            is_color, sat_med, valid_frac = _center_color_evidence(img)
+            est = estimate_pollution(img)
+            rec, _, rep = restore_image(img, est, food_type="meat") \
+                if est["detected"] else (None, None, None)
+            res.append(dict(
+                center_is_color=bool(is_color),
+                center_sat_median=round(sat_med, 4),
+                center_valid_frac=round(valid_frac, 4),
+                detected=bool(est["detected"]),
+                lamp=est["lamp_type"],
+                mode=est.get("neutral_mode"),
+                indep_status=[s.get("indep_status")
+                              for s in (est.get("indep_evidence") or {}).get("stages", [])],
+                reason=est["failure_reason"],
+                restored=bool(rec is not None),
+                reject_gate=rep.get("reject_gate") if rep else None))
+        n_color = sum(1 for r in res if r["center_is_color"])
+        n_det = sum(1 for r in res if r["detected"])
+        n_rest = sum(1 for r in res if r["restored"])
+        out[tag] = dict(expect=expect, center_color=f"{n_color}/5",
+                        identified=f"{n_det}/5", restored=f"{n_rest}/5",
+                        detail=res)
+        print(f"  {tag}: 彩色证据 {n_color}/5, 识别 {n_det}/5, 还原输出 {n_rest}/5"
+              + (f"  首例: {res[0]['reason'][:44]}" if not res[0]["detected"] else ""))
+
+    # D1 满幅彩色包装膜（攻击：彩色但非食材、无独立参照）
+    _case("D1_color_wrap_full",
+          lambda sd: _center_colored_wrap(S, sd, RED_WRAP_RGB),
+          expect="彩色证据PASS分支是否误放行——如实记录")
+    # D1b 蓝色包装
+    _case("D1b_color_wrap_blue",
+          lambda sd: _center_colored_wrap(S, sd, BLUE_WRAP_RGB),
+          expect="同上，蓝色系")
+    # D2 彩色食材主体居中（正控：托盘环绕）
+    _case("D2_meat_center_tray",
+          lambda sd: _with_tray(_meat_food(S, sd), ("all",)),
+          expect="正控：彩色证据成立，识别成功")
+    # D3 小主体：线性占比 0.6（面积36%）与 0.5（面积25%）
+    _case("D3_small_subject_060",
+          lambda sd: _place_center_local(S, sd, 0.60, MEAT_RGB),
+          expect="边界：主体变小后彩色证据与识别行为")
+    _case("D3_small_subject_050",
+          lambda sd: _place_center_local(S, sd, 0.50, MEAT_RGB),
+          expect="边界：更小主体")
+    # D4 中央混合：彩色食材+白色餐盘同处中央窗口
+    def _d4_mixed_center(sd):
+        img = _place_center_local(S, sd, 0.60, MEAT_RGB)
+        # 中央窗口内再放一块白色低饱和区（模拟餐盘露白）
+        img[96:128, 96:160] = np.array([0.88, 0.87, 0.85], dtype=np.float32)
+        return img
+    _case("D4_mixed_center", _d4_mixed_center,
+          expect="边界：中央混合区域（彩色+白色）判定")
+    # D5 曝光变化：0.75x / 1.15x / 0.55x / 1.35x（过曝裁剪）
+    for f, tag in ((0.75, "D5_exp_075"), (1.15, "D5_exp_115"),
+                   (0.55, "D5_exp_055"), (1.35, "D5_exp_135")):
+        _case(tag,
+              lambda sd, f=f: np.clip(_with_tray(_meat_food(S, sd), ("all",)) * f,
+                                      0, 1).astype(np.float32),
+              expect=f"曝光因子{f}下的判定稳健性")
+    return out
+
+
 if __name__ == "__main__":
     print("== A. 假中性攻击场景（应全部拒绝）==")
     attack = run_attack()
@@ -369,5 +541,15 @@ if __name__ == "__main__":
                                             "A5_specular_small"],
                              positive_scenes=["B1~B5构图"],
                              mixed_scan=[0.9, 0.7, 0.5, 0.3, 0.1],
+                             center_color_cases=["D1_color_wrap_full",
+                                                 "D1b_color_wrap_blue",
+                                                 "D2_meat_center_tray",
+                                                 "D3_small_subject_060",
+                                                 "D3_small_subject_050",
+                                                 "D4_mixed_center",
+                                                 "D5_exp_075", "D5_exp_115",
+                                                 "D5_exp_055", "D5_exp_135"],
                              n_seeds=5,
-                             note="A2结构性拒绝（独立参照检验）；混合光边界量化"))
+                             note="A2结构性拒绝（独立参照检验，附18880面积断言）；"
+                                  "A2b单因素消融（质量门一致性）；混合光边界量化；"
+                                  "D组中央彩色证据攻击与边界（V0.7a）"))

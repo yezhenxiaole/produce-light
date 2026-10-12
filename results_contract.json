@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "code_version": "V0.7",
+    "generated_at": "2026-10-12T15:42:06",
+    "python_version": "3.12.13",
+    "git_commit": "882c2c1",
+    "params": {
+      "gates": [
+        "detect_fail",
+        "overexposed",
+        "selfcheck"
+      ],
+      "note": "restore_image 输出契约固化测试（第六轮审查意见2/3）"
+    }
+  },
+  "contract": "rec is None ⟺ 未输出还原图",
+  "cases": [
+    {
+      "case": "1_正常输出",
+      "passed": true,
+      "detected": true,
+      "rec_none": false,
+      "rejected": false,
+      "rep_detected": true
+    },
+    {
+      "case": "2_识别未检出→rec必须None",
+      "passed": true,
+      "detected": false,
+      "rec_none": true,
+      "reason": "未检出明显色偏，可能已为自然光环境"
+    },
+    {
+      "case": "3_过曝拒绝→rec必须None",
+      "passed": true,
+      "detected": false,
+      "rec_none": true,
+      "reject_gate": null
+    },
+    {
+      "case": "4_混合光门2拒绝→rec必须None",
+      "passed": true,
+      "detected": false,
+      "rec_none": true,
+      "reject_gate": null,
+      "dev_post": null
+    },
+    {
+      "case": "5_环带面积=18880核验",
+      "passed": true,
+      "ring_area": 18880,
+      "formula": "256²−216²=65536−46656=18880"
+    },
+    {
+      "case": "6_A2环带∩候选面积核验",
+      "passed": true,
+      "n_ring_cand": 18880,
+      "expected": 18880
+    }
+  ],
+  "all_pass": true
+}

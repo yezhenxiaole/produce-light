@@ -1,9 +1,9 @@
 {
   "meta": {
     "code_version": "V0.7",
-    "generated_at": "2026-10-12T14:38:44",
-    "python_version": "3.12.13",
-    "git_commit": "f72c40a",
+    "generated_at": "2026-10-12T15:14:37",
+    "python_version": "3.13.9",
+    "git_commit": "882c2c1",
     "params": {
       "scenarios": [
         "match",
@@ -38,7 +38,7 @@
       "n_rejected": 16,
       "n_wrong_output": 0,
       "restore_dE_mean": 1.2064082705418402,
-      "restore_dE_std": 0.32168162251807736,
+      "restore_dE_std": 0.3216816225180774,
       "dE_lt3_rate": 1.0
     },
     {
@@ -48,7 +48,7 @@
       "n_restore_output": 4,
       "n_rejected": 23,
       "n_wrong_output": 0,
-      "restore_dE_mean": 1.7081325519288482,
+      "restore_dE_mean": 1.708132551928848,
       "restore_dE_std": 0.270358741512808,
       "dE_lt3_rate": 1.0
     },
@@ -60,7 +60,7 @@
       "n_rejected": 0,
       "n_wrong_output": 0,
       "restore_dE_mean": 0.7893949224996049,
-      "restore_dE_std": 0.4668431221537542,
+      "restore_dE_std": 0.4668431221537541,
       "dE_lt3_rate": 1.0
     },
     {
@@ -71,7 +71,7 @@
       "n_rejected": 21,
       "n_wrong_output": 0,
       "restore_dE_mean": 1.4007059087423366,
-      "restore_dE_std": 0.1655928875769104,
+      "restore_dE_std": 0.16559288757691046,
       "dE_lt3_rate": 1.0
     },
     {
@@ -81,8 +81,8 @@
       "n_restore_output": 7,
       "n_rejected": 20,
       "n_wrong_output": 0,
-      "restore_dE_mean": 0.7069148842283014,
-      "restore_dE_std": 0.42892045499513554,
+      "restore_dE_mean": 0.7069148842283013,
+      "restore_dE_std": 0.4289204549951354,
       "dE_lt3_rate": 1.0
     }
   ]
