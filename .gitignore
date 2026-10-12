@@ -2,10 +2,11 @@
 _diag_*.py
 diag*.py
 check_*.py
+_check_*.py
 debug_mask.png
 diag9_sea_mask.png
 ground_*.png
 
 # Python 缓存
 __pycache__/
-*.pyc_check_*.py
+*.pyc
