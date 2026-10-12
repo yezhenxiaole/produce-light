@@ -75,8 +75,12 @@ def run_failure_branches():
     food_only[..., 2] = 0.18 + 0.06 * tex
     est = estimate_pollution(food_only)
     reason_no_ref = est["failure_reason"] or ""
-    hit_no_ref = "中性参照" in reason_no_ref
+    # V0.8：结构化判定（禁止中文提示语匹配）——无有效参照候选失败分支
+    code_no_ref = est.get("failure_code")
+    hit_no_ref = code_no_ref in ("NO_VALID_REFERENCE", "SAME_MATERIAL",
+                                 "INSUFFICIENT_EVIDENCE")
     results["no_neutral_ref"] = dict(detected=est["detected"], reason=reason_no_ref,
+                                      failure_code=code_no_ref,
                                       neutral_mode=est.get("neutral_mode"),
                                       neutral_pixels=est.get("neutral_pixels"),
                                       branch_hit=hit_no_ref)

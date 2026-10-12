@@ -37,9 +37,23 @@
        正确单灯还原 dev_post max=0.0279（输出底噪上界），混合光/失配
        拦截侧全部样本 min=0.0302 → 阈值 0.03 取隔离带 [0.0279,0.0302]
        内，拦截并提示疑似混合光；正确还原 dev_post 均值0.0196 不受影响；
-   9. 诚实边界：方向差是独立性证据但不单独证明“这是托盘/灰卡”
-      （反光/标签/光照不均也可造成方向差）；过曝 0.30 为经验阈值
-      非普适；全部阈值（0.07/0.03/0.30/0.55）在真实数据上需重新标定。
+    9. 诚实边界：方向差是独立性证据但不单独证明“这是托盘/灰卡”
+       （反光/标签/光照不均也可造成方向差）；过曝 0.30 为经验阈值
+       非普适；全部阈值（0.07/0.03/0.30/0.55）在真实数据上需重新标定。
+
+契约（V0.8，响应第十二轮审查意见：结构化失败原因）：
+   10. failure_code 枚举（12项+OK）：estimate_pollution 最终失败原因
+       结构化输出（OK/DARK_IMAGE/NO_COLOR_CAST/NO_VALID_REFERENCE/
+       SAME_MATERIAL/INSUFFICIENT_EVIDENCE/QUALITY_FAIL/OUT_OF_RANGE/
+       FIT_AMBIGUOUS/LOW_CONFIDENCE/OVEREXPOSED/SELFCHECK_FAIL），
+       与 failure_reason（人读提示语）并存；independent_status（分支级：
+       PASS/FAIL/INSUFFICIENT/QUALITY_FAIL/SKIP_PIXELS）与 failure_code
+       （最终对外）严格分域。restore_image 各拒绝出口透传/覆盖该字段
+       （识别未检出=透传est、门1=OVEREXPOSED、门2=SELFCHECK_FAIL、
+       正常输出=OK）。所有测试禁止以中文提示语匹配判定失败原因。
+   11. 提示语口径（与V0.7e文档一致）：失败分支表述为“无有效参照候选”
+       /“独立参照候选验证未通过”，不宣称已确认中性参照；“中性参照
+       区域”改称“参照区域”。
 """
 import numpy as np
 
@@ -331,7 +345,7 @@ def _independent_ref_check(img_f32, mask, zone, full_mask=None):
     ev["center_dir"] = [round(float(v), 4) for v in center_dir]
     if dir_diff < INDEP_DIR_DIFF_TH:
         ev["verdict"] = ("环带与中央候选增益方向一致（疑似满幅同质浅色材质，"
-                         "无独立于食材的中性参照）")
+                         "无独立于食材的有效参照候选）")
         return "FAIL", ev
     ev["verdict"] = f"方向差{dir_diff:.4f}≥{INDEP_DIR_DIFF_TH}，存在独立参照"
     return "PASS", ev
@@ -348,6 +362,7 @@ def estimate_pollution(img_f32):
     h, w, _ = img_f32.shape
     result = dict(detected=False, lamp_type=None, strength=0.0,
                   confidence=0.0, neutral_pixels=0, failure_reason=None,
+                  failure_code=None,
                   degrade_reason=None, neutral_mode=None, alt_lamps=None,
                   indep_evidence=None)
 
@@ -355,6 +370,7 @@ def estimate_pollution(img_f32):
     # 不能靠后面的偏差范数拦截，必须在入口拦截）
     mean_disp = float(img_f32.mean())
     if mean_disp < 0.04:
+        result["failure_code"] = "DARK_IMAGE"
         result["failure_reason"] = "图像过暗，无法可靠估计光源，请开启闪光灯或移至明亮处重拍"
         return result
 
@@ -375,26 +391,39 @@ def estimate_pollution(img_f32):
                 if s.get("indep_status") in ("FAIL", "INSUFFICIENT"):
                     deepest = s
             if deepest is not None and deepest.get("indep_status") == "FAIL":
+                result["failure_code"] = "SAME_MATERIAL"
                 result["failure_reason"] = (
                     "图像候选中性区域与主体同质（疑似满幅同质浅色材质），"
-                    "无独立于食材的中性参照，无法可靠估计光源；"
-                    "建议附加白色参照物（如纸巾）后重拍")
+                    "独立参照候选验证未通过，无独立于食材的有效参照候选，"
+                    "无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍")
                 result["indep_evidence"] = ev
                 return result
             if deepest is not None:
+                result["failure_code"] = "INSUFFICIENT_EVIDENCE"
                 result["failure_reason"] = (
-                    "独立性证据不足（无独立于食材的中性参照或参照样本过少），"
+                    "独立场景证据不足（无独立于食材的有效参照候选或参照样本过少），"
                     "无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍")
                 return result
         probe_mean, nv = _gray_world_offset(img_f32)
         if probe_mean is None:
+            result["failure_code"] = "OUT_OF_RANGE"
             result["failure_reason"] = "有效像素不足，请靠近拍摄或补充光照"
             return result
         probe_norm = probe_mean / probe_mean.mean()
         if np.linalg.norm(probe_norm - 1) < DEV_MIN:
+            result["failure_code"] = "NO_COLOR_CAST"
             result["failure_reason"] = "未检出明显色偏，可能已为自然光环境"
         else:
-            result["failure_reason"] = ("图像中未找到足够的中性参照区域（托盘/包装/白色参照物），"
+            # V0.8：四级降级链全部失败后按最深结构性原因分code——候选
+            # 存在但被质量四项门拒绝（stages含QUALITY_FAIL）→ QUALITY_FAIL；
+            # 候选数量不足为主（SKIP_PIXELS）→ NO_VALID_REFERENCE。两种
+            # 情形提示语一致（用户建议相同：附加白色参照物），仅结构化
+            # 失败原因不同（exp8实验按 code 分域统计）。
+            quality_failed = any(s.get("indep_status") == "QUALITY_FAIL"
+                                 for s in ev.get("stages", []))
+            result["failure_code"] = "QUALITY_FAIL" if quality_failed \
+                else "NO_VALID_REFERENCE"
+            result["failure_reason"] = ("图像中未找到足够的参照区域（托盘/包装/白色参照物），"
                                         "无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍")
         return result
 
@@ -402,12 +431,14 @@ def estimate_pollution(img_f32):
     result["neutral_mode"] = mode
     ref = float(lin_mean.mean())
     if ref < 1e-6:
+        result["failure_code"] = "DARK_IMAGE"
         result["failure_reason"] = "图像过暗，无法估计光源"
         return result
     gain_est_norm = np.asarray(lin_mean, dtype=np.float64) / ref
 
     dev_norm = float(np.linalg.norm(gain_est_norm - 1.0))
     if dev_norm < DEV_MIN:
+        result["failure_code"] = "NO_COLOR_CAST"
         result["failure_reason"] = "未检出明显色偏，可能已为自然光环境"
         return result
 
@@ -417,6 +448,7 @@ def estimate_pollution(img_f32):
     # (a) 拟合强度范围：s超出[0.05,0.95]说明真实光源超出灯库单灯物理范围
     #     （混合光或非库内光），方向上灯库无法解释，明确拒绝。
     if not (S_EDGE_LOW <= s_fit <= S_EDGE_HIGH):
+        result["failure_code"] = "OUT_OF_RANGE"
         result["failure_reason"] = (
             f"拟合强度{s_fit:.2f}超出灯库物理范围[0.05,0.95]，"
             "疑似混合光源或非库内光源，拒绝输出")
@@ -424,6 +456,7 @@ def estimate_pollution(img_f32):
     # (b) 灯型歧义：次优灯型残差与最优过于接近 → 灯型判定不确定
     if len(per_lamp) >= 2 and per_lamp[1][0] < LAMP_AMBIG_RATIO * resid:
         alt = per_lamp[1]
+        result["failure_code"] = "FIT_AMBIGUOUS"
         result["failure_reason"] = (
             f"灯型判定歧义（{lamp_type}与{alt[1]}残差过近），疑似混合光源，拒绝输出")
         return result
@@ -449,13 +482,16 @@ def estimate_pollution(img_f32):
         # 过曝比例高时优先报告过曝干扰（更精确的失败原因，指导用户重拍）
         over_ratio = float((img_f32 >= 0.999).any(axis=2).mean())
         if over_ratio >= 0.30:
+            result["failure_code"] = "OVEREXPOSED"
             result["failure_reason"] = (f"大面积过曝（{over_ratio*100:.0f}%）干扰光源估计，"
                                         "建议远离光源或调整角度重新拍摄")
         else:
+            result["failure_code"] = "LOW_CONFIDENCE"
             result["failure_reason"] = "光源类型匹配度低（非库内生鲜灯或混合光源），建议附加白色参照物后重试"
         return result
 
     result["detected"] = True
+    result["failure_code"] = "OK"
     return result
 
 
@@ -696,6 +732,7 @@ def restore_image(img_f32, est, food_type="meat"):
         # 失败原因在 est.failure_reason / report.reason 中，原图预览由上层自理。
         return None, None, {"overexposed_ratio": 0.0, "rejected": False,
                             "detected": False, "reason": est.get("failure_reason"),
+                            "failure_code": est.get("failure_code"),
                             "selfcheck": None}
 
     # 过曝检测：显示域已到1.0的像素，其线性真值≥1.0，信息已丢失
@@ -708,6 +745,7 @@ def restore_image(img_f32, est, food_type="meat"):
             "overexposed_ratio": over_ratio,
             "rejected": True,
             "reject_gate": "overexposed",
+            "failure_code": "OVEREXPOSED",
             "advice": "检测到大面积过曝，色彩信息不可逆丢失，建议远离光源或调整角度重新拍摄",
         }
         return None, None, report
@@ -730,6 +768,7 @@ def restore_image(img_f32, est, food_type="meat"):
             "rejected": True,
             "detected": True,
             "reject_gate": "selfcheck",
+            "failure_code": "SELFCHECK_FAIL",
             "selfcheck": {"dev_post": round(ref_dev, 4)},
             "advice": ("还原后参照未回到中性（残留系统性色偏），疑似混合光源，"
                        "已拒绝输出还原图；建议单一光源下重拍"),
@@ -740,6 +779,7 @@ def restore_image(img_f32, est, food_type="meat"):
         "overexposed_ratio": over_ratio,
         "rejected": False,
         "detected": True,
+        "failure_code": "OK",
         "selfcheck": ({"dev_post": round(ref_dev, 4)} if ref_dev is not None else None),
         "advice": (f"检测到{over_ratio*100:.0f}%过曝区域，该区域色彩可能失真" if over_ratio > 0.05 else None),
     }
@@ -847,8 +887,10 @@ if __name__ == "__main__":
     food_only[..., 1] = 0.20 + 0.06 * tex
     food_only[..., 2] = 0.18 + 0.06 * tex
     est2 = estimate_pollution(food_only)
-    hit = "中性参照" in (est2["failure_reason"] or "")
-    print(f"  无中性参照分支: reason={est2['failure_reason']} → {'命中(正确)' if hit else '未命中(错误)'}")
+    # V0.8：结构化判定（禁止中文提示语匹配）——无有效参照候选失败分支
+    hit = est2.get("failure_code") in ("NO_VALID_REFERENCE", "SAME_MATERIAL",
+                                      "INSUFFICIENT_EVIDENCE")
+    print(f"  无中性参照分支: code={est2.get('failure_code')}, reason={est2['failure_reason']} → {'命中(正确)' if hit else '未命中(错误)'}")
     # V0.5 假中性攻击自检1：浅色脂肪碎块散布（碎片化，应被Q2拦截）
     fat = np.ones((128, 128, 3), dtype=np.float32)
     fat[...] = [0.30, 0.10, 0.08]  # 红肉底色
@@ -857,8 +899,10 @@ if __name__ == "__main__":
         y, x = frng.integers(0, 118), frng.integers(0, 118)
         fat[y:y+10, x:x+10] = [0.82, 0.74, 0.66]
     est3 = estimate_pollution(fat)
-    hit3 = ("中性参照" in (est3["failure_reason"] or "")) or (not est3["detected"])
-    print(f"  假中性攻击(脂肪碎块): detected={est3['detected']} → {'拦截(正确)' if hit3 else '误识别(错误)'}")
+    hit3 = (est3.get("failure_code") in ("NO_VALID_REFERENCE", "SAME_MATERIAL",
+                                        "INSUFFICIENT_EVIDENCE", "QUALITY_FAIL")
+            ) or (not est3["detected"])
+    print(f"  假中性攻击(脂肪碎块): detected={est3['detected']}, code={est3.get('failure_code')} → {'拦截(正确)' if hit3 else '误识别(错误)'}")
     # V0.6 假中性攻击自检2：满幅浅色鱼身（A2 盲区场景）。
     # V0.5 时为“可辨识性极限实例（已披露盲区）”；V0.6 独立参照检验将该
     # 场景结构性拒绝：环带∩候选与中央∩候选为同材质、方向差→0 →
@@ -869,8 +913,8 @@ if __name__ == "__main__":
     fish[..., 1] = 0.66 + 0.08 * ftex
     fish[..., 2] = 0.62 + 0.08 * ftex
     est4 = estimate_pollution(fish)
-    hit4 = (not est4["detected"]) and ("中性参照" in (est4["failure_reason"] or ""))
-    print(f"  假中性攻击(满幅鱼身/A2): detected={est4['detected']} → "
+    hit4 = (not est4["detected"]) and (est4.get("failure_code") == "SAME_MATERIAL")
+    print(f"  假中性攻击(满幅鱼身/A2): detected={est4['detected']}, code={est4.get('failure_code')} → "
           f"{'结构性拦截(正确)' if hit4 else '误还原(错误,V0.6契约违背)'}")
     # V0.6 独立参照正向自检：满幅鱼+周边灰托盘（有独立参照，应正常识别，
     # 证明独立参照检验不误杀真构图）。
