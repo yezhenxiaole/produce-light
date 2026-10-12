@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-test_restore_contract: restore_image 输出契约固化测试（V0.7a，第六轮审查意见2）
-================================================================================
+test_restore_contract: restore_image 输出契约固化测试（V0.7b，第七轮审查意见2/4）
 契约：** rec is None ⟺ 未输出还原图 **
   三种未输出情形（由 report 细分）：
     1. 识别未检出（report.detected=False, report.reason=失败原因）；
@@ -9,15 +8,27 @@ test_restore_contract: restore_image 输出契约固化测试（V0.7a，第六�
     3. 门2 自检拒绝（report.reject_gate="selfcheck", rejected=True）。
   rec is not None ⟺ 已交付还原图（rejected=False 且 detected=True）。
   识别失败时**不得**返回原图副本——上层需要预览时自行用输入图。
+  用例4（V0.7b 强断言）：70:30/10:90 混合光必须被门2 selfcheck 拦截且
+  dev_post>=0.03（不允许识别拒/放行并存）；90:10 如实记录为不可分边界。
+  输出 UTF-8（第七轮审查意见4）：Windows 控制台 GBK 不再报错。
 运行：python test_restore_contract.py（全部用例断言，exit code 0=PASS）
 结果写 results_contract.json（供证据链落盘）。
 """
 import numpy as np
 from restore_engine import estimate_pollution, restore_image, _ring_mask
 from restore_engine import extract_neutral_zone
+from restore_engine import RESTORE_SELFCHECK_DEV_TH
 from pollution_sim import _srgb2lin, _lin2srgb, LAMP_SPECTRA
 from synth_images import make_meat_image
+from exp6 import _with_tray, _meat_food, _pollute_mix
 import json
+import sys
+
+
+# Windows 控制台 UTF-8 输出（第七轮审查意见4）：避免 GBK 编码报错
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
 
 
 def _pollute(img, lamp, s):
@@ -77,27 +88,39 @@ def main():
                       detected=est3["detected"], rec_none=rec3 is None,
                       reject_gate=rep3.get("reject_gate")))
 
-    # 用例4：门2自检拒绝（70:30 混合光）→ rec=None、reject_gate="selfcheck"
-    # 构造：红蓝 70:30 混合（识别端物理同构误接受，V0.6 实测 conf 0.647）
-    ga = np.array(LAMP_SPECTRA["red_meat"]["gain_rgb"], dtype=np.float64)
-    gb = np.array(LAMP_SPECTRA["blue_sea"]["gain_rgb"], dtype=np.float64)
-    gain_mix = 1.0 + (0.7 * (ga - 1.0) + 0.3 * (gb - 1.0)) * 0.8
-    lin = _srgb2lin(make_meat_image(seed=4))
-    img4 = np.clip(_lin2srgb((lin * gain_mix[None, None, :]).astype(np.float32)), 0, 1).astype(np.float32)
-    est4 = estimate_pollution(img4)
-    rec4, _, rep4 = restore_image(img4, est4, food_type="meat")
-    if est4["detected"] and rep4.get("rejected"):
-        ok4 = (rec4 is None and rep4["reject_gate"] == "selfcheck"
-               and rep4["selfcheck"] is not None)
-    elif est4["detected"] and not rep4.get("rejected"):
-        # 识别接受但门2未拦（阈值偏移时可能出现）→ 契约本身仍成立：输出图非None
-        ok4 = (rec4 is not None)
-    else:
-        ok4 = (rec4 is None)  # 识别拒绝 → None
-    cases.append(dict(case="4_混合光门2拒绝→rec必须None", passed=bool(ok4),
-                      detected=est4["detected"], rec_none=rec4 is None,
-                      reject_gate=rep4.get("reject_gate"),
-                      dev_post=(rep4.get("selfcheck") or {}).get("dev_post")))
+    # 用例4（V0.7b 强断言）：门2 自检拒绝（70:30 / 10:90 混合光）
+    # 构造：exp6 _with_tray 图源 + 红蓝混合（识别端物理同构误接受窗口，
+    # 见 exp6 run_mixed 比例扫描）。第七轮审查意见2：固定仿真条件下强断言
+    # 门2 必须触发，不允许三种结果并存（门2拒/识别拒/输出）。
+    def _gate_assert(mix_a, expect_selfcheck, note):
+        gt = _with_tray(_meat_food((256, 256), 4), ("all",))
+        img4 = _pollute_mix(gt, "red_meat", "blue_sea", 0.6, mix_a)
+        est4 = estimate_pollution(img4)
+        rec4, _, rep4 = restore_image(img4, est4, food_type="meat")
+        sc = rep4.get("selfcheck") or {}
+        dev = sc.get("dev_post")
+        if expect_selfcheck:
+            # 强断言：必须识别接受且门2 拒绝（reject_gate=="selfcheck"、dev_post>=0.03）
+            ok = (est4["detected"] and rec4 is None
+                  and rep4.get("rejected") and rep4.get("reject_gate") == "selfcheck"
+                  and dev is not None and dev >= RESTORE_SELFCHECK_DEV_TH)
+        else:
+            # 90:10 近单灯：识别接受但门2 不拦（不可分边界样本，dev 落在底噪内）
+            # 或识别拒绝——均如实记录为边界，不做放行/拦截强断言
+            ok = True
+        return ok, dict(note=note, est_detected=bool(est4["detected"]),
+                        rec_none=rec4 is None, rejected=rep4.get("rejected"),
+                        reject_gate=rep4.get("reject_gate"), dev_post=dev)
+
+    ok_7030, d7030 = _gate_assert(0.7, True, "70:30 混合光，门2 必须拦截")
+    ok_1090, d1090 = _gate_assert(0.1, True, "10:90 混合光，门2 必须拦截")
+    ok_9010, d9010 = _gate_assert(0.9, False, "90:10 近单灯，不可分边界，如实记录")
+    cases.append(dict(case="4a_70:30强断言门2拒", passed=bool(ok_7030),
+                      threshold=RESTORE_SELFCHECK_DEV_TH, **d7030))
+    cases.append(dict(case="4b_10:90强断言门2拒", passed=bool(ok_1090),
+                      threshold=RESTORE_SELFCHECK_DEV_TH, **d1090))
+    cases.append(dict(case="4c_90:10边界放行", passed=bool(ok_9010),
+                      threshold=RESTORE_SELFCHECK_DEV_TH, **d9010))
 
     # 用例5：环带掩码面积数值核验（第六轮审查意见3：18880 是否可能）
     area = _ring_area()

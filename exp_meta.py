@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""实验元数据工具（V0.7a）：结果 JSON 统一写入 meta 字段。
+"""实验元数据工具（V0.7b）：结果 JSON 统一写入 meta 字段。
 
 用途（响应第三轮审查意见3：复现风险）：
   每个实验结果 JSON 顶层写入：
@@ -14,7 +14,7 @@ import subprocess
 import sys
 from datetime import datetime
 
-CODE_VERSION = "V0.7a"
+CODE_VERSION = "V0.7b"
 
 
 def _git_head():
