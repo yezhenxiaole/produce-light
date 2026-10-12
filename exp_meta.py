@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""实验元数据工具（V0.7b）：结果 JSON 统一写入 meta 字段。
+"""实验元数据工具（V0.7c）：结果 JSON 统一写入 meta 字段。
 
 用途（响应第三轮审查意见3：复现风险）：
   每个实验结果 JSON 顶层写入：
@@ -9,12 +9,14 @@
     - git_commit：运行时 HEAD 短哈希（无 git 环境时为 None）
     - params：实验关键参数摘要（各实验自定义 dict）
 约定：meta 字段由 _save_results() 统一注入，禁止手工编辑结果文件。
+V0.7c 说明：本轮仅注释/文档口径修订（独立参照候选验证命名、中央彩色
+证据改称独立场景证据），代码逻辑与 V0.7b 完全一致，结果数值不变。
 """
 import subprocess
 import sys
 from datetime import datetime
 
-CODE_VERSION = "V0.7b"
+CODE_VERSION = "V0.7c"
 
 
 def _git_head():

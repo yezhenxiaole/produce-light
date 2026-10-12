@@ -257,15 +257,17 @@ def _center_color_evidence(img_f32):
 
 def _independent_ref_check(img_f32, mask, zone, full_mask=None):
     """
-    独立参照检验（V0.7 三态改造，响应第五轮审查意见1/2/3）。
+    独立参照候选验证（V0.7 三态改造，响应第五轮审查意见1/2/3；
+    V0.7c 命名修正，响应第八轮审查意见5：本检验验证的是"独立参照候选"，
+    即环带候选与中央主体不同源的证据，不直接断言候选为中性材质）。
 
     参数：
       img_f32    输入图
       mask       当前级别候选（ring 级=环带∩候选；full 级=全图候选）
       zone       "ring" 或 "full"（当前级别）
       full_mask  全图候选 mask（ring 级必传；full 级等于 mask 可省）
-                 主体支（中央窗口）恒取全图候选口径——ring 级传入的
-                 mask 中央窗口必为空，若用它做主体支该检验将恒被跳过。
+                  主体支（中央窗口）恒取全图候选口径——ring 级传入的
+                  mask 中央窗口必为空，若用它做主体支该检验将恒被跳过。
 
     物理依据：单一光源下，
       - 真中性参照（托盘/纸巾）的观测增益方向 == 灯方向；
@@ -273,9 +275,10 @@ def _independent_ref_check(img_f32, mask, zone, full_mask=None):
     满幅同质浅色材质（A2 攻击：满幅鱼身无托盘）的环带候选与中央候选
     为同一材质 → 方向差→0 → 候选集不提供"独立于目标食材的中性参照"。
 
-    三态返回（V0.7：证据不足不再是默认放行，与权利要求"独立中性参照
-    为必要特征"对齐）：
-      "PASS"          — 有足够证据证明候选集提供独立参照；
+    三态返回（V0.7：证据不足不再是默认放行）：
+      "PASS"          — 有足够证据证明候选集提供独立参照（V0.7c 口径：
+                        独立参照候选验证通过，含方向差证据与中央彩色
+                        场景证据两种子模式）；
       "FAIL"          — 明确同质（方向差<阈值），该级候选不可采信；
       "INSUFFICIENT"  — 独立性证据不足（中央候选不足且无彩色像素证据，或
                         方向样本无法计算），按必要特征要求拒绝。
@@ -301,12 +304,15 @@ def _independent_ref_check(img_f32, mask, zone, full_mask=None):
     n_center = int(center_mask.sum())
     ev["n_center"] = n_center
     if n_center < INDEP_CENTER_MIN:
-        # 中央候选不足 → 中央彩色像素证据判定（V0.7 三态；V0.7a 表述降格）
+        # 中央候选不足 → 中央彩色场景证据判定（V0.7 三态；V0.7c 口径：
+        # 该证据为"独立场景证据"——中央彩色区域与环带候选不同源的证据，
+        # 不区分彩色来源，不单独断言中性参照；正常蔬菜/高强度肉类构图
+        # 的主干路径，攻击场景拦截不依赖本分支，见 exp6 D组）
         is_color, sat_med, valid_frac = _center_color_evidence(img_f32)
         ev.update(center_sat_median=round(sat_med, 4),
                   center_valid_frac=round(valid_frac, 4))
         if is_color:
-            ev["verdict"] = ("中央区域存在彩色像素证据（不区分彩色来源），"
+            ev["verdict"] = ("中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），"
                              "环带候选与中央彩色区域不同源")
             return "PASS", ev
         ev["verdict"] = ("中央候选不足且无彩色像素证据（浅色低饱和但证据不足："
