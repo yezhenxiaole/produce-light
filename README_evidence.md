@@ -1,14 +1,14 @@
 # 仿真工程证据链说明（供代理机构/审查复核）
 
-**当前版本：V0.7e（2026-10-12，按第十轮审查意见的纯文档逻辑收口：失败分支概念收口拆三类/独立场景证据PASS语义澄清/中性性未证为最大技术风险/D组仅证前置门拦截/真实验证待开展）。本目录（`produce-light/`）为唯一正式仿真源码。**
-**文档版本与代码冻结的对应关系：V0.7e 仅修订交底书/调查报告/执行清单/README/断言的文档口径，源码与结果冻结不变——源码冻结于 9086d2d、结果 JSON 提交于 577da49，全部 8 个 JSON 的 meta 绑定 V0.7c/9086d2d；本 README 属文档修订（V0.7e），不改变任何实验数值。**
+**当前版本：V0.8（2026-10-13，按第十一轮/十二轮审查意见执行强攻击仿真验证：新增 exp8 强攻击实验11场景×5种子逐样本全量落盘，源码冻结 ef152d4、结果 JSON 绑定 V0.8/ef152d4；V0.7c 旧 8 个 JSON 只读不覆盖。在 V0.7e 基础上：按第十轮审查意见的纯文档逻辑收口：失败分支概念收口拆三类/独立场景证据PASS语义澄清/中性性未证为最大技术风险/D组仅证前置门拦截/真实验证待开展）。本目录（`produce-light/`）为唯一正式仿真源码。**
+**文档版本与代码冻结的对应关系：V0.8 新增 exp8 强攻击实验（结果 JSON 绑定 V0.8/ef152d4）；V0.7e 属文档修订（V0.8 不重跑 V0.7 实验、不改变任何旧实验数值）——源码冻结于 9086d2d、结果 JSON 提交于 577da49，全部 8 个旧 JSON 的 meta 绑定 V0.7c/9086d2d（只读不覆盖）。**
 **旧工作目录 `.temp/sim/` 已归档（V0.1~V0.4 历史版本，含 20+ 临时诊断脚本，
 ARCHIVED_NOT_AUTHORITATIVE，不再维护），所有正式实验自 V0.5 起以本目录为准。
 复现请勿运行旧目录。**
 
 ## 版本与元数据约定
 
-- 版本约定：文档当前为 V0.7e（纯文档逻辑收口：失败分支拆三类/PASS语义澄清/中性性未证声明/D组前置门拦截限定/真实验证待执行）；代码与结果 JSON 冻结为 V0.7c/9086d2d（源码冻结提交 9086d2d、结果 JSON 提交 577da49，V0.7e 不重跑实验、不改变任何结果数值）；
+- 版本约定：文档当前为 V0.8（新增 exp8 强攻击仿真，代码与结果 JSON 冻结为 V0.8/ef152d4）；V0.7e 为上一版本文档口径（纯文档逻辑收口：失败分支拆三类/PASS语义澄清/中性性未证声明/D组前置门拦截限定/真实验证待执行）；V0.7c 代码与旧 8 个结果 JSON 冻结为 V0.7c/9086d2d（V0.7e 不重跑实验、不改变任何结果数值）；
 - 历史版本：V0.7c 仅注释/文档口径修订，代码逻辑与 V0.7b 完全一致，结果数值不变（历史版本结果仅用于说明修复过程）；
 - 每个结果 JSON 顶层含 `meta` 字段：源码版本、生成时间、Python 版本、git 提交号、
   参数摘要（见各 results_*.json 的 `meta` 键）；
@@ -34,6 +34,9 @@ ARCHIVED_NOT_AUTHORITATIVE，不再维护），所有正式实验自 V0.5 起以
 | `exp4.py` | 实验四：环带消融（全图 vs 降级链）+ 降级链回退行为（含单侧白卡遮挡检测） |
 | `exp5.py` | 实验五：灯库参数失配鲁棒性（±10%/±20%/旋转/综合） |
 | `exp6.py` | 实验六：假中性攻击（A1~A5，应全部拒绝）+ 构图正向验证（B1~B5）+ 混合光可辨识性边界（C组） |
+| `exp7_gate2.py` | 实验七：门2实际输出口径标定（G1~G4，隔离带[0.0279,0.0302]） |
+| `exp8_attack.py` | 实验八（V0.8）：强攻击仿真 11场景×5种子（G1~G6c，逐样本全量落盘） |
+| `exp_meta.py` | 元数据生成（code_version/git_commit/python_version 自动记录） |
 | `calib_overexpose.py` | 过曝阈值标定实验（退化曲线，单场景） |
 | `calib_overexpose_multi.py` | 过曝阈值多场景标定（9 食材×灯型组合退化曲线汇总） |
 | `results_*.json` | 各实验结果（UTF-8，含 meta 元数据） |
@@ -51,6 +54,8 @@ $env:PYTHONIOENCODING='utf-8'; python -X utf8 exp3.py                  # 实验�
 $env:PYTHONIOENCODING='utf-8'; python -X utf8 exp4.py                  # 实验四
 $env:PYTHONIOENCODING='utf-8'; python -X utf8 exp5.py                  # 实验五
 $env:PYTHONIOENCODING='utf-8'; python -X utf8 exp6.py                  # 实验六（攻击/构图/混合光）
+$env:PYTHONIOENCODING='utf-8'; python -X utf8 exp7_gate2.py            # 实验七（门2口径标定）
+$env:PYTHONIOENCODING='utf-8'; python -X utf8 exp8_attack.py           # 实验八（V0.8强攻击，11场景）
 $env:PYTHONIOENCODING='utf-8'; python -X utf8 calibration.py           # 标定模块合成自检
 $env:PYTHONIOENCODING='utf-8'; python -X utf8 calib_overexpose_multi.py # 过曝阈值多场景标定
 ```
@@ -85,5 +90,10 @@ $env:PYTHONIOENCODING='utf-8'; python -X utf8 calib_overexpose_multi.py # 过曝
     属初步攻击验证：现有样本未真正进入本子模式受验，零放行证明力有限；
     中性性未证假设：PASS 后增益估计仍按近似中性参照使用，安全性依赖低饱和筛选+
     候选质量四项+门2输出闭合差兜底，真实误采信率属真实采集阶段任务；
+   **V0.8（exp8_attack，11场景×5种子，绑定V0.8/ef152d4）**：三个"整图无真中性参照"攻击（G1/G1b/G2b）
+      独立场景证据子模式 PASS、非中性采信后全部 15/15 被门2拦截（dev_post 0.0336~0.0414>0.03）、最终错误输出 0；
+      G2a 正确采信（ref_precision=1.0、dE1.47）；G3/G5 采信非中性但还原 dE<3 未达伤害阈值（门2不触发）；
+      G4/G6a/G6b/G6c 合成构造不可达（预检两轮停止调参，见 results_exp8_precheck.json）如实记录，不引用为零放行证据；
+      全部数据为 V0.8 合成仿真结果，不外推真实数据；
 7. 过曝阈值 0.30 为合成数据退化曲线的经验工程分界（非普适物理阈值），
    真实数据需重新标定（见 `calib_overexpose_multi.py` 输出与交底书声明）。

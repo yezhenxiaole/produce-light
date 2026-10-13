@@ -1,0 +1,5710 @@
+{
+  "meta": {
+    "code_version": "V0.8",
+    "generated_at": "2026-10-13T09:28:51",
+    "python_version": "3.12.13",
+    "git_commit": "ef152d4",
+    "params": {
+      "mode": "formal",
+      "n_seeds": 5,
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "lamp": "red_meat",
+      "lamp_strength": 0.55,
+      "scenes": [
+        "G1_colorwrap_offset_frame",
+        "G1b_colorwrap_offset_blue",
+        "G2a_tray_label_pollution",
+        "G2b_offset_label_frame",
+        "G3_offset_background",
+        "G3b_neutral_background_ctrl",
+        "G4_plastic_box_wood",
+        "G5_crafted_lowsat_ring",
+        "G6a_specular_neutral",
+        "G6b_shadow_split_material",
+        "G6c_specular_shadow_combo"
+      ],
+      "note": "V0.8强攻击仿真（逐样本证据全量落盘，禁中文提示语匹配判定）"
+    }
+  },
+  "G1_colorwrap_offset_frame": {
+    "expect": "色偏边框被误采信→识别/还原错→测门2",
+    "attack": true,
+    "n_total": 5,
+    "entered_submode_rate": 1.0,
+    "pass_rate_vs_candidate": 1.0,
+    "pass_rate_vs_total": 1.0,
+    "mistrust_rate": 0.0,
+    "final_wrong_output_rate": 0.0,
+    "gate2_intercept_rate": 1.0,
+    "summary": {
+      "n_submode": 5,
+      "n_pass": 5,
+      "n_mistrust": 0,
+      "n_wrong_output": 0,
+      "n_gate2_rejected": 5
+    },
+    "per_seed": [
+      {
+        "scene": "G1_colorwrap_offset_frame",
+        "seed": 1,
+        "attack": true,
+        "expect": "色偏边框被误采信→识别/还原错→测门2",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.733,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.733,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.888191713793074,
+        "confidence": 0.8751602823126606,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0347,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G1_colorwrap_offset_frame",
+        "seed": 2,
+        "attack": true,
+        "expect": "色偏边框被误采信→识别/还原错→测门2",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.733,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.733,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8882364191221803,
+        "confidence": 0.8743090615321321,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0348,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G1_colorwrap_offset_frame",
+        "seed": 3,
+        "attack": true,
+        "expect": "色偏边框被误采信→识别/还原错→测门2",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.7332,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.7332,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8876905076645675,
+        "confidence": 0.8763450434581674,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0346,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G1_colorwrap_offset_frame",
+        "seed": 4,
+        "attack": true,
+        "expect": "色偏边框被误采信→识别/还原错→测门2",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.733,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.733,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8882804128786127,
+        "confidence": 0.8744913273094775,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0348,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G1_colorwrap_offset_frame",
+        "seed": 5,
+        "attack": true,
+        "expect": "色偏边框被误采信→识别/还原错→测门2",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.7331,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.7331,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8877302528603134,
+        "confidence": 0.8749481262286981,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0347,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      }
+    ]
+  },
+  "G1b_colorwrap_offset_blue": {
+    "expect": "同G1，偏蓝变体",
+    "attack": true,
+    "n_total": 5,
+    "entered_submode_rate": 1.0,
+    "pass_rate_vs_candidate": 1.0,
+    "pass_rate_vs_total": 1.0,
+    "mistrust_rate": 0.0,
+    "final_wrong_output_rate": 0.0,
+    "gate2_intercept_rate": 1.0,
+    "summary": {
+      "n_submode": 5,
+      "n_pass": 5,
+      "n_mistrust": 0,
+      "n_wrong_output": 0,
+      "n_gate2_rejected": 5
+    },
+    "per_seed": [
+      {
+        "scene": "G1b_colorwrap_offset_blue",
+        "seed": 1,
+        "attack": true,
+        "expect": "同G1，偏蓝变体",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.733,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.733,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.6518278558666641,
+        "confidence": 0.8195018307490329,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0413,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18754,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G1b_colorwrap_offset_blue",
+        "seed": 2,
+        "attack": true,
+        "expect": "同G1，偏蓝变体",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.733,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.733,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.6518449525496375,
+        "confidence": 0.8187413106701736,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0414,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18715,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G1b_colorwrap_offset_blue",
+        "seed": 3,
+        "attack": true,
+        "expect": "同G1，偏蓝变体",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.7332,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.7332,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.6513486736225826,
+        "confidence": 0.8206524548696841,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0411,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18760,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G1b_colorwrap_offset_blue",
+        "seed": 4,
+        "attack": true,
+        "expect": "同G1，偏蓝变体",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.733,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.733,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.6517125415850835,
+        "confidence": 0.81869504653845,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0414,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18736,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G1b_colorwrap_offset_blue",
+        "seed": 5,
+        "attack": true,
+        "expect": "同G1，偏蓝变体",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.7331,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.7331,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.6514732605295291,
+        "confidence": 0.819208797923816,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0413,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18752,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      }
+    ]
+  },
+  "G2a_tray_label_pollution": {
+    "expect": "采信干净托盘=正确；采信标签/混合区=误采信",
+    "attack": true,
+    "n_total": 5,
+    "entered_submode_rate": 1.0,
+    "pass_rate_vs_candidate": 1.0,
+    "pass_rate_vs_total": 1.0,
+    "mistrust_rate": 0.0,
+    "final_wrong_output_rate": 0.0,
+    "gate2_intercept_rate": 0.0,
+    "summary": {
+      "n_submode": 5,
+      "n_pass": 5,
+      "n_mistrust": 0,
+      "n_wrong_output": 0,
+      "n_gate2_rejected": 0
+    },
+    "per_seed": [
+      {
+        "scene": "G2a_tray_label_pollution",
+        "seed": 1,
+        "attack": true,
+        "expect": "采信干净托盘=正确；采信标签/混合区=误采信",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6941,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6941,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.7053585396534723,
+        "confidence": 0.8988443705021912,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0258,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 1.469,
+        "accepted_area": 15820,
+        "truth_area": 22530,
+        "intersection": 15820,
+        "ref_precision": 1.0,
+        "ref_recall": 0.7022,
+        "mistrust": false,
+        "mistrust_rule": "precision_or_dE",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G2a_tray_label_pollution",
+        "seed": 2,
+        "attack": true,
+        "expect": "采信干净托盘=正确；采信标签/混合区=误采信",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6942,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6942,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.7052957616408179,
+        "confidence": 0.898901201699062,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0258,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 1.469,
+        "accepted_area": 15820,
+        "truth_area": 22530,
+        "intersection": 15820,
+        "ref_precision": 1.0,
+        "ref_recall": 0.7022,
+        "mistrust": false,
+        "mistrust_rule": "precision_or_dE",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G2a_tray_label_pollution",
+        "seed": 3,
+        "attack": true,
+        "expect": "采信干净托盘=正确；采信标签/混合区=误采信",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6943,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6943,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.7054268140130703,
+        "confidence": 0.8988252530800366,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0258,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 1.469,
+        "accepted_area": 15820,
+        "truth_area": 22530,
+        "intersection": 15820,
+        "ref_precision": 1.0,
+        "ref_recall": 0.7022,
+        "mistrust": false,
+        "mistrust_rule": "precision_or_dE",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G2a_tray_label_pollution",
+        "seed": 4,
+        "attack": true,
+        "expect": "采信干净托盘=正确；采信标签/混合区=误采信",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6941,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6941,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.7054279630255278,
+        "confidence": 0.8988168912935894,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0258,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 1.47,
+        "accepted_area": 15820,
+        "truth_area": 22530,
+        "intersection": 15820,
+        "ref_precision": 1.0,
+        "ref_recall": 0.7022,
+        "mistrust": false,
+        "mistrust_rule": "precision_or_dE",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G2a_tray_label_pollution",
+        "seed": 5,
+        "attack": true,
+        "expect": "采信干净托盘=正确；采信标签/混合区=误采信",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6941,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6941,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.7053565717971949,
+        "confidence": 0.8988663362956528,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0258,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 1.469,
+        "accepted_area": 15820,
+        "truth_area": 22530,
+        "intersection": 15820,
+        "ref_precision": 1.0,
+        "ref_recall": 0.7022,
+        "mistrust": false,
+        "mistrust_rule": "precision_or_dE",
+        "spec_overlap": null
+      }
+    ]
+  },
+  "G2b_offset_label_frame": {
+    "expect": "色偏标签边框冒充参照（无真托盘）",
+    "attack": true,
+    "n_total": 5,
+    "entered_submode_rate": 1.0,
+    "pass_rate_vs_candidate": 1.0,
+    "pass_rate_vs_total": 1.0,
+    "mistrust_rate": 0.0,
+    "final_wrong_output_rate": 0.0,
+    "gate2_intercept_rate": 1.0,
+    "summary": {
+      "n_submode": 5,
+      "n_pass": 5,
+      "n_mistrust": 0,
+      "n_wrong_output": 0,
+      "n_gate2_rejected": 5
+    },
+    "per_seed": [
+      {
+        "scene": "G2b_offset_label_frame",
+        "seed": 1,
+        "attack": true,
+        "expect": "色偏标签边框冒充参照（无真托盘）",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.5234,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.5234,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8684569345772862,
+        "confidence": 0.8785552721948985,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0337,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G2b_offset_label_frame",
+        "seed": 2,
+        "attack": true,
+        "expect": "色偏标签边框冒充参照（无真托盘）",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.5233,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.5233,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8685289558224087,
+        "confidence": 0.8777076135431748,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0338,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G2b_offset_label_frame",
+        "seed": 3,
+        "attack": true,
+        "expect": "色偏标签边框冒充参照（无真托盘）",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.5236,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.5236,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8679811499264345,
+        "confidence": 0.8796795864970032,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0336,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G2b_offset_label_frame",
+        "seed": 4,
+        "attack": true,
+        "expect": "色偏标签边框冒充参照（无真托盘）",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.5234,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.5234,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8685459266117792,
+        "confidence": 0.8778937423060359,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0338,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G2b_offset_label_frame",
+        "seed": 5,
+        "attack": true,
+        "expect": "色偏标签边框冒充参照（无真托盘）",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.5234,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.5234,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8680249681392205,
+        "confidence": 0.8783526301000919,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": true,
+        "reject_gate": "selfcheck",
+        "dev_post": 0.0337,
+        "rep_failure_code": "SELFCHECK_FAIL",
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      }
+    ]
+  },
+  "G3_offset_background": {
+    "expect": "色偏暖灰背景被误采信？",
+    "attack": true,
+    "n_total": 5,
+    "entered_submode_rate": 1.0,
+    "pass_rate_vs_candidate": 1.0,
+    "pass_rate_vs_total": 1.0,
+    "mistrust_rate": 0.0,
+    "final_wrong_output_rate": 0.0,
+    "gate2_intercept_rate": 0.0,
+    "summary": {
+      "n_submode": 5,
+      "n_pass": 5,
+      "n_mistrust": 0,
+      "n_wrong_output": 0,
+      "n_gate2_rejected": 0
+    },
+    "per_seed": [
+      {
+        "scene": "G3_offset_background",
+        "seed": 1,
+        "attack": true,
+        "expect": "色偏暖灰背景被误采信？",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6711,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6711,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.7581961580504755,
+        "confidence": 0.9054748194879964,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0265,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 0.829,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G3_offset_background",
+        "seed": 2,
+        "attack": true,
+        "expect": "色偏暖灰背景被误采信？",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6711,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6711,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.7582954561516821,
+        "confidence": 0.90616375975461,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0265,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 0.83,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G3_offset_background",
+        "seed": 3,
+        "attack": true,
+        "expect": "色偏暖灰背景被误采信？",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6712,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6712,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.7578302339902429,
+        "confidence": 0.9045426460743956,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0265,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 0.828,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G3_offset_background",
+        "seed": 4,
+        "attack": true,
+        "expect": "色偏暖灰背景被误采信？",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6711,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6711,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.758240323459226,
+        "confidence": 0.9060028955603932,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0265,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 0.829,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G3_offset_background",
+        "seed": 5,
+        "attack": true,
+        "expect": "色偏暖灰背景被误采信？",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.671,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "有效连通块总面积不足（疑似脂肪碎块）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.671,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.7579016095252895,
+        "confidence": 0.9056878930235176,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0265,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 0.828,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      }
+    ]
+  },
+  "G3b_neutral_background_ctrl": {
+    "expect": "对照：真中性背景应被正确采信（precision>=0.5）",
+    "attack": false,
+    "n_total": 5,
+    "entered_submode_rate": 1.0,
+    "pass_rate_vs_candidate": 1.0,
+    "pass_rate_vs_total": 1.0,
+    "mistrust_rate": 0.0,
+    "final_wrong_output_rate": 0.0,
+    "gate2_intercept_rate": 0.0,
+    "summary": {
+      "n_submode": 5,
+      "n_pass": 5,
+      "n_mistrust": 0,
+      "n_wrong_output": 0,
+      "n_gate2_rejected": 0
+    },
+    "per_seed": [
+      {
+        "scene": "G3b_neutral_background_ctrl",
+        "seed": 1,
+        "attack": false,
+        "expect": "对照：真中性背景应被正确采信（precision>=0.5）",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6711,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6711,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.5501004040741,
+        "confidence": 0.9997243648540072,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0196,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 0.11,
+        "accepted_area": 18880,
+        "truth_area": 47847,
+        "intersection": 18880,
+        "ref_precision": 1.0,
+        "ref_recall": 0.3946,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G3b_neutral_background_ctrl",
+        "seed": 2,
+        "attack": false,
+        "expect": "对照：真中性背景应被正确采信（precision>=0.5）",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6711,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6711,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.5503433911108243,
+        "confidence": 0.9989734744909844,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0197,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 0.111,
+        "accepted_area": 18880,
+        "truth_area": 47847,
+        "intersection": 18880,
+        "ref_precision": 1.0,
+        "ref_recall": 0.3946,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G3b_neutral_background_ctrl",
+        "seed": 3,
+        "attack": false,
+        "expect": "对照：真中性背景应被正确采信（precision>=0.5）",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6712,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6712,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.5496854777191865,
+        "confidence": 0.999175239549827,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0196,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 0.109,
+        "accepted_area": 18880,
+        "truth_area": 47847,
+        "intersection": 18880,
+        "ref_precision": 1.0,
+        "ref_recall": 0.3946,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G3b_neutral_background_ctrl",
+        "seed": 4,
+        "attack": false,
+        "expect": "对照：真中性背景应被正确采信（precision>=0.5）",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.6711,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.6711,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.5500847468846973,
+        "confidence": 0.9991604708784693,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0196,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 0.11,
+        "accepted_area": 18880,
+        "truth_area": 47847,
+        "intersection": 18880,
+        "ref_precision": 1.0,
+        "ref_recall": 0.3946,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G3b_neutral_background_ctrl",
+        "seed": 5,
+        "attack": false,
+        "expect": "对照：真中性背景应被正确采信（precision>=0.5）",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.671,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "PASS"
+          ],
+          "accepted_level": "环带阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.671,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.5498656834092848,
+        "confidence": 0.9994881081350662,
+        "neutral_mode": "环带阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0196,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 0.11,
+        "accepted_area": 18880,
+        "truth_area": 47847,
+        "intersection": 18880,
+        "ref_precision": 1.0,
+        "ref_recall": 0.3946,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      }
+    ]
+  },
+  "G4_plastic_box_wood": {
+    "expect": "木台面低饱和带色偏，可达性风险场景",
+    "attack": true,
+    "n_total": 5,
+    "entered_submode_rate": 0.0,
+    "pass_rate_vs_candidate": 0.0,
+    "pass_rate_vs_total": 0.0,
+    "mistrust_rate": null,
+    "final_wrong_output_rate": 0.0,
+    "gate2_intercept_rate": 0.0,
+    "summary": {
+      "n_submode": 0,
+      "n_pass": 0,
+      "n_mistrust": 0,
+      "n_wrong_output": 0,
+      "n_gate2_rejected": 0
+    },
+    "per_seed": [
+      {
+        "scene": "G4_plastic_box_wood",
+        "seed": 1,
+        "attack": true,
+        "expect": "木台面低饱和带色偏，可达性风险场景",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": null,
+            "indep_status": "SKIP_PIXELS",
+            "indep": {
+              "n": 0,
+              "reason": "候选像素不足"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": null,
+            "indep_status": "SKIP_PIXELS",
+            "indep": {
+              "n": 0,
+              "reason": "候选像素不足"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "SKIP_PIXELS",
+            "SKIP_PIXELS"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "SKIP_PIXELS",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": null,
+              "indep_status": "SKIP_PIXELS",
+              "indep": {
+                "n": 0,
+                "reason": "候选像素不足"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": null,
+              "indep_status": "SKIP_PIXELS",
+              "indep": {
+                "n": 0,
+                "reason": "候选像素不足"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "NO_VALID_REFERENCE",
+        "failure_reason": "图像中未找到足够的参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": null,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G4_plastic_box_wood",
+        "seed": 2,
+        "attack": true,
+        "expect": "木台面低饱和带色偏，可达性风险场景",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": null,
+            "indep_status": "SKIP_PIXELS",
+            "indep": {
+              "n": 0,
+              "reason": "候选像素不足"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": null,
+            "indep_status": "SKIP_PIXELS",
+            "indep": {
+              "n": 0,
+              "reason": "候选像素不足"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "SKIP_PIXELS",
+            "SKIP_PIXELS"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "SKIP_PIXELS",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": null,
+              "indep_status": "SKIP_PIXELS",
+              "indep": {
+                "n": 0,
+                "reason": "候选像素不足"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": null,
+              "indep_status": "SKIP_PIXELS",
+              "indep": {
+                "n": 0,
+                "reason": "候选像素不足"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "NO_VALID_REFERENCE",
+        "failure_reason": "图像中未找到足够的参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": null,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G4_plastic_box_wood",
+        "seed": 3,
+        "attack": true,
+        "expect": "木台面低饱和带色偏，可达性风险场景",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": null,
+            "indep_status": "SKIP_PIXELS",
+            "indep": {
+              "n": 0,
+              "reason": "候选像素不足"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": null,
+            "indep_status": "SKIP_PIXELS",
+            "indep": {
+              "n": 0,
+              "reason": "候选像素不足"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "SKIP_PIXELS",
+            "SKIP_PIXELS"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "SKIP_PIXELS",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": null,
+              "indep_status": "SKIP_PIXELS",
+              "indep": {
+                "n": 0,
+                "reason": "候选像素不足"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": null,
+              "indep_status": "SKIP_PIXELS",
+              "indep": {
+                "n": 0,
+                "reason": "候选像素不足"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "NO_VALID_REFERENCE",
+        "failure_reason": "图像中未找到足够的参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": null,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G4_plastic_box_wood",
+        "seed": 4,
+        "attack": true,
+        "expect": "木台面低饱和带色偏，可达性风险场景",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": null,
+            "indep_status": "SKIP_PIXELS",
+            "indep": {
+              "n": 0,
+              "reason": "候选像素不足"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": null,
+            "indep_status": "SKIP_PIXELS",
+            "indep": {
+              "n": 0,
+              "reason": "候选像素不足"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "SKIP_PIXELS",
+            "SKIP_PIXELS"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "SKIP_PIXELS",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": null,
+              "indep_status": "SKIP_PIXELS",
+              "indep": {
+                "n": 0,
+                "reason": "候选像素不足"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": null,
+              "indep_status": "SKIP_PIXELS",
+              "indep": {
+                "n": 0,
+                "reason": "候选像素不足"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "NO_VALID_REFERENCE",
+        "failure_reason": "图像中未找到足够的参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": null,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G4_plastic_box_wood",
+        "seed": 5,
+        "attack": true,
+        "expect": "木台面低饱和带色偏，可达性风险场景",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": null,
+            "indep_status": "SKIP_PIXELS",
+            "indep": {
+              "n": 0,
+              "reason": "候选像素不足"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": null,
+            "indep_status": "SKIP_PIXELS",
+            "indep": {
+              "n": 0,
+              "reason": "候选像素不足"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "SKIP_PIXELS",
+            "SKIP_PIXELS"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "SKIP_PIXELS",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": null,
+              "indep_status": "SKIP_PIXELS",
+              "indep": {
+                "n": 0,
+                "reason": "候选像素不足"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": null,
+              "indep_status": "SKIP_PIXELS",
+              "indep": {
+                "n": 0,
+                "reason": "候选像素不足"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "NO_VALID_REFERENCE",
+        "failure_reason": "图像中未找到足够的参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": null,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      }
+    ]
+  },
+  "G5_crafted_lowsat_ring": {
+    "expect": "逐项过前置门的强攻击（预检第一优先）",
+    "attack": true,
+    "n_total": 5,
+    "entered_submode_rate": 1.0,
+    "pass_rate_vs_candidate": 1.0,
+    "pass_rate_vs_total": 1.0,
+    "mistrust_rate": 0.0,
+    "final_wrong_output_rate": 0.0,
+    "gate2_intercept_rate": 0.0,
+    "summary": {
+      "n_submode": 5,
+      "n_pass": 5,
+      "n_mistrust": 0,
+      "n_wrong_output": 0,
+      "n_gate2_rejected": 0
+    },
+    "per_seed": [
+      {
+        "scene": "G5_crafted_lowsat_ring",
+        "seed": 1,
+        "attack": true,
+        "expect": "逐项过前置门的强攻击（预检第一优先）",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.7181,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.7181,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8515818677517681,
+        "confidence": 0.8961632375736328,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0295,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 2.841,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G5_crafted_lowsat_ring",
+        "seed": 2,
+        "attack": true,
+        "expect": "逐项过前置门的强攻击（预检第一优先）",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.7181,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.7181,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8516654692183362,
+        "confidence": 0.8970730347395951,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0295,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 2.842,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G5_crafted_lowsat_ring",
+        "seed": 3,
+        "attack": true,
+        "expect": "逐项过前置门的强攻击（预检第一优先）",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.7182,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.7182,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8510885009030558,
+        "confidence": 0.8949067984869784,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0294,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 2.837,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G5_crafted_lowsat_ring",
+        "seed": 4,
+        "attack": true,
+        "expect": "逐项过前置门的强攻击（预检第一优先）",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.7181,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.7181,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8516693415176156,
+        "confidence": 0.8967891647009395,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0295,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 2.842,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G5_crafted_lowsat_ring",
+        "seed": 5,
+        "attack": true,
+        "expect": "逐项过前置门的强攻击（预检第一优先）",
+        "stages": [
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "PASS",
+            "indep": {
+              "zone": "ring",
+              "n_center": 0,
+              "center_sat_median": 0.718,
+              "center_valid_frac": 1.0,
+              "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "PASS"
+          ],
+          "accepted_level": "环带宽阈值中性区"
+        },
+        "independent_mode": "center_color_scene",
+        "independent_status_final": "PASS",
+        "entered_submode": true,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "PASS",
+              "indep": {
+                "zone": "ring",
+                "n_center": 0,
+                "center_sat_median": 0.718,
+                "center_valid_frac": 1.0,
+                "verdict": "中央区域存在彩色像素证据（独立场景证据，不区分彩色来源），环带候选与中央彩色区域不同源"
+              }
+            }
+          ]
+        },
+        "estimate_detected": true,
+        "lamp": "red_meat",
+        "strength": 0.8511427368068237,
+        "confidence": 0.8963688899893444,
+        "neutral_mode": "环带宽阈值中性区",
+        "failure_code": "OK",
+        "failure_reason": null,
+        "restore_rejected": false,
+        "reject_gate": null,
+        "dev_post": 0.0295,
+        "rep_failure_code": "OK",
+        "rec_is_none": false,
+        "dE_target": 2.838,
+        "accepted_area": 18880,
+        "truth_area": 0,
+        "intersection": 0,
+        "ref_precision": 0.0,
+        "ref_recall": null,
+        "mistrust": true,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      }
+    ]
+  },
+  "G6a_specular_neutral": {
+    "expect": "反光斑≈光源色骗方向差",
+    "attack": true,
+    "n_total": 5,
+    "entered_submode_rate": 0.0,
+    "pass_rate_vs_candidate": 0.0,
+    "pass_rate_vs_total": 0.0,
+    "mistrust_rate": null,
+    "final_wrong_output_rate": 0.0,
+    "gate2_intercept_rate": 0.0,
+    "summary": {
+      "n_submode": 0,
+      "n_pass": 0,
+      "n_mistrust": 0,
+      "n_wrong_output": 0,
+      "n_gate2_rejected": 0
+    },
+    "per_seed": [
+      {
+        "scene": "G6a_specular_neutral",
+        "seed": 1,
+        "attack": true,
+        "expect": "反光斑≈光源色骗方向差",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "FAIL",
+            "QUALITY_FAIL",
+            "FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "SAME_MATERIAL",
+        "failure_reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），独立参照候选验证未通过，无独立于食材的有效参照候选，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 25840,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G6a_specular_neutral",
+        "seed": 2,
+        "attack": true,
+        "expect": "反光斑≈光源色骗方向差",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "FAIL",
+            "QUALITY_FAIL",
+            "FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "SAME_MATERIAL",
+        "failure_reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），独立参照候选验证未通过，无独立于食材的有效参照候选，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 25840,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G6a_specular_neutral",
+        "seed": 3,
+        "attack": true,
+        "expect": "反光斑≈光源色骗方向差",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0001,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.77
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0001,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.77
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "FAIL",
+            "QUALITY_FAIL",
+            "FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0001,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.77
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0001,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.77
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "SAME_MATERIAL",
+        "failure_reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），独立参照候选验证未通过，无独立于食材的有效参照候选，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 25840,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G6a_specular_neutral",
+        "seed": 4,
+        "attack": true,
+        "expect": "反光斑≈光源色骗方向差",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "FAIL",
+            "QUALITY_FAIL",
+            "FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "SAME_MATERIAL",
+        "failure_reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），独立参照候选验证未通过，无独立于食材的有效参照候选，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 25840,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G6a_specular_neutral",
+        "seed": 5,
+        "attack": true,
+        "expect": "反光斑≈光源色骗方向差",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "FAIL",
+            "QUALITY_FAIL",
+            "FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "SAME_MATERIAL",
+        "failure_reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），独立参照候选验证未通过，无独立于食材的有效参照候选，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 25840,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      }
+    ]
+  },
+  "G6b_shadow_split_material": {
+    "expect": "阴影劈同材质造假方向差；误采信判据=dE_target>3",
+    "attack": true,
+    "n_total": 5,
+    "entered_submode_rate": 0.0,
+    "pass_rate_vs_candidate": 0.0,
+    "pass_rate_vs_total": 0.0,
+    "mistrust_rate": null,
+    "final_wrong_output_rate": 0.0,
+    "gate2_intercept_rate": 0.0,
+    "summary": {
+      "n_submode": 0,
+      "n_pass": 0,
+      "n_mistrust": 0,
+      "n_wrong_output": 0,
+      "n_gate2_rejected": 0
+    },
+    "per_seed": [
+      {
+        "scene": "G6b_shadow_split_material",
+        "seed": 1,
+        "attack": true,
+        "expect": "阴影劈同材质造假方向差；误采信判据=dE_target>3",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "QUALITY_FAIL",
+        "failure_reason": "图像中未找到足够的参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 27120,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G6b_shadow_split_material",
+        "seed": 2,
+        "attack": true,
+        "expect": "阴影劈同材质造假方向差；误采信判据=dE_target>3",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "QUALITY_FAIL",
+        "failure_reason": "图像中未找到足够的参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 27120,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G6b_shadow_split_material",
+        "seed": 3,
+        "attack": true,
+        "expect": "阴影劈同材质造假方向差；误采信判据=dE_target>3",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "QUALITY_FAIL",
+        "failure_reason": "图像中未找到足够的参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 27120,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G6b_shadow_split_material",
+        "seed": 4,
+        "attack": true,
+        "expect": "阴影劈同材质造假方向差；误采信判据=dE_target>3",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "QUALITY_FAIL",
+        "failure_reason": "图像中未找到足够的参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 27120,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G6b_shadow_split_material",
+        "seed": 5,
+        "attack": true,
+        "expect": "阴影劈同材质造假方向差；误采信判据=dE_target>3",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "ring",
+              "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "QUALITY_FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "ring",
+                "quality_reason": "候选色彩离散度过高（疑似混合来源假中性）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "QUALITY_FAIL",
+        "failure_reason": "图像中未找到足够的参照区域（托盘/包装/白色参照物），无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 27120,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      }
+    ]
+  },
+  "G6c_specular_shadow_combo": {
+    "expect": "反光+阴影组合拉大方向差",
+    "attack": true,
+    "n_total": 5,
+    "entered_submode_rate": 0.0,
+    "pass_rate_vs_candidate": 0.0,
+    "pass_rate_vs_total": 0.0,
+    "mistrust_rate": null,
+    "final_wrong_output_rate": 0.0,
+    "gate2_intercept_rate": 0.0,
+    "summary": {
+      "n_submode": 0,
+      "n_pass": 0,
+      "n_mistrust": 0,
+      "n_wrong_output": 0,
+      "n_gate2_rejected": 0
+    },
+    "per_seed": [
+      {
+        "scene": "G6c_specular_shadow_combo",
+        "seed": 1,
+        "attack": true,
+        "expect": "反光+阴影组合拉大方向差",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "FAIL",
+            "QUALITY_FAIL",
+            "FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "SAME_MATERIAL",
+        "failure_reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），独立参照候选验证未通过，无独立于食材的有效参照候选，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 25840,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G6c_specular_shadow_combo",
+        "seed": 2,
+        "attack": true,
+        "expect": "反光+阴影组合拉大方向差",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "FAIL",
+            "QUALITY_FAIL",
+            "FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "SAME_MATERIAL",
+        "failure_reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），独立参照候选验证未通过，无独立于食材的有效参照候选，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 25840,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G6c_specular_shadow_combo",
+        "seed": 3,
+        "attack": true,
+        "expect": "反光+阴影组合拉大方向差",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.77
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.77
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "FAIL",
+            "QUALITY_FAIL",
+            "FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.77
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.77
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "SAME_MATERIAL",
+        "failure_reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），独立参照候选验证未通过，无独立于食材的有效参照候选，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 25840,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G6c_specular_shadow_combo",
+        "seed": 4,
+        "attack": true,
+        "expect": "反光+阴影组合拉大方向差",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0001,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0001,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "FAIL",
+            "QUALITY_FAIL",
+            "FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0001,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0001,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "SAME_MATERIAL",
+        "failure_reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），独立参照候选验证未通过，无独立于食材的有效参照候选，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 25840,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      },
+      {
+        "scene": "G6c_specular_shadow_combo",
+        "seed": 5,
+        "attack": true,
+        "expect": "反光+阴影组合拉大方向差",
+        "stages": [
+          {
+            "level": "环带阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          },
+          {
+            "level": "环带宽阈值",
+            "quality": true,
+            "indep_status": "FAIL",
+            "indep": {
+              "zone": "ring",
+              "n_center": 3840,
+              "n_ring": 17600,
+              "dir_diff": 0.0,
+              "ring_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "center_dir": [
+                1.3083,
+                0.9216,
+                0.7701
+              ],
+              "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+            }
+          },
+          {
+            "level": "全图宽阈值",
+            "quality": false,
+            "indep_status": "QUALITY_FAIL",
+            "indep": {
+              "zone": "full",
+              "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+            }
+          }
+        ],
+        "candidate_gate_summary": {
+          "indep_status_all": [
+            "FAIL",
+            "QUALITY_FAIL",
+            "FAIL",
+            "QUALITY_FAIL"
+          ],
+          "accepted_level": null
+        },
+        "independent_mode": null,
+        "independent_status_final": "QUALITY_FAIL",
+        "entered_submode": false,
+        "indep_evidence": {
+          "stages": [
+            {
+              "level": "环带阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            },
+            {
+              "level": "环带宽阈值",
+              "quality": true,
+              "indep_status": "FAIL",
+              "indep": {
+                "zone": "ring",
+                "n_center": 3840,
+                "n_ring": 17600,
+                "dir_diff": 0.0,
+                "ring_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "center_dir": [
+                  1.3083,
+                  0.9216,
+                  0.7701
+                ],
+                "verdict": "环带与中央候选增益方向一致（疑似满幅同质浅色材质，无独立于食材的有效参照候选）"
+              }
+            },
+            {
+              "level": "全图宽阈值",
+              "quality": false,
+              "indep_status": "QUALITY_FAIL",
+              "indep": {
+                "zone": "full",
+                "quality_reason": "候选占比过高（疑似食物本体被误判为中性）"
+              }
+            }
+          ]
+        },
+        "estimate_detected": false,
+        "lamp": null,
+        "strength": 0.0,
+        "confidence": 0.0,
+        "neutral_mode": null,
+        "failure_code": "SAME_MATERIAL",
+        "failure_reason": "图像候选中性区域与主体同质（疑似满幅同质浅色材质），独立参照候选验证未通过，无独立于食材的有效参照候选，无法可靠估计光源；建议附加白色参照物（如纸巾）后重拍",
+        "restore_rejected": null,
+        "reject_gate": null,
+        "dev_post": null,
+        "rep_failure_code": null,
+        "rec_is_none": true,
+        "dE_target": null,
+        "accepted_area": 0,
+        "truth_area": 25840,
+        "intersection": 0,
+        "ref_precision": null,
+        "ref_recall": 0.0,
+        "mistrust": false,
+        "mistrust_rule": "default",
+        "spec_overlap": null
+      }
+    ]
+  }
+}

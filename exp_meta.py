@@ -16,7 +16,7 @@ import subprocess
 import sys
 from datetime import datetime
 
-CODE_VERSION = "V0.7c"
+CODE_VERSION = "V0.8"
 
 
 def _git_head():
