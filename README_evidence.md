@@ -93,7 +93,7 @@ $env:PYTHONIOENCODING='utf-8'; python -X utf8 calib_overexpose_multi.py # 过曝
    **V0.8（exp8_attack，11场景×5种子，绑定V0.8/ef152d4）**：三个"整图无真中性参照"攻击（G1/G1b/G2b）
       独立场景证据子模式 PASS、非中性采信后全部 15/15 被门2拦截（dev_post 0.0336~0.0414>0.03）、最终错误输出 0；
       G2a 正确采信（ref_precision=1.0、dE1.47）；G3/G5 采信非中性但还原 dE<3 未达伤害阈值（门2不触发）；
-      G4/G6a/G6b/G6c 合成构造不可达（预检两轮停止调参，见 results_exp8_precheck.json）如实记录，不引用为零放行证据；
+      G4/G6a/G6b/G6c 合成构造不可达（预检判定与逐级失败原因见 results_exp8_precheck.json）如实记录，不引用为零放行证据；
       全部数据为 V0.8 合成仿真结果，不外推真实数据；
 7. 过曝阈值 0.30 为合成数据退化曲线的经验工程分界（非普适物理阈值），
    真实数据需重新标定（见 `calib_overexpose_multi.py` 输出与交底书声明）。
