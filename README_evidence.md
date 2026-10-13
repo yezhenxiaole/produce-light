@@ -90,9 +90,9 @@ $env:PYTHONIOENCODING='utf-8'; python -X utf8 calib_overexpose_multi.py # 过曝
     属初步攻击验证：现有样本未真正进入本子模式受验，零放行证明力有限；
     中性性未证假设：PASS 后增益估计仍按近似中性参照使用，安全性依赖低饱和筛选+
     候选质量四项+门2输出闭合差兜底，真实误采信率属真实采集阶段任务；
-   **V0.8（exp8_attack，11场景×5种子，绑定V0.8/ef152d4）**：三个"整图无真中性参照"攻击（G1/G1b/G2b）
+   **V0.8（exp8_attack，11场景×5种子，绑定V0.8/3c32782——第十五轮冻结源码新增双层统计字段后重跑，数字与ef152d4版一致）**：三个"整图无真中性参照"攻击（G1/G1b/G2b）
       独立场景证据子模式 PASS、非中性采信后全部 15/15 被门2拦截（dev_post 0.0336~0.0414>0.03）、最终错误输出 0；
-      G2a 正确采信（ref_precision=1.0、dE1.47）；G3/G5 非中性采信数 10/10（逐样本 mistrust=true，非零采信）但严重误采信数 0/10（采信非中性且还原输出 dE>3 才计入，dE<3 未达伤害阈值、门2不触发）——双层口径两层事实分别记录，防止把 0 读成"没有非中性采信"；
+      G2a 正确采信（ref_precision=1.0、dE1.47）；G3/G5 非中性采信数 10/10（逐样本 nonneutral_accept=true，非零采信）但严重误采信数 0/10（severe_mistrust：采信非中性且还原输出 dE>3 才计入，dE<3 未达伤害阈值、门2不触发）——双层口径两层事实分别记录，防止把 0 读成"没有非中性采信"。JSON 双层统计字段（第十五轮，meta.params.field_semantics 有完整定义）：逐样本 nonneutral_accept/severe_mistrust，汇总 nonneutral_accept_count/severe_mistrust_count/severe_mistrust_rate（分母 n_pass）；旧字段 mistrust（逐样本，=nonneutral_accept）与 mistrust_rate（严格口径，=severe_mistrust_rate）保留兼容历史 JSON；
       G4/G6a/G6b/G6c 合成构造不可达（预检判定与逐级失败原因见 results_exp8_precheck.json）如实记录，不引用为零放行证据；
       全部数据为 V0.8 合成仿真结果，不外推真实数据；
 7. 过曝阈值 0.30 为合成数据退化曲线的经验工程分界（非普适物理阈值），

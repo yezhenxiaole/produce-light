@@ -1,9 +1,9 @@
 {
   "meta": {
     "code_version": "V0.8",
-    "generated_at": "2026-10-13T09:28:51",
+    "generated_at": "2026-10-13T15:56:50",
     "python_version": "3.12.13",
-    "git_commit": "ef152d4",
+    "git_commit": "3c32782",
     "params": {
       "mode": "formal",
       "n_seeds": 5,
@@ -29,7 +29,16 @@
         "G6b_shadow_split_material",
         "G6c_specular_shadow_combo"
       ],
-      "note": "V0.8强攻击仿真（逐样本证据全量落盘，禁中文提示语匹配判定）"
+      "note": "V0.8强攻击仿真（逐样本证据全量落盘，禁中文提示语匹配判定）",
+      "field_semantics": {
+        "nonneutral_accept": "逐样本：采信了非中性参照（事实层，无伤害判定）",
+        "severe_mistrust": "逐样本：采信非中性且还原输出dE>3（伤害层）",
+        "nonneutral_accept_count": "汇总：识别成功样本中非中性采信数（分母n_pass）",
+        "severe_mistrust_count": "汇总：识别成功样本中严重误采信数（分母n_pass）",
+        "severe_mistrust_rate": "汇总：severe_mistrust_count/n_pass",
+        "mistrust_rate": "旧字段（严格口径）：非中性采信且dE>3，分母n_pass；与severe_mistrust_rate等值，保留兼容历史JSON",
+        "mistrust": "旧字段（逐样本）：=nonneutral_accept，保留兼容历史JSON"
+      }
     }
   },
   "G1_colorwrap_offset_frame": {
@@ -40,6 +49,9 @@
     "pass_rate_vs_candidate": 1.0,
     "pass_rate_vs_total": 1.0,
     "mistrust_rate": 0.0,
+    "nonneutral_accept_count": 5,
+    "severe_mistrust_count": 0,
+    "severe_mistrust_rate": 0.0,
     "final_wrong_output_rate": 0.0,
     "gate2_intercept_rate": 1.0,
     "summary": {
@@ -47,7 +59,9 @@
       "n_pass": 5,
       "n_mistrust": 0,
       "n_wrong_output": 0,
-      "n_gate2_rejected": 5
+      "n_gate2_rejected": 5,
+      "n_nonneutral_accept": 5,
+      "n_severe_mistrust": 0
     },
     "per_seed": [
       {
@@ -133,6 +147,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -218,6 +234,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -303,6 +321,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -388,6 +408,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -473,6 +495,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       }
     ]
@@ -485,6 +509,9 @@
     "pass_rate_vs_candidate": 1.0,
     "pass_rate_vs_total": 1.0,
     "mistrust_rate": 0.0,
+    "nonneutral_accept_count": 5,
+    "severe_mistrust_count": 0,
+    "severe_mistrust_rate": 0.0,
     "final_wrong_output_rate": 0.0,
     "gate2_intercept_rate": 1.0,
     "summary": {
@@ -492,7 +519,9 @@
       "n_pass": 5,
       "n_mistrust": 0,
       "n_wrong_output": 0,
-      "n_gate2_rejected": 5
+      "n_gate2_rejected": 5,
+      "n_nonneutral_accept": 5,
+      "n_severe_mistrust": 0
     },
     "per_seed": [
       {
@@ -559,6 +588,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -625,6 +656,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -691,6 +724,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -757,6 +792,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -823,6 +860,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       }
     ]
@@ -835,6 +874,9 @@
     "pass_rate_vs_candidate": 1.0,
     "pass_rate_vs_total": 1.0,
     "mistrust_rate": 0.0,
+    "nonneutral_accept_count": 0,
+    "severe_mistrust_count": 0,
+    "severe_mistrust_rate": 0.0,
     "final_wrong_output_rate": 0.0,
     "gate2_intercept_rate": 0.0,
     "summary": {
@@ -842,7 +884,9 @@
       "n_pass": 5,
       "n_mistrust": 0,
       "n_wrong_output": 0,
-      "n_gate2_rejected": 0
+      "n_gate2_rejected": 0,
+      "n_nonneutral_accept": 0,
+      "n_severe_mistrust": 0
     },
     "per_seed": [
       {
@@ -909,6 +953,8 @@
         "ref_recall": 0.7022,
         "mistrust": false,
         "mistrust_rule": "precision_or_dE",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -975,6 +1021,8 @@
         "ref_recall": 0.7022,
         "mistrust": false,
         "mistrust_rule": "precision_or_dE",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -1041,6 +1089,8 @@
         "ref_recall": 0.7022,
         "mistrust": false,
         "mistrust_rule": "precision_or_dE",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -1107,6 +1157,8 @@
         "ref_recall": 0.7022,
         "mistrust": false,
         "mistrust_rule": "precision_or_dE",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -1173,6 +1225,8 @@
         "ref_recall": 0.7022,
         "mistrust": false,
         "mistrust_rule": "precision_or_dE",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       }
     ]
@@ -1185,6 +1239,9 @@
     "pass_rate_vs_candidate": 1.0,
     "pass_rate_vs_total": 1.0,
     "mistrust_rate": 0.0,
+    "nonneutral_accept_count": 5,
+    "severe_mistrust_count": 0,
+    "severe_mistrust_rate": 0.0,
     "final_wrong_output_rate": 0.0,
     "gate2_intercept_rate": 1.0,
     "summary": {
@@ -1192,7 +1249,9 @@
       "n_pass": 5,
       "n_mistrust": 0,
       "n_wrong_output": 0,
-      "n_gate2_rejected": 5
+      "n_gate2_rejected": 5,
+      "n_nonneutral_accept": 5,
+      "n_severe_mistrust": 0
     },
     "per_seed": [
       {
@@ -1278,6 +1337,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -1363,6 +1424,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -1448,6 +1511,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -1533,6 +1598,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -1618,6 +1685,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       }
     ]
@@ -1630,6 +1699,9 @@
     "pass_rate_vs_candidate": 1.0,
     "pass_rate_vs_total": 1.0,
     "mistrust_rate": 0.0,
+    "nonneutral_accept_count": 5,
+    "severe_mistrust_count": 0,
+    "severe_mistrust_rate": 0.0,
     "final_wrong_output_rate": 0.0,
     "gate2_intercept_rate": 0.0,
     "summary": {
@@ -1637,7 +1709,9 @@
       "n_pass": 5,
       "n_mistrust": 0,
       "n_wrong_output": 0,
-      "n_gate2_rejected": 0
+      "n_gate2_rejected": 0,
+      "n_nonneutral_accept": 5,
+      "n_severe_mistrust": 0
     },
     "per_seed": [
       {
@@ -1742,6 +1816,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -1846,6 +1922,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -1950,6 +2028,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -2054,6 +2134,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -2158,6 +2240,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       }
     ]
@@ -2170,6 +2254,9 @@
     "pass_rate_vs_candidate": 1.0,
     "pass_rate_vs_total": 1.0,
     "mistrust_rate": 0.0,
+    "nonneutral_accept_count": 0,
+    "severe_mistrust_count": 0,
+    "severe_mistrust_rate": 0.0,
     "final_wrong_output_rate": 0.0,
     "gate2_intercept_rate": 0.0,
     "summary": {
@@ -2177,7 +2264,9 @@
       "n_pass": 5,
       "n_mistrust": 0,
       "n_wrong_output": 0,
-      "n_gate2_rejected": 0
+      "n_gate2_rejected": 0,
+      "n_nonneutral_accept": 0,
+      "n_severe_mistrust": 0
     },
     "per_seed": [
       {
@@ -2244,6 +2333,8 @@
         "ref_recall": 0.3946,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -2310,6 +2401,8 @@
         "ref_recall": 0.3946,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -2376,6 +2469,8 @@
         "ref_recall": 0.3946,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -2442,6 +2537,8 @@
         "ref_recall": 0.3946,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -2508,6 +2605,8 @@
         "ref_recall": 0.3946,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       }
     ]
@@ -2520,6 +2619,9 @@
     "pass_rate_vs_candidate": 0.0,
     "pass_rate_vs_total": 0.0,
     "mistrust_rate": null,
+    "nonneutral_accept_count": 0,
+    "severe_mistrust_count": 0,
+    "severe_mistrust_rate": null,
     "final_wrong_output_rate": 0.0,
     "gate2_intercept_rate": 0.0,
     "summary": {
@@ -2527,7 +2629,9 @@
       "n_pass": 0,
       "n_mistrust": 0,
       "n_wrong_output": 0,
-      "n_gate2_rejected": 0
+      "n_gate2_rejected": 0,
+      "n_nonneutral_accept": 0,
+      "n_severe_mistrust": 0
     },
     "per_seed": [
       {
@@ -2607,6 +2711,8 @@
         "ref_recall": null,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -2686,6 +2792,8 @@
         "ref_recall": null,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -2765,6 +2873,8 @@
         "ref_recall": null,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -2844,6 +2954,8 @@
         "ref_recall": null,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -2923,6 +3035,8 @@
         "ref_recall": null,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       }
     ]
@@ -2935,6 +3049,9 @@
     "pass_rate_vs_candidate": 1.0,
     "pass_rate_vs_total": 1.0,
     "mistrust_rate": 0.0,
+    "nonneutral_accept_count": 5,
+    "severe_mistrust_count": 0,
+    "severe_mistrust_rate": 0.0,
     "final_wrong_output_rate": 0.0,
     "gate2_intercept_rate": 0.0,
     "summary": {
@@ -2942,7 +3059,9 @@
       "n_pass": 5,
       "n_mistrust": 0,
       "n_wrong_output": 0,
-      "n_gate2_rejected": 0
+      "n_gate2_rejected": 0,
+      "n_nonneutral_accept": 5,
+      "n_severe_mistrust": 0
     },
     "per_seed": [
       {
@@ -3028,6 +3147,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -3113,6 +3234,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -3198,6 +3321,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -3283,6 +3408,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -3368,6 +3495,8 @@
         "ref_recall": null,
         "mistrust": true,
         "mistrust_rule": "default",
+        "nonneutral_accept": true,
+        "severe_mistrust": false,
         "spec_overlap": null
       }
     ]
@@ -3380,6 +3509,9 @@
     "pass_rate_vs_candidate": 0.0,
     "pass_rate_vs_total": 0.0,
     "mistrust_rate": null,
+    "nonneutral_accept_count": 0,
+    "severe_mistrust_count": 0,
+    "severe_mistrust_rate": null,
     "final_wrong_output_rate": 0.0,
     "gate2_intercept_rate": 0.0,
     "summary": {
@@ -3387,7 +3519,9 @@
       "n_pass": 0,
       "n_mistrust": 0,
       "n_wrong_output": 0,
-      "n_gate2_rejected": 0
+      "n_gate2_rejected": 0,
+      "n_nonneutral_accept": 0,
+      "n_severe_mistrust": 0
     },
     "per_seed": [
       {
@@ -3557,6 +3691,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -3726,6 +3862,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -3895,6 +4033,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -4064,6 +4204,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -4233,6 +4375,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       }
     ]
@@ -4245,6 +4389,9 @@
     "pass_rate_vs_candidate": 0.0,
     "pass_rate_vs_total": 0.0,
     "mistrust_rate": null,
+    "nonneutral_accept_count": 0,
+    "severe_mistrust_count": 0,
+    "severe_mistrust_rate": null,
     "final_wrong_output_rate": 0.0,
     "gate2_intercept_rate": 0.0,
     "summary": {
@@ -4252,7 +4399,9 @@
       "n_pass": 0,
       "n_mistrust": 0,
       "n_wrong_output": 0,
-      "n_gate2_rejected": 0
+      "n_gate2_rejected": 0,
+      "n_nonneutral_accept": 0,
+      "n_severe_mistrust": 0
     },
     "per_seed": [
       {
@@ -4370,6 +4519,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -4487,6 +4638,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -4604,6 +4757,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -4721,6 +4876,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -4838,6 +4995,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       }
     ]
@@ -4850,6 +5009,9 @@
     "pass_rate_vs_candidate": 0.0,
     "pass_rate_vs_total": 0.0,
     "mistrust_rate": null,
+    "nonneutral_accept_count": 0,
+    "severe_mistrust_count": 0,
+    "severe_mistrust_rate": null,
     "final_wrong_output_rate": 0.0,
     "gate2_intercept_rate": 0.0,
     "summary": {
@@ -4857,7 +5019,9 @@
       "n_pass": 0,
       "n_mistrust": 0,
       "n_wrong_output": 0,
-      "n_gate2_rejected": 0
+      "n_gate2_rejected": 0,
+      "n_nonneutral_accept": 0,
+      "n_severe_mistrust": 0
     },
     "per_seed": [
       {
@@ -5027,6 +5191,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -5196,6 +5362,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -5365,6 +5533,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -5534,6 +5704,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       },
       {
@@ -5703,6 +5875,8 @@
         "ref_recall": 0.0,
         "mistrust": false,
         "mistrust_rule": "default",
+        "nonneutral_accept": false,
+        "severe_mistrust": false,
         "spec_overlap": null
       }
     ]
