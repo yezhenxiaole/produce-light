@@ -523,6 +523,11 @@ def run_one(scene_name, seed):
         ref_recall=st["ref_recall"],
         mistrust=bool(mistrust),
         mistrust_rule=sc.get("mistrust_rule", "default"),
+        # 双层口径（第十五轮）：nonneutral_accept=非中性采信（逐样本事实层，
+        # 即旧 mistrust 原值）；severe_mistrust=严重误采信（采信非中性且还原
+        # 输出dE>3，伤害层；dE_only场景两者同值）。旧字段保留兼容历史JSON。
+        nonneutral_accept=bool(mistrust),
+        severe_mistrust=bool(mistrust and dE_target is not None and dE_target > 3),
         spec_overlap=spec_overlap,
     )
     return sample
@@ -612,6 +617,11 @@ def run_formal():
         n_mistrust = sum(1 for s in samples
                          if s["estimate_detected"] and s["mistrust"]
                          and (s["dE_target"] is not None and s["dE_target"] > 3))
+        # 双层口径（第十五轮）：非中性采信数（逐样本事实层）/严重误采信数（伤害层）
+        n_nonneutral = sum(1 for s in samples
+                           if s["estimate_detected"] and s["nonneutral_accept"])
+        n_severe = sum(1 for s in samples
+                       if s["estimate_detected"] and s["severe_mistrust"])
         # 最终错误输出率：rec非None且dE>3
         n_wrong = sum(1 for s in samples
                       if (not s["rec_is_none"]) and s["dE_target"] is not None
@@ -624,11 +634,17 @@ def run_formal():
             pass_rate_vs_candidate=None,   # 见下方补充
             pass_rate_vs_total=round(n_pass / n_total, 3),
             mistrust_rate=(round(n_mistrust / n_pass, 3) if n_pass else None),
+            # 双层口径（第十五轮）：分母均为 n_pass（识别成功数）
+            nonneutral_accept_count=n_nonneutral,
+            severe_mistrust_count=n_severe,
+            severe_mistrust_rate=(round(n_severe / n_pass, 3) if n_pass else None),
             final_wrong_output_rate=round(n_wrong / n_total, 3),
             gate2_intercept_rate=round(n_rejected_by_gate2 / n_total, 3),
             summary=dict(n_submode=n_submode, n_pass=n_pass,
                          n_mistrust=n_mistrust, n_wrong_output=n_wrong,
-                         n_gate2_rejected=n_rejected_by_gate2),
+                         n_gate2_rejected=n_rejected_by_gate2,
+                         n_nonneutral_accept=n_nonneutral,
+                         n_severe_mistrust=n_severe),
             per_seed=samples,
         )
         # PASS率双分母之"进入候选验证级"分母
@@ -637,7 +653,8 @@ def run_formal():
                                                if n_entered_cand else None)
         sm = out[name]["summary"]
         print(f"  {name}: 子模式{n_submode}/5 识别{n_pass}/5 "
-              f"误采信{n_mistrust} 错误输出{n_wrong} 门2拦截{n_rejected_by_gate2}")
+              f"误采信{n_mistrust} 非中性采信{n_nonneutral} 严重误采信{n_severe} "
+              f"错误输出{n_wrong} 门2拦截{n_rejected_by_gate2}")
     return out
 
 
@@ -664,7 +681,15 @@ if __name__ == "__main__":
                                  seeds=list(SEEDS_FORMAL), lamp=LAMP,
                                  lamp_strength=LAMP_S,
                                  scenes=list(SCENES.keys()),
-                                 note="V0.8强攻击仿真（逐样本证据全量落盘，禁中文提示语匹配判定）"))
+                                 note="V0.8强攻击仿真（逐样本证据全量落盘，禁中文提示语匹配判定）",
+                                 field_semantics=dict(
+                                     nonneutral_accept="逐样本：采信了非中性参照（事实层，无伤害判定）",
+                                     severe_mistrust="逐样本：采信非中性且还原输出dE>3（伤害层）",
+                                     nonneutral_accept_count="汇总：识别成功样本中非中性采信数（分母n_pass）",
+                                     severe_mistrust_count="汇总：识别成功样本中严重误采信数（分母n_pass）",
+                                     severe_mistrust_rate="汇总：severe_mistrust_count/n_pass",
+                                     mistrust_rate="旧字段（严格口径）：非中性采信且dE>3，分母n_pass；与severe_mistrust_rate等值，保留兼容历史JSON",
+                                     mistrust="旧字段（逐样本）：=nonneutral_accept，保留兼容历史JSON")))
     else:
         print("用法: python exp8_attack.py [precheck|formal]")
 
